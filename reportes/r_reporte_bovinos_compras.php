@@ -40,7 +40,7 @@ class PDF extends tFPDF{
             // Movernos a la derecha
             $this->Cell(80);
             // Título
-            $this->Cell(30,10,'REPORTE DE COMPRAS POR PROVEEDOR',0,0,'C');
+            $this->Cell(30,10,'REPORTE DE COMPRAS DE BOVINOS',0,0,'C');
             // Salto de línea
             $this->Ln(10);
 

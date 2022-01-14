@@ -120,7 +120,7 @@
                                                 <select class="form-control" name="tipo_bovino" id="tipo_bovino" required onclick="validar_campito()">
                                                     <option value="Seleccione">Seleccione</option>
                                                     <option value="novia">Novía</option>
-                                                    <option value="ternero">ternero</option>
+                                                    <option value="ternero">Ternero</option>
                                                     <option value="vaca_lechera">Vaca Lechera</option>
                                                 </select>
                                             </div>

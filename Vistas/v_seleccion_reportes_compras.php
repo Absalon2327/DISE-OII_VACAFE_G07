@@ -54,6 +54,15 @@
     div#btn_compras_proveedor {
         cursor: pointer;
     }
+    div#btn_compras_bovinos {
+        cursor: pointer;
+    }
+    /*div#btn_compras_proveedor {
+        cursor: pointer;
+    }
+    div#btn_compras_proveedor {
+        cursor: pointer;
+    }*/
     
 </style>
   
@@ -68,7 +77,7 @@
             ?>         
         <div class="content-wrapper ">
                 
-                  <section class="content">
+                <section class="content">
                     <div class="container-fluid">
                       <div class="card card-success">
                           <div class="card-header ">                          
@@ -78,8 +87,8 @@
                           </div>             
                       </div>
                     </div>
-                  </section> 
-                  <section class="content ">
+                </section> 
+                <section class="content ">
                     <div class="container-fluid">
                       
                       <div class="row">
@@ -101,7 +110,7 @@
 
                         <div class="col-lg-3 col-3">
                           <!-- small box -->
-                          <div class="small-box bg-success">
+                          <div class="small-box bg-success btn_compras_bovinos">
                             <div class="inner">
                               <br>
                               <h5>Bovinos</h5>
@@ -110,7 +119,7 @@
                             <div class="icon">
                               <i class="far fa-file-alt mr-1"></i>
                             </div>
-                            <a id="btn_compras_proveedor" href="javascript:void(0)" class="small-box-footer">Consultar Reporte <i class="fas fa-arrow-circle-right"></i></a>
+                            <a id="btn_compras_bovinos" class="small-box-footer">Consultar Reporte <i class="fas fa-arrow-circle-right"></i></a>
                           </div>                          
                         </div>
 
@@ -148,10 +157,10 @@
                         <!-- ./col -->
                       </div>
                     </div>
-                  </section> 
+                </section> 
                 
-                 <!-- FILTRO PARA COMPRAS POR PROVEEDOR -->
-                 <form method="POST" name="formulario_r_compras_p" id="formulario_r_compras_p">
+                <!-- FILTRO PARA COMPRAS POR PROVEEDOR -->
+                <form method="POST" name="formulario_r_compras_p" id="formulario_r_compras_p">
                     
                     <section class="content">
                         <div class="container-fluid">
@@ -216,19 +225,137 @@
                                                     </div>                                                    
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <button type="submit" class="btn bg-success " data-toggle="modal" data-target="#md_seleccion_derivados">
+                                                            <button type="submit" class="btn bg-info " data-toggle="modal" data-target="#md_seleccion_derivados">
                                                                 <i class="fa fa-fw fa-file-pdf"></i>
                                                                Generar Reporte
                                                             </button>
-                                                            <a class="btn bg-success btn_limpiar ">
+                                                            <a class="btn bg-danger btn_limpiar ">
                                                                 <i class="fa fa-trash"></i>
                                                                 Limpiar
                                                             </a>
                                                         </div>
                                                     </div>
-                                                    <div class="col-6">
-                                                      <span class="text-danger" id="msg_decimales"><i class="icon fas fa-exclamation-triangle"></i> La fecha final no puede ser menor que la incial</span>                 
-                                                    </div>                                                    
+                                                </div>                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </form>
+
+                <!-- FILTRO PARA COMPRAS POR BOVINO -->
+                <form method="POST" name="formulario_b_compras" id="formulario_b_compras">
+                    
+                    <section class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12 col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header bg-success">
+                                            <h3 class="card-title"></h3>
+                                        </div>
+                                        <input type="hidden" id="generar_reporte" name="generar_reporte" value="si_generar">
+                                        <input type="hidden" id="empleado_venta" name="empleado_venta" <?php print 'value ="'.$_SESSION['idempleado'].'"'?>>
+                                        <div class="row">
+                                            <div class="col-md-10 offset-md-1">
+                                                  <div class="row">
+                                                    <div class="col-12">
+                                                      <div class="form-group text-center">
+                                                        <label><h3>REPORTE DE COMPRAS DE BOVINOS</h3></label>
+                                                        <input type="hidden" id="num_fact_guardar" name="num_fact_guardar">
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                <div class="row">                                                   
+                                                    <div class="col-4">
+                                                        <div class="form-group">
+                                                            <label>Proveedor</label>
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                         <i class="fas fa-truck"></i>
+                                                                    </span>
+                                                                </div>  
+                                                                <select id="proveedor_r_compras_b" name="proveedor_r_compras_b" class="form-control" disabled="true">
+                                                                </select>   
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="form-group">
+                                                            <label>Fecha inicio</label>
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <i class="fas fa-calendar"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <input type="text" id="fecha_in_r_compras_b" name="fecha_in_r_compras_b" class="form-control form_datetime_inicio" placeholder="12-12-2021 12:00" readonly required >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="form-group">
+                                                            <label>Fecha fin</label>
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <i class="fas fa-calendar"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <input type="text" id="fecha_f_r_compras_b" name="fecha_f_r_compras_b" class="form-control form_datetime_fin" placeholder="12-12-2021 12:00" readonly required >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="form-group">
+                                                            <label>Categoría</label>
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <i class="fas fa-list-ul"></i>
+                                                                    </span>
+                                                                </div>  
+                                                                <select id="categoria_r_compras_b" name="categoria_r_compras_b" class="form-control">
+                                                                    <option value="Seleccione">Seleccione</option>
+                                                                    <option value="novia">Novía</option>
+                                                                    <option value="ternero">Ternero</option>
+                                                                    <option value="vaca_lechera">Vaca Lechera</option>
+                                                                </select>   
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                    </div>
+                                                    <div class="col-4">       
+                                                        <div class="form-group">
+                                                            <div class="custom-control custom-switch custom-switch-on-primary">
+                                                              <input type="checkbox" class="custom-control-input" id="rbtn_proveedor" name="rbtn_proveedor">
+                                                              <label class="custom-control-label" for="rbtn_proveedor">Proveedor</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="custom-control custom-switch custom-switch-on-primary">
+                                                              <input type="checkbox" class="custom-control-input" id="rbtn_categoria" name="rbtn_categoria" onclick="myFunction()">
+                                                              <label class="custom-control-label" for="rbtn_categoria">Categorias</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>          
+                                                    <div class="col-4">
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn bg-info " data-toggle="modal" data-target="#md_seleccion_derivados">
+                                                                <i class="fa fa-fw fa-file-pdf"></i>
+                                                               Generar Reporte
+                                                            </button>
+                                                            <a class="btn bg-danger btn_limpiar ">
+                                                                <i class="fa fa-trash"></i>
+                                                                Limpiar
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                                                                       
                                                 </div>                                                
                                             </div>
                                         </div>

@@ -11,7 +11,7 @@
  Target Server Version : 100421
  File Encoding         : 65001
 
- Date: 10/01/2022 15:33:13
+ Date: 13/01/2022 20:25:29
 */
 
 SET NAMES utf8mb4;
@@ -139,6 +139,9 @@ CREATE TABLE `tb_compra`  (
 -- Records of tb_compra
 -- ----------------------------
 INSERT INTO `tb_compra` VALUES (1, 'Compra de Muestra', 1.25, 0.00, '2022-01-05 10:15:07', '2022-01-05 22:16:49', 'Factura', '123154', 'n/a', 2, 1);
+INSERT INTO `tb_compra` VALUES (2, 'Nueva Compra de Medicamentos', 48.04, 5.53, '2022-01-11 01:16:33', '2022-01-07 01:20:15', 'Crédito Fiscal', '000001', 'n/a', 1, 2);
+INSERT INTO `tb_compra` VALUES (3, 'Nueva Compra de Bovinos', 16.01, 1.84, '2022-01-11 01:47:35', '2022-01-11 01:49:48', 'Crédito Fiscal', '000002', 'n/a', 3, 2);
+INSERT INTO `tb_compra` VALUES (4, 'Nueva Compra para reporte', 2.25, 0.00, '2022-01-12 12:05:11', '2022-01-12 00:06:25', 'Factura', '000003', 'n/a', 1, 2);
 
 -- ----------------------------
 -- Table structure for tb_control_vacunas
@@ -187,6 +190,11 @@ CREATE TABLE `tb_detalle_compra`  (
 -- Records of tb_detalle_compra
 -- ----------------------------
 INSERT INTO `tb_detalle_compra` VALUES (1, 1, 1.25, 1.25, 1, 1, NULL);
+INSERT INTO `tb_detalle_compra` VALUES (2, 3, 6.20, 18.60, 3, 2, NULL);
+INSERT INTO `tb_detalle_compra` VALUES (3, 3, 7.97, 23.91, 4, 2, NULL);
+INSERT INTO `tb_detalle_compra` VALUES (4, 1, 6.20, 6.20, NULL, 3, 3);
+INSERT INTO `tb_detalle_compra` VALUES (5, 1, 7.97, 7.97, NULL, 3, 4);
+INSERT INTO `tb_detalle_compra` VALUES (6, 3, 0.75, 2.25, 3, 4, NULL);
 
 -- ----------------------------
 -- Table structure for tb_detalle_venta
@@ -207,7 +215,7 @@ CREATE TABLE `tb_detalle_venta`  (
   CONSTRAINT `fk_expediente` FOREIGN KEY (`int_idexpediente`) REFERENCES `tb_expediente` (`int_idexpediente`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tb_detalle_venta_ibfk_1` FOREIGN KEY (`int_idventa`) REFERENCES `tb_venta` (`int_idventa`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `tb_producto` FOREIGN KEY (`int_idproducto`) REFERENCES `tb_producto` (`int_idproducto`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 45 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tb_detalle_venta
@@ -249,6 +257,13 @@ INSERT INTO `tb_detalle_venta` VALUES (34, 3, 3.00, 9.00, 1, NULL, 33);
 INSERT INTO `tb_detalle_venta` VALUES (35, 4, 1.50, 6.00, 2, NULL, 34);
 INSERT INTO `tb_detalle_venta` VALUES (36, 1, 3.00, 3.00, 1, NULL, 35);
 INSERT INTO `tb_detalle_venta` VALUES (37, 1, 1500.00, 1500.00, NULL, 4, 36);
+INSERT INTO `tb_detalle_venta` VALUES (38, 1, 9.00, 9.00, NULL, 1, 37);
+INSERT INTO `tb_detalle_venta` VALUES (39, 1, 7.00, 7.00, NULL, 3, 37);
+INSERT INTO `tb_detalle_venta` VALUES (40, 1, 7.00, 7.00, NULL, 4, 38);
+INSERT INTO `tb_detalle_venta` VALUES (41, 1, 9.00, 9.00, NULL, 2, 38);
+INSERT INTO `tb_detalle_venta` VALUES (42, 1, 376.00, 376.00, NULL, 1, 39);
+INSERT INTO `tb_detalle_venta` VALUES (43, 3, 1.50, 4.50, 1, NULL, 40);
+INSERT INTO `tb_detalle_venta` VALUES (44, 1, 1.50, 1.50, 2, NULL, 41);
 
 -- ----------------------------
 -- Table structure for tb_empleado
@@ -307,10 +322,10 @@ CREATE TABLE `tb_expediente`  (
 -- ----------------------------
 -- Records of tb_expediente
 -- ----------------------------
-INSERT INTO `tb_expediente` VALUES (1, 'Prueba', 'vendido', '../archivo_carta_venta/img_1.png', 'femenino', NULL, 'aasdasdasd', 1, 1, '../archivo_expdiente/img_1.jpeg', 'novia', NULL, NULL, NULL);
-INSERT INTO `tb_expediente` VALUES (2, 'loca', 'vendido', '../archivo_carta_venta/img_2.jpg', 'femenino', NULL, 'Prueba', 1, 1, '../archivo_expdiente/img_2.jpg', 'vaca_lechera', NULL, NULL, NULL);
-INSERT INTO `tb_expediente` VALUES (3, 'La Chorriada', 'activo', '../archivo_carta_venta/img_3.jpg', 'femenino', 1, 'Prueba jhonatahan', 1, 1, '../archivo_expdiente/img_3.jpg', 'vaca_lechera', '0000-00-00', NULL, NULL);
-INSERT INTO `tb_expediente` VALUES (4, 'La Chorriada', 'vendido', '../archivo_carta_venta/img_4.jpeg', 'femenino', 0, 'sdfgsdfsdf', 1, 1, '../archivo_expdiente/img_4.jpeg', 'vaca_lechera', '0000-00-00', NULL, NULL);
+INSERT INTO `tb_expediente` VALUES (1, 'Antonia', 'vendido', '../archivo_carta_venta/img_1.png', 'femenino', NULL, 'aasdasdasd', 1, 1, '../archivo_expdiente/img_1.jpeg', 'novia', NULL, NULL, NULL);
+INSERT INTO `tb_expediente` VALUES (2, 'loca', 'activo', '../archivo_carta_venta/img_2.jpg', 'femenino', NULL, 'Prueba', 1, 1, '../archivo_expdiente/img_2.jpg', 'vaca_lechera', NULL, NULL, NULL);
+INSERT INTO `tb_expediente` VALUES (3, 'La Chorriada', 'activo', '../archivo_carta_venta/img_3.jpg', 'femenino', 1, 'Prueba jhonatahan', 1, 1, '../archivo_expdiente/img_3.jpg', 'vaca_lechera', '0000-00-00', 6.20, NULL);
+INSERT INTO `tb_expediente` VALUES (4, 'La Patoja', 'activo', '../archivo_carta_venta/img_4.jpeg', 'femenino', 0, 'sdfgsdfsdf', 1, 1, '../archivo_expdiente/img_4.jpeg', 'vaca_lechera', '0000-00-00', 7.97, NULL);
 
 -- ----------------------------
 -- Table structure for tb_natalidad
@@ -375,8 +390,10 @@ CREATE TABLE `tb_producto`  (
 -- ----------------------------
 -- Records of tb_producto
 -- ----------------------------
-INSERT INTO `tb_producto` VALUES (1, 'Botella de Crema Pura', 43, 2.25, 3.00, '../archivo_expdiente/img_1.png', 'Crema pura sin pausterizar', '2022-01-24', 1, 'activo');
-INSERT INTO `tb_producto` VALUES (2, 'Botella de Leche', 43, 0.75, 1.50, '../archivo_expdiente/img_2.jpeg', 'Botella de Leche', '2022-01-31', 1, 'Activo');
+INSERT INTO `tb_producto` VALUES (1, 'Botella de Crema Pura', 40, 2.25, 3.00, '../archivo_expdiente/img_1.png', 'Crema pura sin pausterizar', '2022-01-24', 1, 'Activo');
+INSERT INTO `tb_producto` VALUES (2, 'Botella de Leche', 42, 0.75, 1.50, '../archivo_expdiente/img_2.jpeg', 'Botella de Leche', '2022-01-31', 1, 'Activo');
+INSERT INTO `tb_producto` VALUES (3, 'Desparacitante', 9, 8.50, 0.00, '../archivo_expdiente/img_3.jpg', 'Frasco de 10 ml', '2022-01-31', 3, 'Activo');
+INSERT INTO `tb_producto` VALUES (4, 'Vitamina D', 7, 13.50, 0.00, '../archivo_expdiente/img_4.jpg', 'Dosis de Vitamina D de 5ml', '2022-01-31', 4, 'Activo');
 
 -- ----------------------------
 -- Table structure for tb_propietario
@@ -471,7 +488,7 @@ CREATE TABLE `tb_venta`  (
   INDEX `tb_clientes_fk`(`int_id_cliente`) USING BTREE,
   CONSTRAINT `tb_clientes_fk` FOREIGN KEY (`int_id_cliente`) REFERENCES `tb_clientes` (`int_idcliente`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tb_empleado_fk` FOREIGN KEY (`int_idempleado`) REFERENCES `tb_empleado` (`int_idempleado`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 42 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tb_venta
@@ -512,5 +529,10 @@ INSERT INTO `tb_venta` VALUES (33, 10.17, 1.17, '2022-01-10 11:28:57', '2022-01-
 INSERT INTO `tb_venta` VALUES (34, 6.78, 0.78, '2022-01-10 11:33:38', '2022-01-10 11:34:05', 'Crédito Fiscal', 2, 2, 34);
 INSERT INTO `tb_venta` VALUES (35, 3.00, 0.00, '2022-01-10 02:56:03', '2022-01-10 15:15:39', 'Factura', 2, 4, 35);
 INSERT INTO `tb_venta` VALUES (36, 1500.00, 0.00, '2022-01-10 03:17:07', '2022-01-10 15:17:57', 'Factura', 2, 2, 36);
+INSERT INTO `tb_venta` VALUES (37, 18.08, 0.00, '2022-01-10 10:53:17', '2022-01-10 22:55:28', 'Crédito Fiscal', 2, 2, 37);
+INSERT INTO `tb_venta` VALUES (38, 16.00, 0.00, '2022-01-10 11:08:09', '2022-01-10 23:08:30', 'Factura', 2, 2, 38);
+INSERT INTO `tb_venta` VALUES (39, 376.00, 0.00, '2022-01-10 11:09:24', '2022-01-10 23:09:40', 'Ticket', 2, 2, 39);
+INSERT INTO `tb_venta` VALUES (40, 4.50, 0.00, '2022-01-10 11:26:11', '2022-01-10 23:27:33', 'Ticket', 2, 2, 40);
+INSERT INTO `tb_venta` VALUES (41, 1.50, 0.00, '2022-01-10 11:29:51', '2022-01-10 23:30:05', 'Ticket', 2, 2, 41);
 
 SET FOREIGN_KEY_CHECKS = 1;
