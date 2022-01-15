@@ -528,8 +528,8 @@
                         <div class="modal-footer justify-content-between">
                           <button type="button" class="btn btn-danger" data-dismiss="modal">
                             <i class="far fa-times-circle"></i>Cerrar</button>
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">
-                            <i class="fas fa-angle-right"></i>Ir</button>
+                          <a href="v_leche.php" class="btn btn-danger">
+                            <i class="fas fa-angle-right"></i>Ir</a>
                         </div>
                       </div>
                       <!-- /.modal-content -->

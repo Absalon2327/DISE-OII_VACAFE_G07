@@ -73,7 +73,7 @@
 			"int_idproducto"=>"nva_nom_producto" 
 
 		);
-		$where = "WHERE int_idproducto = 1";
+		$where = "WHERE int_idcategoria = 1";
 		$result_select = $modelo->crear_select($array_select,$where);
 		 
 		$htmltr = $html="";

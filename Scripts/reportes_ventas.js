@@ -1,12 +1,12 @@
-$('#formulario_r_compras_p').css("display","none");
-$('#formulario_b_compras').css("display","none");
-$('#formulario_ins_compras').css("display","none");
-$("#proveedor_r_compras_b").prop("disabled", true);
-$("#categoria_r_compras_b").prop("disabled", true);
-$("#proveedor_r_compras_ins").prop("disabled", true);
-$("#categoria_r_compras_ins").prop("disabled", true);
-cargar_proveedores_ins();
-cargar_proveedores_b();
+$('#formulario_r_ventas_g').css("display","none");
+$('#formulario_b_ventas').css("display","block");
+$('#formulario_ins_ventas').css("display","none");
+$("#empleados_ventas_g").prop("disabled", true);
+$("#categoria_r_ventas_b").prop("disabled", true);
+$("#empleados_ventas_b").prop("disabled", true);
+/*$("#categoria_r_compras_ins").prop("disabled", true);*/
+cargar_empleados_vg();
+cargar_empleados_vb();
 
 console.log("esta funcionando el js");
 
@@ -27,30 +27,30 @@ $(function(){
 
         
 
-        document.getElementById("rbtn_categoria").onclick = function(){
-                if (document.getElementById("categoria_r_compras_b").disabled){
-                       document.getElementById("categoria_r_compras_b").disabled = false;
+        document.getElementById("rbtn_empleado_g").onclick = function(){
+                if (document.getElementById("empleados_ventas_g").disabled){
+                       document.getElementById("empleados_ventas_g").disabled = false;
                        
                 }else{
-                      document.getElementById("categoria_r_compras_b").disabled = true;
+                      document.getElementById("empleados_ventas_g").disabled = true;
                 }
         }
 
-        document.getElementById("rbtn_proveedor").onclick = function(){
-                if (document.getElementById("proveedor_r_compras_b").disabled){
-                       document.getElementById("proveedor_r_compras_b").disabled = false;
+        document.getElementById("rbtn_empleado").onclick = function(){
+                if (document.getElementById("empleados_ventas_b").disabled){
+                       document.getElementById("empleados_ventas_b").disabled = false;
                 }else{
-                      document.getElementById("proveedor_r_compras_b").disabled = true;
+                      document.getElementById("empleados_ventas_b").disabled = true;
                 }
         } 
-        document.getElementById("rbtn_proveedor_c").onclick = function(){
-                if (document.getElementById("proveedor_r_compras").disabled == false){
-                       document.getElementById("proveedor_r_compras").disabled = true;
+        document.getElementById("rbtn_categoria").onclick = function(){
+                if (document.getElementById("categoria_r_ventas_b").disabled == false){
+                       document.getElementById("categoria_r_ventas_b").disabled = true;
                 }else{
-                      document.getElementById("proveedor_r_compras").disabled = false;
+                      document.getElementById("categoria_r_ventas_b").disabled = false;
                 }
         }
-        document.getElementById("rbtn_categoria_ins").onclick = function(){
+        /*document.getElementById("rbtn_categoria_ins").onclick = function(){
                 if (document.getElementById("categoria_r_compras_ins").disabled){
                        document.getElementById("categoria_r_compras_ins").disabled = false;
                        
@@ -59,45 +59,46 @@ $(function(){
                 }
         }
 
-        document.getElementById("rbtn_proveedor_ins").onclick = function(){
+        document.getElementById("rbtn_empleado_ins").onclick = function(){
                 if (document.getElementById("proveedor_r_compras_ins").disabled){
                        document.getElementById("proveedor_r_compras_ins").disabled = false;
                 }else{
                       document.getElementById("proveedor_r_compras_ins").disabled = true;
                 }
-        }        
+        }   */     
         
 
 
- 	$(document).on("click",".btn_compras_proveedor",function(e){ 
+ 	$(document).on("click",".filtro_ventas_generales",function(e){ 
                 e.preventDefault();
                 console.log("si llega");
-                $('#formulario_r_compras_p').css("display","block");
-                $('#formulario_b_compras').css("display","none");
-                $('#formulario_ins_compras').css("display","none");
-                cargar_proveedores();
+                $('#formulario_r_ventas_g').css("display","block");
+                $('#formulario_b_ventas').css("display","none");
+                $('#formulario_ins_ventas').css("display","none");
+                //cargar_proveedores();
         });
 
-        $(document).on("click",".btn_compras_bovinos",function(e){ 
+        $(document).on("click",".filtro_ventas_bovinos",function(e){ 
                 e.preventDefault();
                 console.log("si llega");
-                $('#formulario_r_compras_p').css("display","none");
-                $('#formulario_b_compras').css("display","block");
-                $('#formulario_ins_compras').css("display","none");
-                cargar_proveedores();
-        });
-        $(document).on("click",".btn_compras_insumos",function(e){ 
-                e.preventDefault();
-                console.log("si llega");
-                $('#formulario_ins_compras').css("display","block");
-                $('#formulario_r_compras_p').css("display","none");
-                $('#formulario_b_compras').css("display","none");
-                cargar_proveedores();
+                $('#formulario_r_ventas_g').css("display","none");
+                $('#formulario_b_ventas').css("display","block");
+                $('#formulario_ins_ventas').css("display","none");
+                //cargar_proveedores();
         });
 
-        $(document).on("submit","#formulario_r_compras_p",function(e){
+        $(document).on("click",".filtro_ventas_insumos",function(e){ 
                 e.preventDefault();
-                var datos = $("#formulario_r_compras_p").serialize();
+                console.log("si llega");
+                $('#formulario_r_ventas_g').css("display","none");
+                $('#formulario_b_ventas').css("display","none");
+                $('#formulario_ins_ventas').css("display","block");
+                //cargar_proveedores();
+        });
+
+        $(document).on("submit","#formulario_r_ventas_g",function(e){
+                e.preventDefault();
+                var datos = $("#formulario_r_ventas_g").serialize();
 
                 
                 var Toast = Swal.mixin({
@@ -113,8 +114,8 @@ $(function(){
                         timer: 3500
                 });
                 console.log("Entro aqui");
-                var fecha_inicio = $("#fecha_inicio_r_compras").val();
-                var fecha_fin = $("#fecha_fin_r_compras").val();
+                var fecha_inicio = $("#fecha_inicio_r_ventas_g").val();
+                var fecha_fin = $("#fecha_fin_r_ventas_g").val();
 
                 console.log("Inicio", fecha_inicio);
                 console.log("Fin", fecha_fin);
@@ -132,28 +133,35 @@ $(function(){
                         });
                         return;
                 }
-                if (($("#proveedor_r_compras").val() == "Seleccione") && (document.getElementById("proveedor_r_compras").disabled == false)){
-                        Toast.fire({
-                                icon: 'info',
-                                title: 'Seleccione un Proveedor'
+                if ((f1 == "Invalid Date") && (f2 != "Invalid Date")) {
+                        Toast1.fire({
+                                icon: 'error',
+                                title: 'La fecha final no puede ser menor que la incial'
                         });
                         return;
                 }
-                if ($("#fecha_inicio_r_compras").val() == "" && $("#fecha_fin_r_compras").val() == ""){
+                if (($("#empleados_ventas_g").val() == "Seleccione") && (document.getElementById("empleados_ventas_g").disabled == false)){
+                        Toast.fire({
+                                icon: 'info',
+                                title: 'Seleccione un Empleado'
+                        });
+                        return;
+                }
+                if ($("#fecha_fin_r_ventas_g").val() == "" && $("#fecha_fin_r_ventas_g").val() == ""){
                         Toast.fire({
                         icon: 'info',
                         title: 'Seleccione Fechas'
                     });
                         return;
                 }
-                if ($("#fecha_inicio_r_compras").val() == ""){                        
+                if ($("#fecha_fin_r_ventas_g").val() == ""){                        
                         Toast.fire({
                                 icon: 'info',
                                 title: 'Seleccione una fecha de incio'
                         });
                         return;
                 }
-                if ($("#fecha_fin_r_compras").val() == "") {
+                if ($("#fecha_fin_r_ventas_g").val() == "") {
                         Toast.fire({
                                 icon: 'info',
                                 title: 'Seleccione una fecha final'
@@ -169,7 +177,7 @@ $(function(){
                 $.ajax({
                     dataType: "json",
                     method: "POST",
-                    url:'../Controladores/reporte_compras_controlador.php',
+                    url:'../Controladores/reporte_ventas_general_controlador.php',
                     data : datos,
                 }).done(function(json) {
                         console.log("EL GUARDAR",json); 
@@ -177,31 +185,27 @@ $(function(){
                         var timer = setInterval(function(){
                                 if (json[0]=="Exito") {
                                         console.log("sql",json[2]);
-
                                         
-                                               var win = window.open("http://localhost/poryecto_DISEÑOII/DISEÑOII_VACAFE_G07/reportes/r_reporte_proveedor_compras.php?fei="+json[1]+"&fef="+json[2]+"&idp="+json[3], '_blank');
-                                                // Cambiar el foco al nuevo tab (punto opcional)
-                                                win.focus();
-                                                
-                                       
-                                      console.log("NO entra");
+                                        var win = window.open("http://localhost/poryecto_DISEÑOII/DISEÑOII_VACAFE_G07/reportes/r_reporte_general_ventas.php?fei="+json[1]+"&fef="+json[2]+"&ide="+json[3], '_blank');
+                                        // Cambiar el foco al nuevo tab (punto opcional)
+                                        win.focus();     
 
                                 }else{
-                                       
+                                        
                                         Toast1.fire({
                                                 icon: 'info',
-                                                title: 'No hay compras registradas con este proveedor!'
+                                                title: 'No hay ventas registradas!'
                                         });
-                                        
+                                       
                                 }
                         clearTimeout(timer);
                         },3500);
                 });
         });
 
-        $(document).on("submit","#formulario_b_compras",function(e){
+        $(document).on("submit","#formulario_b_ventas",function(e){
                 e.preventDefault();
-                var datos = $("#formulario_b_compras").serialize();
+                var datos = $("#formulario_b_ventas").serialize();
 
                 
                 var Toast = Swal.mixin({
@@ -217,8 +221,8 @@ $(function(){
                         timer: 3500
                 });
                 console.log("Entro aqui");
-                var fecha_inicio = $("#fecha_in_r_compras_b").val();
-                var fecha_fin = $("#fecha_f_r_compras_b").val();
+                var fecha_inicio = $("#fecha_in_r_ventas_b").val();
+                var fecha_fin = $("#fecha_f_r_ventas_b").val();
 
                 console.log("Inicio", fecha_inicio);
                 console.log("Fin", fecha_fin);
@@ -235,22 +239,29 @@ $(function(){
                                 title: 'La fecha final no puede ser menor que la incial'
                         });
                         return;
+                }
+                if ((f1 == "Invalid Date") && (f2 != "Invalid Date")) {
+                        Toast1.fire({
+                                icon: 'error',
+                                title: 'La fecha final no puede ser menor que la incial'
+                        });
+                        return;
                 } 
-                if ((((document.getElementById("proveedor_r_compras_b").disabled) == false) && ($("#proveedor_r_compras_b").val() == "Seleccione")) && ((document.getElementById("categoria_r_compras_b").disabled) == false) && ($("#categoria_r_compras_b").val() == "Seleccione")) {
+                if ((((document.getElementById("empleados_ventas_b").disabled) == false) && ($("#empleados_ventas_b").val() == "Seleccione")) && ((document.getElementById("categoria_r_ventas_b").disabled) == false) && ($("#categoria_r_ventas_b").val() == "Seleccione")) {
                         Toast.fire({
                                 icon: 'info',
-                                title: 'Seleccione una categoría y un proveedor'
+                                title: 'Seleccione una categoría y un empleado'
                         });
                         return;
                 }
-                if (((document.getElementById("proveedor_r_compras_b").disabled) == false) && ($("#proveedor_r_compras_b").val() == "Seleccione")){
+                if (((document.getElementById("empleados_ventas_b").disabled) == false) && ($("#empleados_ventas_b").val() == "Seleccione")){
                         Toast.fire({
                                 icon: 'info',
-                                title: 'Seleccione un Proveedor'
+                                title: 'Seleccione un Empleado'
                         });
                         return;
                 }
-                if (((document.getElementById("categoria_r_compras_b").disabled) == false) && ($("#categoria_r_compras_b").val() == "Seleccione")) {
+                if (((document.getElementById("categoria_r_ventas_b").disabled) == false) && ($("#categoria_r_ventas_b").val() == "Seleccione")) {
                         Toast.fire({
                                 icon: 'info',
                                 title: 'Seleccione una categoría'
@@ -260,21 +271,21 @@ $(function(){
 
                
 
-                if ($("#fecha_in_r_compras_b").val() == "" && $("#fecha_f_r_compras_b").val() == ""){
+                if ($("#fecha_in_r_ventas_b").val() == "" && $("#fecha_f_r_ventas_b").val() == ""){
                         Toast.fire({
                         icon: 'info',
                         title: 'Seleccione Fechas'
                     });
                         return;
                 }
-                if ($("#fecha_in_r_compras_b").val() == ""){                        
+                if ($("#fecha_in_r_ventas_b").val() == ""){                        
                         Toast.fire({
                                 icon: 'info',
                                 title: 'Seleccione una fecha de incio'
                         });
                         return;
                 }
-                if ($("#fecha_f_r_compras_b").val() == "") {
+                if ($("#fecha_f_r_ventas_b").val() == "") {
                         Toast.fire({
                                 icon: 'info',
                                 title: 'Seleccione una fecha final'
@@ -290,7 +301,7 @@ $(function(){
                 $.ajax({
                     dataType: "json",
                     method: "POST",
-                    url:'../Controladores/reporte_compras_b_controlador.php',
+                    url:'../Controladores/reporte_ventas_bovinos_controlador.php',
                     data : datos,
                 }).done(function(json) {
                         console.log("EL GUARDAR",json); 
@@ -298,7 +309,7 @@ $(function(){
                         var timer = setInterval(function(){
                                 if (json[0]=="Exito") {
                                         console.log("sql",json[2]);
-                                        var win = window.open("http://localhost/poryecto_DISEÑOII/DISEÑOII_VACAFE_G07/reportes/r_reporte_bovinos_compras.php?fei="+json[3]+"&fef="+json[4]+"&idp="+json[1]+"&cat="+json[2], '_blank');
+                                        var win = window.open("http://localhost/poryecto_DISEÑOII/DISEÑOII_VACAFE_G07/reportes/r_reporte_bovino_ventas.php?fei="+json[3]+"&fef="+json[4]+"&ide="+json[1]+"&cat="+json[2], '_blank');
                                         // Cambiar el foco al nuevo tab (punto opcional)
                                         win.focus();
 
@@ -306,7 +317,7 @@ $(function(){
                                        
                                         Toast1.fire({
                                                 icon: 'info',
-                                                title: 'No hay compras registradas con este proveedor!'
+                                                title: 'No hay ventas registradas!'
                                         });
                                         
                                 }
@@ -315,7 +326,7 @@ $(function(){
                 });
         });
 
-        $(document).on("submit","#formulario_ins_compras",function(e){
+        /*$(document).on("submit","#formulario_ins_compras",function(e){
                 e.preventDefault();
                 var datos = $("#formulario_ins_compras").serialize();
 
@@ -439,16 +450,16 @@ $(function(){
                         clearTimeout(timer);
                         },3500);
                 });
-        });
+        });*/
 
 
 
         $(document).on("click",".btn_limpiar",function(e){ 
                 e.preventDefault();
                 console.log("si llega");
-                $('#formulario_r_compras_p').trigger('reset');
-                $('#formulario_b_compras').trigger('reset');
-                $('#formulario_ins_compras').trigger('reset');
+                $('#formulario_r_ventas_g').trigger('reset');
+                $('#formulario_b_ventas').trigger('reset');
+                $('#formulario_ins_ventas').trigger('reset');
                 
         });
 
@@ -456,17 +467,34 @@ $(function(){
 
 });
 
-function cargar_proveedores(){
+function cargar_empleados_vg(){
         var datos = {"consultar_info":"si_consultala"}
         $.ajax({
         dataType: "json",
         method: "POST",
-        url:'../Controladores/reporte_compras_controlador.php',
+        url:'../Controladores/reporte_ventas_general_controlador.php',
         data : datos,
     }).done(function(json) {
         
 
-        $("#proveedor_r_compras").empty().html(json[1][0]);         
+        $("#empleados_ventas_g").empty().html(json[1][0]);         
+    }).fail(function(){
+
+    }).always(function(){
+        //Swal.close();
+    });
+}
+function cargar_empleados_vb(){
+        var datos = {"consultar_info":"si_consultala"}
+        $.ajax({
+        dataType: "json",
+        method: "POST",
+        url:'../Controladores/reporte_ventas_bovinos_controlador.php',
+        data : datos,
+    }).done(function(json) {
+        
+
+        $("#empleados_ventas_b").empty().html(json[1][0]);         
     }).fail(function(){
 
     }).always(function(){
@@ -474,7 +502,7 @@ function cargar_proveedores(){
     });
 }
 
-function cargar_proveedores_b(){
+/*function cargar_proveedores_b(){
         var datos = {"consultar_info":"si_consultala"}
         $.ajax({
         dataType: "json",
@@ -484,7 +512,7 @@ function cargar_proveedores_b(){
     }).done(function(json) {
         
 
-        $("#proveedor_r_compras_b").empty().html(json[1][0]);         
+        $("#empleados_ventas_b").empty().html(json[1][0]);         
     }).fail(function(){
 
     }).always(function(){
@@ -509,7 +537,7 @@ function cargar_proveedores_ins(){
         //Swal.close();
     });
 }
-
+*/
 
 
 function mostrar_mensaje(titulo,mensaje=""){

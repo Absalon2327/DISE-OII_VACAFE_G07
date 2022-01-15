@@ -42,7 +42,7 @@ class PDF extends tFPDF{
             // Título
             $this->Cell(30,10,'REPORTE DE COMPRAS POR PROVEEDOR',0,0,'C');
             // Salto de línea
-            $this->Ln(10);
+            $this->Ln(15);
 
             
         }
@@ -67,7 +67,13 @@ class PDF extends tFPDF{
             $this->SetLineWidth(.3);
             $this->SetFont('Arial','B');
             // Cabecera
-            $w = array(45, 100, 30,);
+            if (count($header) == 3) {
+                $w = array(45, 100, 30,);
+
+            }else{
+                $w = array(45, 45, 75, 30);
+            }
+            
             for($i=0;$i<count($header);$i++)
                 $this->Cell($w[$i],7,$header[$i],1,0,'C',true);
             $this->Ln();
@@ -79,19 +85,36 @@ class PDF extends tFPDF{
             // Datos
             //http://localhost/poryecto_DISE%C3%91OII/DISE%C3%91OII_VACAFE_G07/
            
-            
-            if($result[0]=='1'){
-                $fill = false;
-                foreach ($result[2]  as $row) {
+            if (count($header) == 3) {
+                if($result[0]=='1'){
+                    $fill = false;
+                    foreach ($result[2]  as $row) {
 
-                   // $tipo = ($row['tipo_persona']==2) ? "Empleado": "Administrador"; 
+                       // $tipo = ($row['tipo_persona']==2) ? "Empleado": "Administrador"; 
 
-                    $this->Cell($w[0],6,datetimeformateado($row['dat_fecha_sistema']),'LR',0,'C',$fill);
-                    $this->Cell($w[1],6,$row['txt_descrip_compra'],'LR',0,'L',$fill);
-                    $this->Cell($w[2],6,"$".$row['dou_total_compra'],'LR',0,'C',$fill);
-                     $this->Ln();
-                    $fill = !$fill;
-                    $GLOBALS['total_inver'] = $GLOBALS['total_inver'] + $row['dou_total_compra'];
+                        $this->Cell($w[0],6,datetimeformateado($row['dat_fecha_sistema']),'LR',0,'C',$fill);
+                        $this->Cell($w[1],6,$row['txt_descrip_compra'],'LR',0,'L',$fill);
+                        $this->Cell($w[2],6,"$".$row['dou_total_compra'],'LR',0,'C',$fill);
+                         $this->Ln();
+                        $fill = !$fill;
+                        $GLOBALS['total_inver'] = $GLOBALS['total_inver'] + $row['dou_total_compra'];
+                    }
+                }
+            }else{
+                if($result[0]=='1'){
+                    $fill = false;
+                    foreach ($result[2]  as $row) {
+
+                       // $tipo = ($row['tipo_persona']==2) ? "Empleado": "Administrador"; 
+
+                        $this->Cell($w[0],6,datetimeformateado($row['dat_fecha_sistema']),'LR',0,'C',$fill);
+                        $this->Cell($w[1],6,$row['nva_nom_proveedor'],'LR',0,'L',$fill);
+                        $this->Cell($w[2],6,$row['txt_descrip_compra'],'LR',0,'L',$fill);
+                        $this->Cell($w[3],6,"$".$row['dou_total_compra'],'LR',0,'C',$fill);
+                         $this->Ln();
+                        $fill = !$fill;
+                        $GLOBALS['total_inver'] = $GLOBALS['total_inver'] + $row['dou_total_compra'];
+                    }
                 }
             }
             
@@ -105,11 +128,16 @@ class PDF extends tFPDF{
 
     $pdf = new PDF();   
     // Títulos de las columnas
-    $header = array('Fecha y Hora', utf8_decode('Descripción'), 'Total');
+    
     $fecha_inicio = $_GET['fei'];
     $fecha_fin = $_GET['fef'];
     $idproveedor = $_GET['idp'];
-    $sql = "SELECT
+    $fecha_actual = date('d-m-Y');
+    $hora_actual = date('H:i:s');
+    $feh= 0;
+    $total = 0;
+    if ($idproveedor != null) {
+        $sql = "SELECT
                 * 
             FROM
                 tb_compra
@@ -119,15 +147,37 @@ class PDF extends tFPDF{
                 dat_fecha_sistema >= '$fecha_inicio' 
                 AND dat_fecha_sistema <= '$fecha_fin' 
                 AND tb_compra.int_idproveedor = '$idproveedor'";
+        $filtros = array('Fecha y Hora', utf8_decode('Descripción'), 'Total');
+        $feh = 200;
+        $total = 260;      
+    }else{
+        $sql = "SELECT
+                    * 
+                FROM
+                    tb_compra
+                    INNER JOIN tb_proveedor ON tb_compra.int_idproveedor = tb_proveedor.int_idproveedor
+                    INNER JOIN tb_empleado ON tb_compra.int_idempleado = tb_empleado.int_idempleado 
+                WHERE
+                    dat_fecha_sistema >= '$fecha_inicio' 
+                    AND dat_fecha_sistema <= '$fecha_fin'";
+        $filtros = array('Fecha y Hora','Proveedor', utf8_decode('Descripción'), 'Total');
+        $feh = 295;
+        $total = 300;   
+    }
+    $header = $filtros;
     $result = $modelo->get_query($sql);
+
     $pdf->AliasNbPages();
     $pdf->AddPage();
-    $pdf->Cell(60,10,"Proveedor: ".$result[2][0]['nva_nom_proveedor'],0,0,'C');
+    if ($idproveedor != null) {
+        $pdf->Cell(60,10,"Proveedor: ".$result[2][0]['nva_nom_proveedor'],0,0,'C');
+    }    
+    $pdf->Cell($feh ,10,"Fecha: ".$fecha_actual." "."Hora: ".$hora_actual,0,0,'C');
     $pdf->Ln(10);
     $pdf->FancyTable($header,$result);
     $pdf->Ln(5);
     $pdf->Cell(30,10,utf8_decode('Inversión total: '),0,0,'C');
-    $pdf->Cell(260,10,utf8_decode("$".$GLOBALS['total_inver']),0,0,'C'); 
+    $pdf->Cell($total,10,utf8_decode("$".$GLOBALS['total_inver']),0,0,'C'); 
     $pdf->Output(); 
 
 

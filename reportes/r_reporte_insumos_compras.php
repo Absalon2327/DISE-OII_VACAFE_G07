@@ -17,7 +17,7 @@ class PDF extends tFPDF{
             
             $this->SetFont('Arial','B',12);
             $this->Image('../dist/img/logo-n.png',10,8,33);
-             $this->Image('../dist/img/ues-a.png',260,8,33);
+            $this->Image('../dist/img/ues-a.png',260,8,33);
             $this->Cell(130);
 
             $this->Cell(30,10,utf8_decode('FINCA LA VACA CAFÉ'),0,0,'C');
@@ -40,7 +40,7 @@ class PDF extends tFPDF{
             // Movernos a la derecha
             $this->Cell(130);
             // Título
-            $this->Cell(30,10,'REPORTE DE COMPRAS DE BOVINOS',0,0,'C');
+            $this->Cell(30,10,'REPORTE DE COMPRAS DE MEDICAMENTOS E INSUMOS',0,0,'C');
             // Salto de línea
             $this->Ln(15);
 
@@ -67,15 +67,14 @@ class PDF extends tFPDF{
             $this->SetLineWidth(.3);
             $this->SetFont('Arial','B');
             // Cabecera
-            if (count($header) == 3) {
-                $w = array(60, 60, 60);
+            if (count($header) == 4) {
+                $w = array(60, 60, 20, 60);
 
-            }else if (count($header) == 4)  {
-                $w = array(60, 65, 40, 40);
+            }else if (count($header) == 5)  {
+                $w = array(60, 65, 40, 20, 40);
                
-                   
             }else{
-                $w = array(60, 40, 40, 40, 40);
+                $w = array(60, 50, 50, 50, 20,40);
             }
             
             for($i=0;$i<count($header);$i++)
@@ -89,7 +88,7 @@ class PDF extends tFPDF{
             // Datos
             //http://localhost/poryecto_DISE%C3%91OII/DISE%C3%91OII_VACAFE_G07/
            
-            if (count($header) == 3) {
+            if (count($header) == 4) {
                 if($result[0]=='1'){
                     $fill = false;
                     foreach ($result[2]  as $row) {
@@ -98,14 +97,15 @@ class PDF extends tFPDF{
 
 
                         $this->Cell($w[0],6,datetimeformateado($row['dat_fecha_sistema']),'LR',0,'C',$fill);
-                        $this->Cell($w[2],6,$row['nva_nom_bovino'],'LR',0,'L',$fill);
-                        $this->Cell($w[2],6,"$".$row['dou_total_compra'],'LR',0,'C',$fill);
+                        $this->Cell($w[1],6,$row['nva_nom_producto'],'LR',0,'L',$fill);
+                        $this->Cell($w[2],6,$row['int_cantidad_compra'],'LR',0,'C',$fill);
+                        $this->Cell($w[3],6,"$".$row['dou_total_compra'],'LR',0,'C',$fill);
                         $this->Ln();
                         $fill = !$fill;
                         $GLOBALS['total_inver'] = $GLOBALS['total_inver'] + $row['dou_total_compra'];
                     }
                 }
-            }else if (count($header) == 4)  {
+            }else if (count($header) == 5)  {
                 if($result[0]=='1'){
                     $fill = false;
                     if ($header[1] == 'Categoría') {                        
@@ -119,8 +119,9 @@ class PDF extends tFPDF{
 
                             $this->Cell($w[0],6,datetimeformateado($row['dat_fecha_sistema']),'LR',0,'C',$fill);
                             $this->Cell($w[1],6,$categoria,'LR',0,'L',$fill);
-                            $this->Cell($w[2],6,$row['nva_nom_bovino'],'LR',0,'L',$fill);
-                            $this->Cell($w[2],6,"$".$row['dou_total_compra'],'LR',0,'C',$fill);
+                            $this->Cell($w[2],6,$row['nva_nom_producto'],'LR',0,'L',$fill);
+                            $this->Cell($w[3],6,$row['int_cantidad_compra'],'LR',0,'C',$fill);
+                            $this->Cell($w[4],6,"$".$row['dou_total_compra'],'LR',0,'C',$fill);
                             $this->Ln();
                             $fill = !$fill;
                             $GLOBALS['total_inver'] = $GLOBALS['total_inver'] + $row['dou_total_compra'];
@@ -133,8 +134,9 @@ class PDF extends tFPDF{
 
                             $this->Cell($w[0],6,datetimeformateado($row['dat_fecha_sistema']),'LR',0,'C',$fill);
                             $this->Cell($w[1],6,$row['nva_nom_proveedor'],'LR',0,'L',$fill);
-                            $this->Cell($w[2],6,$row['nva_nom_bovino'],'LR',0,'L',$fill);
-                            $this->Cell($w[2],6,"$".$row['dou_total_compra'],'LR',0,'C',$fill);
+                            $this->Cell($w[2],6,$row['nva_nom_producto'],'LR',0,'L',$fill);
+                            $this->Cell($w[3],6,$row['int_cantidad_compra'],'LR',0,'C',$fill);
+                            $this->Cell($w[4],6,"$".$row['dou_total_compra'],'LR',0,'C',$fill);
                             $this->Ln();
                             $fill = !$fill;
                             $GLOBALS['total_inver'] = $GLOBALS['total_inver'] + $row['dou_total_compra'];
@@ -146,15 +148,14 @@ class PDF extends tFPDF{
                     $fill = false;
                     foreach ($result[2]  as $row) {
 
-                       // $tipo = ($row['tipo_persona']==2) ? "Empleado": "Administrador"; 
-                        if ($row['nva_tipo_bovino'] == "vaca_lechera") {
-                            $categoria = "Vaca Lechera";
-                        }
-                        $this->Cell($w[0],6,datetimeformateado($row['dat_fecha_sistema']),'LR',0,'C',$fill);                       
-                        $this->Cell($w[1],6,$row['nva_nom_proveedor'],'LR',0,'L',$fill); 
-                        $this->Cell($w[1],6,$categoria,'LR',0,'L',$fill);
-                        $this->Cell($w[2],6,$row['nva_nom_bovino'],'LR',0,'L',$fill);
-                        $this->Cell($w[2],6,"$".$row['dou_total_compra'],'LR',0,'C',$fill);
+                       // $tipo = ($row['tipo_persona']==2) ? "Empleado": "Administrador"; nva_nom_categoria
+                       
+                        $this->Cell($w[0],6,datetimeformateado($row['dat_fecha_sistema']),'LR',0,'C',$fill);
+                        $this->Cell($w[1],6,$row['nva_nom_proveedor'],'LR',0,'L',$fill);
+                        $this->Cell($w[2],6,$row['nva_nom_categoria'],'LR',0,'L',$fill);
+                        $this->Cell($w[3],6,$row['nva_nom_producto'],'LR',0,'L',$fill);
+                        $this->Cell($w[4],6,$row['int_cantidad_compra'],'LR',0,'C',$fill);
+                        $this->Cell($w[5],6,"$".$row['dou_total_compra'],'LR',0,'C',$fill);
                         $this->Ln();
                         $fill = !$fill;
                         $GLOBALS['total_inver'] = $GLOBALS['total_inver'] + $row['dou_total_compra'];
@@ -177,87 +178,86 @@ class PDF extends tFPDF{
     $fecha_inicio = $_GET['fei'];
     $fecha_fin = $_GET['fef'];
     $idproveedor = $_GET['idp'];
-    $cate_bov = $_GET['cat'];
+    $cate_pro = $_GET['cat'];
     $categoria = "";
     $fecha_actual = date('d-m-Y');
     $hora_actual = date('H:i:s');
     $feh = 0;
-    if ($cate_bov == "vaca_lechera") {
-        $categoria = "Vaca Lechera";
-    }
+   
 
-    if (($idproveedor != null) && ($cate_bov != null) ) {
+    if (($idproveedor != null) && ($cate_pro != null) ) {
         $sql = "SELECT
                     * 
                 FROM
                     tb_compra
                     INNER JOIN tb_proveedor ON tb_compra.int_idproveedor = tb_proveedor.int_idproveedor
-                    INNER JOIN tb_empleado ON tb_compra.int_idempleado = tb_empleado.int_idempleado
-                    INNER JOIN tb_detalle_compra ON tb_compra.int_idcompra = tb_detalle_compra.int_idcompra
-                    INNER JOIN tb_expediente ON tb_detalle_compra.int_idexpediente = tb_expediente.int_idexpediente 
+                        INNER JOIN tb_detalle_compra ON tb_compra.int_idcompra = tb_detalle_compra.int_idcompra
+                        INNER JOIN tb_producto ON tb_detalle_compra.int_idproducto = tb_producto.int_idproducto
+                        INNER JOIN tb_categoria ON tb_producto.int_idcategoria = tb_categoria.int_idcategoria  
                 WHERE
                     tb_proveedor.int_idproveedor = $idproveedor 
-                    AND tb_expediente.nva_tipo_bovino = '$cate_bov' 
+                    AND tb_categoria.nva_nom_categoria = '$cate_pro' 
                     AND tb_compra.dat_fecha_sistema >= '$fecha_inicio' 
                     AND tb_compra.dat_fecha_sistema <= '$fecha_fin'";
 
-           $filtros = array('Fecha y Hora', 'Bovino', 'Precio $');
-           $total = 240;
+           $filtros = array('Fecha y Hora', 'Producto', 'Cantidad', 'Precio $');
+           $total = 280;
            $feh = 225;
 
-    }else if (($idproveedor != null) && ($cate_bov == null) ) {
+    }else if (($idproveedor != null) && ($cate_pro == null) ) {
 
         $sql = "SELECT
                         * 
                     FROM
                         tb_compra
                         INNER JOIN tb_proveedor ON tb_compra.int_idproveedor = tb_proveedor.int_idproveedor
-                        INNER JOIN tb_empleado ON tb_compra.int_idempleado = tb_empleado.int_idempleado
                         INNER JOIN tb_detalle_compra ON tb_compra.int_idcompra = tb_detalle_compra.int_idcompra
-                        INNER JOIN tb_expediente ON tb_detalle_compra.int_idexpediente = tb_expediente.int_idexpediente 
+                        INNER JOIN tb_producto ON tb_detalle_compra.int_idproducto = tb_producto.int_idproducto
+                        INNER JOIN tb_categoria ON tb_producto.int_idcategoria = tb_categoria.int_idcategoria 
                     WHERE
                         tb_proveedor.int_idproveedor = $idproveedor
                         AND tb_compra.dat_fecha_sistema >= '$fecha_inicio' 
                         AND tb_compra.dat_fecha_sistema <= '$fecha_fin'";
 
-        $filtros = array('Fecha y Hora', utf8_decode('Categoría'), 'Bovino', 'Precio $');
-        $total = 312;
+        $filtros = array('Fecha y Hora', utf8_decode('Categoría'), 'Producto', 'Cantidad', 'Precio $');
+        $total = 350;
         $feh = 340;
 
-    }else if (($idproveedor == null) && ($cate_bov != null)) {
+    }else if (($idproveedor == null) && ($cate_pro != null)) {
         $sql = "SELECT
                         * 
                     FROM
                         tb_compra
                         INNER JOIN tb_proveedor ON tb_compra.int_idproveedor = tb_proveedor.int_idproveedor
-                        INNER JOIN tb_empleado ON tb_compra.int_idempleado = tb_empleado.int_idempleado
                         INNER JOIN tb_detalle_compra ON tb_compra.int_idcompra = tb_detalle_compra.int_idcompra
-                        INNER JOIN tb_expediente ON tb_detalle_compra.int_idexpediente = tb_expediente.int_idexpediente 
+                        INNER JOIN tb_producto ON tb_detalle_compra.int_idproducto = tb_producto.int_idproducto
+                        INNER JOIN tb_categoria ON tb_producto.int_idcategoria = tb_categoria.int_idcategoria 
                     WHERE
-                        tb_expediente.nva_tipo_bovino = '$cate_bov' 
+                        tb_categoria.nva_nom_categoria = '$cate_pro' 
                         AND tb_compra.dat_fecha_sistema >= 'fecha_inicio' 
                         AND tb_compra.dat_fecha_sistema <= '$fecha_fin'";
 
-        $filtros = array('Fecha y Hora',utf8_decode('Proveedor'), 'Bovino', 'Precio $');
-        $total = 312;
+        $filtros = array('Fecha y Hora',utf8_decode('Proveedor'), 'Producto', 'Cantidad', 'Precio $');
+        $total = 350;
         $feh = 340;
+    
     }else{
         $sql = "SELECT
                         * 
-                    FROM
-                        tb_compra
-                        INNER JOIN tb_proveedor ON tb_compra.int_idproveedor = tb_proveedor.int_idproveedor
-                        INNER JOIN tb_empleado ON tb_compra.int_idempleado = tb_empleado.int_idempleado
-                        INNER JOIN tb_detalle_compra ON tb_compra.int_idcompra = tb_detalle_compra.int_idcompra
-                        INNER JOIN tb_expediente ON tb_detalle_compra.int_idexpediente = tb_expediente.int_idexpediente 
-                    WHERE
-                        tb_detalle_compra.int_idexpediente != 'null' 
-                        AND tb_compra.dat_fecha_sistema >= 'fecha_inicio' 
-                        AND tb_compra.dat_fecha_sistema <= '$fecha_fin'";
+                FROM
+                    tb_compra
+                    INNER JOIN tb_proveedor ON tb_compra.int_idproveedor = tb_proveedor.int_idproveedor
+                    INNER JOIN tb_detalle_compra ON tb_compra.int_idcompra = tb_detalle_compra.int_idcompra
+                    INNER JOIN tb_producto ON tb_detalle_compra.int_idproducto = tb_producto.int_idproducto
+                    INNER JOIN tb_categoria ON tb_producto.int_idcategoria = tb_categoria.int_idcategoria 
+                 WHERE
+                    tb_detalle_compra.int_idproducto != 'null' 
+                    AND tb_compra.dat_fecha_sistema >= 'fecha_inicio' 
+                    AND tb_compra.dat_fecha_sistema <= '$fecha_fin'";
 
 
-        $filtros = array('Fecha y Hora','Proveedor',utf8_decode('Categoría'), 'Bovino', 'Precio $');
-        $total = 340;
+        $filtros = array('Fecha y Hora','Proveedor',utf8_decode('Categoría'), 'Producto', 'Cantidad', 'Precio $');
+        $total = 440;
         $feh = 440;
 
     }
@@ -266,13 +266,13 @@ class PDF extends tFPDF{
     $header = $filtros;
     $pdf->AliasNbPages();
     $pdf->AddPage();
-    if ($idproveedor != null && ($cate_bov == null) ) {
+    if ($idproveedor != null && ($cate_pro == null) ) {
         $pdf->Cell(60,10,"Proveedor: ".$result[2][0]['nva_nom_proveedor'],0,0,'C');
-    }else if (($idproveedor == null) && ($cate_bov != null)) {
-        $pdf->Cell(65,10,utf8_decode("Categoría: ".$categoria),0,0,'C');
-    }else if (($idproveedor != null) && ($cate_bov != null)) {
+    }else if (($idproveedor == null) && ($cate_pro != null)) {
+        $pdf->Cell(65,10,utf8_decode("Categoría: ".$cate_pro),0,0,'C');
+    }else if (($idproveedor != null) && ($cate_pro != null)) {
         $pdf->Cell(60,10,"Proveedor: ".$result[2][0]['nva_nom_proveedor'],0,0,'C');
-        $pdf->Cell(65,10,utf8_decode("Categoría: ".$categoria),0,0,'C');
+        $pdf->Cell(65,10,utf8_decode("Categoría: ".$cate_pro),0,0,'C');
     }   
     $pdf->Cell($feh,10,"Fecha: ".$fecha_actual." "."Hora: ".$hora_actual,0,0,'C');
     $pdf->Ln(10);

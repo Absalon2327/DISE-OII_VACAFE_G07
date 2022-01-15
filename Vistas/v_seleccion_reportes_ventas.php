@@ -51,13 +51,13 @@
 </head>
 <style>
     
-    div#compras_proveedor {
+    div#ventas_generales {
         cursor: pointer;
     }
-    div#compras_bovinos {
+    div#ventas_bovinos {
         cursor: pointer;
     }
-    div#compras_insumos {
+    div#ventas_insumos {
         cursor: pointer;
     }
    
@@ -80,7 +80,7 @@
                       <div class="card card-success">
                           <div class="card-header ">                          
                               <h2 class="text-center">
-                              REPORTES DE COMPRAS
+                              REPORTES DE VENTAS
                               </h2>               
                           </div>             
                       </div>
@@ -92,10 +92,10 @@
                       <div class="row">
                         <div class="col-lg-4 col-4">
                           <!-- small box -->
-                          <div class="small-box bg-warning btn_compras_proveedor" id="compras_proveedor">
+                          <div class="small-box bg-warning filtro_ventas_generales" id="ventas_generales">
                             <div class="inner">
                               <br>
-                              <h5 >Proveedores</h5>
+                              <h5 >Ventas Generales</h5>
                               <br>
                             </div>
                             <div class="icon">
@@ -108,7 +108,7 @@
 
                         <div class="col-lg-4 col-4">
                           <!-- small box -->
-                          <div class="small-box bg-success btn_compras_bovinos" id="compras_bovinos">
+                          <div class="small-box bg-success filtro_ventas_bovinos" id="ventas_bovinos">
                             <div class="inner">
                               <br>
                               <h5>Bovinos</h5>
@@ -123,7 +123,7 @@
 
                         <div class="col-lg-4 col-4">
                           <!-- small box -->
-                          <div class="small-box bg-warning btn_compras_insumos" id="compras_insumos">
+                          <div class="small-box bg-warning filtro_ventas_insumos" id="ventas_insumos">
                             <div class="inner">
                               <br>
                               <h5>Insumos Y Medicamentos</h5>
@@ -143,8 +143,8 @@
                     </div>
                 </section> 
                 
-                <!-- FILTRO PARA COMPRAS POR PROVEEDOR -->
-                <form method="POST" name="formulario_r_compras_p" id="formulario_r_compras_p">
+                <!-- FILTRO PARA VENTAS GENERALES -->
+                <form method="POST" name="formulario_r_ventas_g" id="formulario_r_ventas_g">
                     
                     <section class="content">
                         <div class="container-fluid">
@@ -154,14 +154,14 @@
                                         <div class="card-header bg-warning">
                                             <h3 class="card-title"></h3>
                                         </div>
-                                        <input type="hidden" id="generar_reporte" name="generar_reporte" value="si_generar">
+                                        <input type="hidden" id="generar_reporte_ventas_g" name="generar_reporte_ventas_g" value="si_generar">
                                         <input type="hidden" id="empleado_venta" name="empleado_venta" <?php print 'value ="'.$_SESSION['idempleado'].'"'?>>
                                         <div class="row">
                                             <div class="col-md-10 offset-md-1">
                                                   <div class="row">
                                                     <div class="col-12">
                                                       <div class="form-group text-center">
-                                                        <label><h3>REPORTE DE COMPRAS POR PROVEEDOR</h3></label>
+                                                        <label><h3>REPORTE DE VENTAS GENERALES</h3></label>
                                                         <input type="hidden" id="num_fact_guardar" name="num_fact_guardar">
                                                       </div>
                                                     </div>
@@ -169,14 +169,14 @@
                                                 <div class="row">                                                   
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label>Proveedor</label>
+                                                            <label>Empleado</label>
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
-                                                                         <i class="fas fa-truck"></i>
+                                                                         <i class="fas fa-user"></i>
                                                                     </span>
                                                                 </div>  
-                                                                <select id="proveedor_r_compras" name="proveedor_r_compras" class="form-control">
+                                                                <select id="empleados_ventas_g" name="empleados_ventas_g" class="form-control">
                                                                 </select>   
                                                             </div>
                                                         </div>
@@ -190,7 +190,7 @@
                                                                         <i class="fas fa-calendar"></i>
                                                                     </span>
                                                                 </div>
-                                                                <input type="text" id="fecha_inicio_r_compras" name="fecha_inicio_r_compras" class="form-control form_datetime_inicio" placeholder="12-12-2021 12:00" readonly required >
+                                                                <input type="text" id="fecha_inicio_r_ventas_g" name="fecha_inicio_r_ventas_g" class="form-control form_datetime_inicio" placeholder="12-12-2021 12:00" readonly required >
                                                             </div>
                                                         </div>
                                                     </div>
@@ -203,14 +203,14 @@
                                                                         <i class="fas fa-calendar"></i>
                                                                     </span>
                                                                 </div>
-                                                                <input type="text" id="fecha_fin_r_compras" name="fecha_fin_r_compras" class="form-control form_datetime_fin" placeholder="12-12-2021 12:00" readonly required >
+                                                                <input type="text" id="fecha_fin_r_ventas_g" name="fecha_fin_r_ventas_g" class="form-control form_datetime_fin" placeholder="12-12-2021 12:00" readonly required >
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <button type="submit" class="btn bg-info " data-toggle="modal" data-target="#md_seleccion_derivados">
+                                                            <button type="submit" class="btn bg-info ">
                                                                 <i class="fa fa-fw fa-file-pdf"></i>
                                                                Generar Reporte
                                                             </button>
@@ -225,8 +225,8 @@
                                                     <div class="col-4">       
                                                         <div class="form-group">
                                                             <div class="custom-control custom-switch custom-switch-on-primary">
-                                                              <input type="checkbox" class="custom-control-input" id="rbtn_proveedor_c" name="rbtn_proveedor_c" onclick="myFunction()">
-                                                              <label class="custom-control-label" for="rbtn_proveedor_c">Todos</label>
+                                                              <input type="checkbox" class="custom-control-input" id="rbtn_empleado_g" name="rbtn_empleado_g" onclick="myFunction()">
+                                                              <label class="custom-control-label" for="rbtn_empleado_g">Empleado</label>
                                                             </div>
                                                         </div>                                                       
                                                     </div>
@@ -240,8 +240,8 @@
                     </section>
                 </form>
 
-                <!-- FILTRO PARA COMPRAS POR BOVINO -->
-                <form method="POST" name="formulario_b_compras" id="formulario_b_compras">
+                <!-- FILTRO PARA VENTAS DE BOVINO -->
+                <form method="POST" name="formulario_b_ventas" id="formulario_b_ventas">
                     
                     <section class="content">
                         <div class="container-fluid">
@@ -251,8 +251,7 @@
                                         <div class="card-header bg-success">
                                             <h3 class="card-title"></h3>
                                         </div>
-                                        <input type="hidden" id="generar_reporte" name="generar_reporte" value="si_generar">
-                                        <input type="hidden" id="empleado_venta" name="empleado_venta" <?php print 'value ="'.$_SESSION['idempleado'].'"'?>>
+                                        <input type="hidden" id="generar_reporte_ventas_b" name="generar_reporte_ventas_b" value="si_generar">                                        
                                         <div class="row">
                                             <div class="col-md-10 offset-md-1">
                                                   <div class="row">
@@ -266,14 +265,14 @@
                                                 <div class="row">                                                   
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label>Proveedor</label>
+                                                            <label>Empleado</label>
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
                                                                          <i class="fas fa-truck"></i>
                                                                     </span>
                                                                 </div>  
-                                                                <select id="proveedor_r_compras_b" name="proveedor_r_compras_b" class="form-control" disabled="true">
+                                                                <select id="empleados_ventas_b" name="empleados_ventas_b" class="form-control" disabled="true">
                                                                 </select>   
                                                             </div>
                                                         </div>
@@ -287,7 +286,7 @@
                                                                         <i class="fas fa-calendar"></i>
                                                                     </span>
                                                                 </div>
-                                                                <input type="text" id="fecha_in_r_compras_b" name="fecha_in_r_compras_b" class="form-control form_datetime_inicio" placeholder="12-12-2021 12:00" readonly required >
+                                                                <input type="text" id="fecha_in_r_ventas_b" name="fecha_in_r_ventas_b" class="form-control form_datetime_inicio" placeholder="12-12-2021 12:00" readonly required >
                                                             </div>
                                                         </div>
                                                     </div>
@@ -300,7 +299,7 @@
                                                                         <i class="fas fa-calendar"></i>
                                                                     </span>
                                                                 </div>
-                                                                <input type="text" id="fecha_f_r_compras_b" name="fecha_f_r_compras_b" class="form-control form_datetime_fin" placeholder="12-12-2021 12:00" readonly required >
+                                                                <input type="text" id="fecha_f_r_ventas_b" name="fecha_f_r_ventas_b" class="form-control form_datetime_fin" placeholder="12-12-2021 12:00" readonly required >
                                                             </div>
                                                         </div>
                                                     </div>
@@ -313,7 +312,7 @@
                                                                         <i class="fas fa-list-ul"></i>
                                                                     </span>
                                                                 </div>  
-                                                                <select id="categoria_r_compras_b" name="categoria_r_compras_b" class="form-control">
+                                                                <select id="categoria_r_ventas_b" name="categoria_r_ventas_b" class="form-control">
                                                                     <option value="Seleccione">Seleccione</option>
                                                                     <option value="novia">Novía</option>
                                                                     <option value="ternero">Ternero</option>
@@ -327,8 +326,8 @@
                                                     <div class="col-4">       
                                                         <div class="form-group">
                                                             <div class="custom-control custom-switch custom-switch-on-primary">
-                                                              <input type="checkbox" class="custom-control-input" id="rbtn_proveedor" name="rbtn_proveedor">
-                                                              <label class="custom-control-label" for="rbtn_proveedor">Proveedor</label>
+                                                              <input type="checkbox" class="custom-control-input" id="rbtn_empleado" name="rbtn_empleado">
+                                                              <label class="custom-control-label" for="rbtn_empleado">Empleado</label>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -340,7 +339,7 @@
                                                     </div>          
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <button type="submit" class="btn bg-info " data-toggle="modal" data-target="#md_seleccion_derivados">
+                                                            <button type="submit" class="btn bg-info " >
                                                                 <i class="fa fa-fw fa-file-pdf"></i>
                                                                Generar Reporte
                                                             </button>
@@ -361,8 +360,8 @@
                     </section>
                 </form>
 
-                <!-- FILTRO PARA COMPRAS POR INSUMOS -->
-                <form method="POST" name="formulario_ins_compras" id="formulario_ins_compras">
+                <!-- FILTRO PARA VENTAS DE INSUMOS -->
+                <form method="POST" name="formulario_ins_ventas" id="formulario_ins_ventas">
                     
                     <section class="content">
                         <div class="container-fluid">
@@ -394,7 +393,7 @@
                                                                          <i class="fas fa-truck"></i>
                                                                     </span>
                                                                 </div>  
-                                                                <select id="proveedor_r_compras_ins" name="proveedor_r_compras_ins" class="form-control" disabled="true">
+                                                                <select id="empleados_ventas_ins" name="empleados_ventas_ins" class="form-control" disabled="true">
                                                                 </select>   
                                                             </div>
                                                         </div>
@@ -542,6 +541,6 @@
   <script src="../plugins/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js"></script>
   <script src="../plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 
-  <script src="../Scripts/reporte_compras.js"></script>
+  <script src="../Scripts/reportes_ventas.js"></script>
 </body>
 </html>

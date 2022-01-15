@@ -160,7 +160,7 @@
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-dot-circle"></i>
                                     <p>
-                                        Producción de Leche
+                                        Producción
                                         <i class="fas fa-angle-left right"></i>
                                     </p>
                                 </a>
@@ -239,7 +239,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="" class="nav-link">
+                                        <a href="../Vistas/v_seleccion_reportes_ventas.php" class="nav-link">
                                             <p>Ventas</p>
                                         </a>
                                     </li>
