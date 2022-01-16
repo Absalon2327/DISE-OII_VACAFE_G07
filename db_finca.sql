@@ -11,7 +11,7 @@
  Target Server Version : 100421
  File Encoding         : 65001
 
- Date: 13/01/2022 20:25:29
+ Date: 16/01/2022 16:19:52
 */
 
 SET NAMES utf8mb4;
@@ -86,7 +86,7 @@ CREATE TABLE `tb_categoria`  (
 -- ----------------------------
 INSERT INTO `tb_categoria` VALUES (1, 'DERIVADOS DE LECHE');
 INSERT INTO `tb_categoria` VALUES (2, 'BOVINOS');
-INSERT INTO `tb_categoria` VALUES (3, 'MEDICINA');
+INSERT INTO `tb_categoria` VALUES (3, 'MEDICAMENTOS');
 INSERT INTO `tb_categoria` VALUES (4, 'INSUMOS');
 
 -- ----------------------------
@@ -107,10 +107,11 @@ CREATE TABLE `tb_clientes`  (
 -- ----------------------------
 -- Records of tb_clientes
 -- ----------------------------
-INSERT INTO `tb_clientes` VALUES (2, NULL, 'Cliente Frecuente', NULL, NULL, NULL, 'Activo');
-INSERT INTO `tb_clientes` VALUES (4, '05592129-3', 'Fabri', 'Corvera', 'Santo Domingo', '6300-3455', 'Activo');
-INSERT INTO `tb_clientes` VALUES (8, '05966849-9', 'Moisés', 'Corvera', 'Santo Domingo', '7365-7821', 'Activo');
-INSERT INTO `tb_clientes` VALUES (27, '98765432-1', 'Claudia', 'Rivas', 'San Ildefonso', '2235-2257', 'Inactivo');
+INSERT INTO `tb_clientes` VALUES (1, NULL, 'Consumidor Final', NULL, NULL, NULL, 'Activo');
+INSERT INTO `tb_clientes` VALUES (2, '05592129-3', 'Fabri', 'Corvera', 'Santo Domingo', '6300-3455', 'Activo');
+INSERT INTO `tb_clientes` VALUES (3, '05966849-9', 'Moisés', 'Corvera', 'Santo Domingo', '7365-7821', 'Activo');
+INSERT INTO `tb_clientes` VALUES (4, '32423423-4', 'Cluadia Yoselin', 'Rivas Arévalo', 'San Ildefonso', '7894-5613', 'Activo');
+INSERT INTO `tb_clientes` VALUES (5, '78945654-6', 'José Hernán', 'Barahona Ayala', 'San Vicente', '6598-7845', 'Activo');
 
 -- ----------------------------
 -- Table structure for tb_compra
@@ -390,8 +391,8 @@ CREATE TABLE `tb_producto`  (
 -- ----------------------------
 -- Records of tb_producto
 -- ----------------------------
-INSERT INTO `tb_producto` VALUES (1, 'Botella de Crema Pura', 40, 2.25, 3.00, '../archivo_expdiente/img_1.png', 'Crema pura sin pausterizar', '2022-01-24', 1, 'Activo');
-INSERT INTO `tb_producto` VALUES (2, 'Botella de Leche', 42, 0.75, 1.50, '../archivo_expdiente/img_2.jpeg', 'Botella de Leche', '2022-01-31', 1, 'Activo');
+INSERT INTO `tb_producto` VALUES (1, 'Botella de Crema Pura', 10, 2.25, 3.00, '../archivo_expdiente/img_1.png', 'Crema pura sin pausterizar', '2022-01-24', 1, 'Activo');
+INSERT INTO `tb_producto` VALUES (2, 'Botella de Leche', 10, 0.75, 1.50, '../archivo_expdiente/img_2.jpeg', 'Botella de Leche', '2022-01-31', 1, 'Activo');
 INSERT INTO `tb_producto` VALUES (3, 'Desparacitante', 9, 8.50, 0.00, '../archivo_expdiente/img_3.jpg', 'Frasco de 10 ml', '2022-01-31', 3, 'Activo');
 INSERT INTO `tb_producto` VALUES (4, 'Vitamina D', 7, 13.50, 0.00, '../archivo_expdiente/img_4.jpg', 'Dosis de Vitamina D de 5ml', '2022-01-31', 4, 'Activo');
 
@@ -493,46 +494,46 @@ CREATE TABLE `tb_venta`  (
 -- ----------------------------
 -- Records of tb_venta
 -- ----------------------------
-INSERT INTO `tb_venta` VALUES (1, 1.50, NULL, '2022-01-05 10:08:40', '2022-01-05 22:11:50', 'Ticket', 1, 2, 1);
-INSERT INTO `tb_venta` VALUES (2, 1.50, NULL, '2022-01-07 04:17:48', '2022-01-07 16:43:17', 'Ticket', 2, 2, 2);
-INSERT INTO `tb_venta` VALUES (3, 1.50, NULL, '2022-01-07 04:17:48', '2022-01-07 16:43:34', 'Ticket', 2, 2, 3);
-INSERT INTO `tb_venta` VALUES (4, 1.50, NULL, '2022-01-07 04:45:27', '2022-01-07 16:46:10', 'Ticket', 2, 2, 4);
-INSERT INTO `tb_venta` VALUES (5, 1.50, NULL, '2022-01-07 08:42:09', '2022-01-07 20:42:28', 'Ticket', 2, 2, 5);
-INSERT INTO `tb_venta` VALUES (6, 1.50, NULL, '2022-01-07 09:13:46', '2022-01-07 21:13:59', 'Ticket', 2, 2, 6);
-INSERT INTO `tb_venta` VALUES (7, 1.50, NULL, '2022-01-07 09:51:49', '2022-01-07 21:52:10', 'Ticket', 2, 2, 7);
-INSERT INTO `tb_venta` VALUES (8, 1.50, NULL, '2022-01-07 09:52:55', '2022-01-07 21:53:05', 'Ticket', 2, 2, 8);
-INSERT INTO `tb_venta` VALUES (9, 1.50, NULL, '2022-01-07 09:54:26', '2022-01-07 21:54:43', 'Factura', 2, 2, 9);
-INSERT INTO `tb_venta` VALUES (10, 375.00, 0.00, '2022-01-09 12:31:21', '2022-01-09 00:31:57', 'Ticket', 2, 2, 10);
-INSERT INTO `tb_venta` VALUES (11, 375.00, 0.00, '2022-01-09 12:32:26', '2022-01-09 00:32:50', 'Ticket', 2, 2, 11);
-INSERT INTO `tb_venta` VALUES (12, 375.00, 0.00, '2022-01-09 12:34:19', '2022-01-09 00:34:35', 'Ticket', 2, 2, 12);
-INSERT INTO `tb_venta` VALUES (13, 375.00, 0.00, '2022-01-09 12:37:28', '2022-01-09 00:37:59', 'Ticket', 2, 2, 13);
-INSERT INTO `tb_venta` VALUES (14, 850.00, 0.00, '2022-01-09 02:31:29', '2022-01-09 14:32:34', 'Ticket', 2, 2, 14);
-INSERT INTO `tb_venta` VALUES (15, 0.00, 0.00, '2022-01-09 02:32:58', '2022-01-09 14:33:19', 'Ticket', 2, 2, 15);
-INSERT INTO `tb_venta` VALUES (16, 375.00, 0.00, '2022-01-09 02:32:58', '2022-01-09 14:33:29', 'Ticket', 2, 2, 15);
-INSERT INTO `tb_venta` VALUES (17, 1.50, 0.00, '2022-01-09 02:35:38', '2022-01-09 14:35:56', 'Ticket', 2, 2, 17);
-INSERT INTO `tb_venta` VALUES (18, 1.50, 0.00, '2022-01-09 02:37:00', '2022-01-09 14:37:13', 'Factura', 2, 2, 18);
-INSERT INTO `tb_venta` VALUES (19, 550.00, 0.00, '2022-01-09 02:37:51', '2022-01-09 14:38:13', 'Factura', 2, 2, 19);
-INSERT INTO `tb_venta` VALUES (20, 444.00, 0.00, '2022-01-09 02:43:29', '2022-01-09 14:43:45', 'Ticket', 2, 2, 20);
-INSERT INTO `tb_venta` VALUES (21, 1.50, 0.00, '2022-01-09 03:06:17', '2022-01-09 15:06:34', 'Factura', 2, 2, 21);
-INSERT INTO `tb_venta` VALUES (22, 1.50, 0.00, '2022-01-09 03:06:47', '2022-01-09 15:08:26', 'Factura', 2, 2, 22);
-INSERT INTO `tb_venta` VALUES (23, 1.50, 0.00, '2022-01-09 03:10:58', '2022-01-09 15:11:07', 'Ticket', 2, 2, 23);
-INSERT INTO `tb_venta` VALUES (24, 10.17, 0.00, '2022-01-09 10:57:55', '2022-01-09 23:00:03', 'Crédito Fiscal', 2, 2, 24);
-INSERT INTO `tb_venta` VALUES (25, 3.39, 0.39, '2022-01-09 11:04:53', '2022-01-09 23:05:36', 'Crédito Fiscal', 2, 2, 25);
-INSERT INTO `tb_venta` VALUES (26, 1.70, 0.20, '2022-01-09 11:08:44', '2022-01-09 23:09:05', 'Crédito Fiscal', 2, 2, 26);
-INSERT INTO `tb_venta` VALUES (27, 3.00, 0.00, '2022-01-09 11:12:37', '2022-01-09 23:12:51', 'Factura', 2, 2, 27);
-INSERT INTO `tb_venta` VALUES (28, 1.70, 0.20, '2022-01-09 11:17:51', '2022-01-09 23:20:20', 'Crédito Fiscal', 2, 2, 28);
-INSERT INTO `tb_venta` VALUES (29, 1.70, 0.20, '2022-01-10 10:53:38', '2022-01-10 11:02:32', 'Crédito Fiscal', 2, 2, 29);
-INSERT INTO `tb_venta` VALUES (30, 1.50, 0.00, '2022-01-10 11:09:30', '2022-01-10 11:09:49', 'Factura', 2, 2, 30);
-INSERT INTO `tb_venta` VALUES (31, 3.00, 0.00, '2022-01-10 11:09:30', '2022-01-10 11:18:15', 'Factura', 2, 2, 30);
-INSERT INTO `tb_venta` VALUES (32, 3.00, 0.00, '2022-01-10 11:28:57', '2022-01-10 11:31:06', 'Factura', 2, 2, 32);
-INSERT INTO `tb_venta` VALUES (33, 10.17, 1.17, '2022-01-10 11:28:57', '2022-01-10 11:31:35', 'Crédito Fiscal', 2, 2, 32);
-INSERT INTO `tb_venta` VALUES (34, 6.78, 0.78, '2022-01-10 11:33:38', '2022-01-10 11:34:05', 'Crédito Fiscal', 2, 2, 34);
-INSERT INTO `tb_venta` VALUES (35, 3.00, 0.00, '2022-01-10 02:56:03', '2022-01-10 15:15:39', 'Factura', 2, 4, 35);
-INSERT INTO `tb_venta` VALUES (36, 1500.00, 0.00, '2022-01-10 03:17:07', '2022-01-10 15:17:57', 'Factura', 2, 2, 36);
-INSERT INTO `tb_venta` VALUES (37, 18.08, 0.00, '2022-01-10 10:53:17', '2022-01-10 22:55:28', 'Crédito Fiscal', 2, 2, 37);
-INSERT INTO `tb_venta` VALUES (38, 16.00, 0.00, '2022-01-10 11:08:09', '2022-01-10 23:08:30', 'Factura', 2, 2, 38);
-INSERT INTO `tb_venta` VALUES (39, 376.00, 0.00, '2022-01-10 11:09:24', '2022-01-10 23:09:40', 'Ticket', 2, 2, 39);
-INSERT INTO `tb_venta` VALUES (40, 4.50, 0.00, '2022-01-10 11:26:11', '2022-01-10 23:27:33', 'Ticket', 2, 2, 40);
-INSERT INTO `tb_venta` VALUES (41, 1.50, 0.00, '2022-01-10 11:29:51', '2022-01-10 23:30:05', 'Ticket', 2, 2, 41);
+INSERT INTO `tb_venta` VALUES (1, 1.50, NULL, '2022-01-05 10:08:40', '2022-01-05 22:11:50', 'Ticket', 1, 1, 1);
+INSERT INTO `tb_venta` VALUES (2, 1.50, NULL, '2022-01-07 04:17:48', '2022-01-07 16:43:17', 'Ticket', 2, 1, 2);
+INSERT INTO `tb_venta` VALUES (3, 1.50, NULL, '2022-01-07 04:17:48', '2022-01-07 16:43:34', 'Ticket', 2, 1, 3);
+INSERT INTO `tb_venta` VALUES (4, 1.50, NULL, '2022-01-07 04:45:27', '2022-01-07 16:46:10', 'Ticket', 2, 1, 4);
+INSERT INTO `tb_venta` VALUES (5, 1.50, NULL, '2022-01-07 08:42:09', '2022-01-07 20:42:28', 'Ticket', 2, 1, 5);
+INSERT INTO `tb_venta` VALUES (6, 1.50, NULL, '2022-01-07 09:13:46', '2022-01-07 21:13:59', 'Ticket', 2, 1, 6);
+INSERT INTO `tb_venta` VALUES (7, 1.50, NULL, '2022-01-07 09:51:49', '2022-01-07 21:52:10', 'Ticket', 2, 1, 7);
+INSERT INTO `tb_venta` VALUES (8, 1.50, NULL, '2022-01-07 09:52:55', '2022-01-07 21:53:05', 'Ticket', 2, 1, 8);
+INSERT INTO `tb_venta` VALUES (9, 1.50, NULL, '2022-01-07 09:54:26', '2022-01-07 21:54:43', 'Factura', 2, 1, 9);
+INSERT INTO `tb_venta` VALUES (10, 375.00, 0.00, '2022-01-09 12:31:21', '2022-01-09 00:31:57', 'Ticket', 2, 1, 10);
+INSERT INTO `tb_venta` VALUES (11, 375.00, 0.00, '2022-01-09 12:32:26', '2022-01-09 00:32:50', 'Ticket', 2, 1, 11);
+INSERT INTO `tb_venta` VALUES (12, 375.00, 0.00, '2022-01-09 12:34:19', '2022-01-09 00:34:35', 'Ticket', 2, 1, 12);
+INSERT INTO `tb_venta` VALUES (13, 375.00, 0.00, '2022-01-09 12:37:28', '2022-01-09 00:37:59', 'Ticket', 2, 1, 13);
+INSERT INTO `tb_venta` VALUES (14, 850.00, 0.00, '2022-01-09 02:31:29', '2022-01-09 14:32:34', 'Ticket', 2, 1, 14);
+INSERT INTO `tb_venta` VALUES (15, 0.00, 0.00, '2022-01-09 02:32:58', '2022-01-09 14:33:19', 'Ticket', 2, 1, 15);
+INSERT INTO `tb_venta` VALUES (16, 375.00, 0.00, '2022-01-09 02:32:58', '2022-01-09 14:33:29', 'Ticket', 2, 1, 15);
+INSERT INTO `tb_venta` VALUES (17, 1.50, 0.00, '2022-01-09 02:35:38', '2022-01-09 14:35:56', 'Ticket', 2, 1, 17);
+INSERT INTO `tb_venta` VALUES (18, 1.50, 0.00, '2022-01-09 02:37:00', '2022-01-09 14:37:13', 'Factura', 2, 1, 18);
+INSERT INTO `tb_venta` VALUES (19, 550.00, 0.00, '2022-01-09 02:37:51', '2022-01-09 14:38:13', 'Factura', 2, 1, 19);
+INSERT INTO `tb_venta` VALUES (20, 444.00, 0.00, '2022-01-09 02:43:29', '2022-01-09 14:43:45', 'Ticket', 2, 1, 20);
+INSERT INTO `tb_venta` VALUES (21, 1.50, 0.00, '2022-01-09 03:06:17', '2022-01-09 15:06:34', 'Factura', 2, 1, 21);
+INSERT INTO `tb_venta` VALUES (22, 1.50, 0.00, '2022-01-09 03:06:47', '2022-01-09 15:08:26', 'Factura', 2, 1, 22);
+INSERT INTO `tb_venta` VALUES (23, 1.50, 0.00, '2022-01-09 03:10:58', '2022-01-09 15:11:07', 'Ticket', 2, 1, 23);
+INSERT INTO `tb_venta` VALUES (24, 10.17, 0.00, '2022-01-09 10:57:55', '2022-01-09 23:00:03', 'Crédito Fiscal', 2, 1, 24);
+INSERT INTO `tb_venta` VALUES (25, 3.39, 0.39, '2022-01-09 11:04:53', '2022-01-09 23:05:36', 'Crédito Fiscal', 2, 1, 25);
+INSERT INTO `tb_venta` VALUES (26, 1.70, 0.20, '2022-01-09 11:08:44', '2022-01-09 23:09:05', 'Crédito Fiscal', 2, 1, 26);
+INSERT INTO `tb_venta` VALUES (27, 3.00, 0.00, '2022-01-09 11:12:37', '2022-01-09 23:12:51', 'Factura', 2, 1, 27);
+INSERT INTO `tb_venta` VALUES (28, 1.70, 0.20, '2022-01-09 11:17:51', '2022-01-09 23:20:20', 'Crédito Fiscal', 2, 1, 28);
+INSERT INTO `tb_venta` VALUES (29, 1.70, 0.20, '2022-01-10 10:53:38', '2022-01-10 11:02:32', 'Crédito Fiscal', 2, 1, 29);
+INSERT INTO `tb_venta` VALUES (30, 1.50, 0.00, '2022-01-10 11:09:30', '2022-01-10 11:09:49', 'Factura', 2, 1, 30);
+INSERT INTO `tb_venta` VALUES (31, 3.00, 0.00, '2022-01-10 11:09:30', '2022-01-10 11:18:15', 'Factura', 2, 1, 30);
+INSERT INTO `tb_venta` VALUES (32, 3.00, 0.00, '2022-01-10 11:28:57', '2022-01-10 11:31:06', 'Factura', 2, 1, 32);
+INSERT INTO `tb_venta` VALUES (33, 10.17, 1.17, '2022-01-10 11:28:57', '2022-01-10 11:31:35', 'Crédito Fiscal', 2, 1, 32);
+INSERT INTO `tb_venta` VALUES (34, 6.78, 0.78, '2022-01-10 11:33:38', '2022-01-10 11:34:05', 'Crédito Fiscal', 2, 1, 34);
+INSERT INTO `tb_venta` VALUES (35, 3.00, 0.00, '2022-01-10 02:56:03', '2022-01-10 15:15:39', 'Factura', 2, 2, 35);
+INSERT INTO `tb_venta` VALUES (36, 1500.00, 0.00, '2022-01-10 03:17:07', '2022-01-10 15:17:57', 'Factura', 2, 1, 36);
+INSERT INTO `tb_venta` VALUES (37, 18.08, 0.00, '2022-01-10 10:53:17', '2022-01-10 22:55:28', 'Crédito Fiscal', 2, 1, 37);
+INSERT INTO `tb_venta` VALUES (38, 16.00, 0.00, '2022-01-10 11:08:09', '2022-01-10 23:08:30', 'Factura', 2, 1, 38);
+INSERT INTO `tb_venta` VALUES (39, 376.00, 0.00, '2022-01-10 11:09:24', '2022-01-10 23:09:40', 'Ticket', 2, 1, 39);
+INSERT INTO `tb_venta` VALUES (40, 4.50, 0.00, '2022-01-10 11:26:11', '2022-01-10 23:27:33', 'Ticket', 2, 1, 40);
+INSERT INTO `tb_venta` VALUES (41, 1.50, 0.00, '2022-01-10 11:29:51', '2022-01-10 23:30:05', 'Ticket', 2, 1, 41);
 
 SET FOREIGN_KEY_CHECKS = 1;

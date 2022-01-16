@@ -1,185 +1,203 @@
-
-
-listaClientes();
-//Guardar Cliente
-$("#addCliente").submit(function (event) {
-    event.preventDefault(); 
-    var parametros = $(this).serialize();
-    var Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 5000
+cargar_datos();
+$(function (){
+    console.log("esta funcionando")
+    //$('#formulario_registro').parsley();
+     $('[data-mask]').inputmask()
+    $('#formulario_cliente').validate({
+        rules: {
+          email: {
+            required: true,
+            email: true,
+          },
+          password: {
+            required: true,
+            minlength: 5
+          },
+          terms: {
+            required: true
+          },
+        },
+        messages: {
+          email: {
+            required: "Por favor ingresa un email",
+            email: "Por favor ingresa un email valido"
+          },
+          password: {
+            required: "Please provide a password",
+            minlength: "Your password must be at least 5 characters long"
+          },
+          terms: "Please accept our terms"
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+          error.addClass('invalid-feedback');
+          element.closest('.input-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+          $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+          $(element).removeClass('is-invalid');
+        }
     });
-    $.ajax({
-        dataType: "json",
-        type: "POST",
-        url: "../Controladores/clientes_controlador.php?action=guardar", 
-        data: parametros,
-    }).done(function(respuesta){ 
-                console.log("Estos datos retorna: ",respuesta);
-                $("#dui_cliente").val("");
-                $("#nombre_Cliente").val(""); 
-                $("#apellido_Cliente").val("");
-                $("#direc_cliente").val("");
-                $("#telefono_Cliente").val("");
-
-                if (respuesta[0]=="error") {
-                    console.error("Ocurrio un error");
-                    Toast.fire({
-                    icon: 'error',
-                    title: 'Error!.'
-                    });
-                }
-               listaClientes();
-            
-        }).always(function() {
-            $('#modalAddCliente').modal('hide');                
-                    Toast.fire({
-                    icon: 'success',
-                    title: 'Datos Registrados Correctamente.'
-                    })
-                
-        }).fail(function(){              
-                   Toast.fire({
-                    icon: 'error',
-                    title: 'Error al gurdar en la consulta!.'
-                    })
-                
-            });
-});
-
-function listaClientes(){
-      var datos = {"consultar_info":"este_es_el_valor"};
-      $.ajax({
-          dataType: "json",
-          method: "POST",
-          url:'../Controladores/clientes_controlador.php',
-          data : datos,
-      }).done(function(json) {
-
-        //console.log("Estos datos retorna: ",json);
-        $("#tablaCl").empty().html(json[0]);
-      });
-}
-
-//Abrir Modal Editar Equipo
-$('#modalClienteEdit').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget) // Button that triggered the modal
     
-    var duiclt = button.data('duiclt')
-    $('#dui_cliente_edit').val(duiclt)
+    
+    
 
-    var nombreclt = button.data('nombreclt')
-    $('#nombre_Cliente_edit').val(nombreclt)
+   
 
-    var apellidoclt = button.data('apellidoclt')
-    $('#apellido_Cliente_edit').val(apellidoclt)
+    
+    /*$(document).on("click",".btn_cerrar_class",function(e){
+        e.preventDefault();
+        $("#formulario_registro").trigger('reset');
+        $('#md_registrar_usuario').modal('hide');
 
-    var direcclt = button.data('direcclt')
-    $('#direc_cliente_edit').val(direcclt)
 
-    var teledonoclt = button.data('teledonoclt')
-    $('#telefono_Cliente_edit').val(teledonoclt)
-
-    var idclt = button.data('idclt')
-    $('#id_cliente_edit').val(idclt)
-});
-//Editar Cliente
-$("#editClientes").submit(function (event) {
-    event.preventDefault(); 
-    var parametros = $(this).serialize();
-    var Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 5000
     });
+
+    $(document).on("click",".btn_eliminar",function(e){
+        e.preventDefault();
+        var id = $(this).attr("data-id");
+        var datos = {"eliminar_persona":"si_eliminala","id":id}
+        $.ajax({
+            dataType: "json",
+            method: "POST",
+            url:'json_usuarios.php',
+            data : datos,
+        }).done(function(json) {
+            cargar_datos();
+
+        });
+    });
+    $(document).on("click",".btn_editar",function(e){
+
+        e.preventDefault(); 
+        mostrar_mensaje("Consultando datos");
+        var id = $(this).attr("data-id");
+        console.log("El id es: ",id);
+        var datos = {"consultar_info":"si_condui_especifico","id":id}
+        $.ajax({
+            dataType: "json",
+            method: "POST",
+            url:'json_usuarios.php',
+            data : datos,
+        }).done(function(json) {
+            console.log("EL consultar especifico",json);
+            if (json[0]=="Exito") {
+                var fecHA_string = json[2]['fecha_nacimiento'];
+                var porciones = fecHA_string.split('-');
+                var fecha = porciones[2]+"/"+porciones[1]+"/"+porciones[0]
+
+                $('#llave_persona').val(id);
+                $('#ingreso_datos').val("si_actualizalo");
+                $('#nombre').val(json[2]['nombre']);
+                $('#email').val(json[2]['email']);
+                $('#dui').val(json[2]['dui']);
+                $('#telefono').val(json[2]['telefono']);
+                $('#fecha').val(fecha);
+                $('#tipo_persona').val(json[2]['tipo_persona']);
+
+                $("#usuario").removeAttr("required");
+                $("#contrasenia").removeAttr("required");
+                
+                
+                $('#md_registrar_usuario').modal('show');
+            }
+             
+        }).fail(function(){
+
+        }).always(function(){
+            Swal.close();
+        });
+
+
+    });
+
+
+
+    $(document).on("click","#registrar_usuario",function(e){
+        e.preventDefault();
+        console.log("Capturando evento");
+        //$('#myModal').modal('show'); para abrir modal
+        //$('#myModal').modal('hide'); para cerrar modal
+        $('#md_registrar_usuario').modal('show');
+
+        $(".select2").select2({
+        }).on("select2:opening", 
+            function(){
+                $(".modal").removeAttr("tabindex", "-1");
+        }).on("select2:close", 
+            function(){ 
+                $(".modal").attr("tabindex", "-1");
+        });
+    
+    });*/
+
+
+    $(document).on("submit","#formulario_cliente",function(e){
+        e.preventDefault();
+        var datos = $("#formulario_cliente").serialize();
+        console.log("Imprimiendo datos: ",datos);
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3500
+        });
+        $.ajax({
+            dataType: "json",
+            method: "POST",
+            url:'../Controladores/clientes_controlador.php',
+            data : datos,
+        }).done(function(json) {
+            console.log("EL GUARDAR",json);
+            if (json[0] == "Exito") {
+                $('#formulario_cliente').trigger('reset');
+                $('#modalAddCliente').modal('hide');
+                setTimeout(function (s) {
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Cliente registrado con exito !'
+                    });
+                }, 500);   
+                cargar_datos();
+            }else{
+                setTimeout(function (s) {
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Registro incorrecto !'
+                    });
+                }, 500); 
+                cargar_datos();
+            }
+                
+                    
+            
+        }).fail(function(){
+
+        }).always(function(){
+
+        });
+
+
+    });
+});
+
+function cargar_datos(){
+    //mostrar_mensaje("Consultando datos");
+    var datos = {"consultar_info":"si_consultala"}
     $.ajax({
         dataType: "json",
-        type: "POST",
-        url: "../Controladores/clientes_controlador.php", 
-        data: parametros,
-    }).done(function(respuesta){ 
-            console.log("Estos datos retorna: ",respuesta);
-            $("#dui_cliente_edit").val("");
-            $("#nombre_Cliente_edit").val(""); 
-            $("#apellido_Cliente_edit").val("");
-            $("#direc_cliente_edit").val("");
-            $("#telefono_Cliente_edit").val("");
+        method: "POST",
+        url:'../Controladores/clientes_controlador.php',
+        data : datos,
+    }).done(function(json) {
+        console.log("EL consultar",json);
+        $("#tablaCl").empty().html(json[1]); 
+        $('#example1').DataTable(); 
+    }).fail(function(){
 
-        if (respuesta[0]=="error") {
-            console.error("Ocurrio un error");
-            Toast.fire({
-                icon: 'error',
-                title: 'Error!.'
-            });
-        }               
-        listaClientes();
-    }).always(function() {
-        $('#modalClienteEdit').modal('hide');                
-        Toast.fire({
-            icon: 'success',
-            title: 'Datos Modificados Correctamente.'
-        });                   
-                
-    }).fail(function(){              
-        Toast.fire({
-            icon: 'error',
-            title: 'Error en la Modificación de la consulta!.'
-        });
-         listaClientes();
+    }).always(function(){
+        Swal.close();
     });
-});
-
-
-//Abrir Modal Advertencia
-$('#modalBajaCliente').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget) // Button that triggered the modal
-
-    var idcltbaja = button.data('idcltbaja')   
-    $('#id_baja').val(idcltbaja)
-});
-
-//Baja Cliente
-$("#confirmaBaja").submit(function (event) {
-    event.preventDefault(); 
-    var parametros = $(this).serialize();
-    var Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 5000
-    });
-    $.ajax({
-        dataType: "json",
-        type: "POST",
-        url: "../Controladores/clientes_controlador.php", 
-        data: parametros,
-    }).done(function(respuesta){ 
-            console.log("Estos datos retorna: ",respuesta);
-            $("#id_baja").val("");            
-
-        if (respuesta[0]=="error") {
-            console.error("Ocurrio un error");
-            Toast.fire({
-                icon: 'error',
-                title: 'Error!.'
-            });
-        }               
-        listaClientes();
-    }).always(function() {
-        $('#modalBajaCliente').modal('hide');                
-        Toast.fire({
-            icon: 'success',
-            title: 'Se dió de baja correctamente.'
-        });                   
-                
-    }).fail(function(){              
-        Toast.fire({
-            icon: 'error',
-            title: 'Error no se donde!.'
-        });
-        listaClientes();
-    });
-});
+}

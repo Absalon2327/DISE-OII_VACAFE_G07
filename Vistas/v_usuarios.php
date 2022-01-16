@@ -1,3 +1,21 @@
+<?php 
+    date_default_timezone_set('America/El_Salvador');
+    @session_start();
+    if (isset($_SESSION['logueado']) && $_SESSION['logueado']=="si") {
+
+        $_SESSION['compra'] = null;
+        if ($_SESSION['bloquear_pantalla']=="no") {
+            // code...
+            
+        }else{
+             
+            header("Location: ../Vistas/v_bloquear_pantalla.php");
+             
+        }
+    }else{
+          header("Location: ../Vistas/index.php");
+    } 
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>        
@@ -342,10 +360,8 @@
                 </div>
             </div>            
             <footer class="main-footer">
-              <div class="float-right d-none d-sm-block">
-              </div>
-              <strong>UES &copy; 2021</strong>
-              Todos los Derechos Reservados
+              <div class="float-right d-none d-sm-block"></div>
+              <strong>UES &copy; 2021</strong>Todos los Derechos Reservados
             </footer>
             <aside class="control-sidebar control-sidebar-dark"></aside>
         </div>
