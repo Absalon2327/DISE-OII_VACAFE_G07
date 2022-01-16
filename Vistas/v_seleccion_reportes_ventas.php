@@ -57,7 +57,7 @@
     div#ventas_bovinos {
         cursor: pointer;
     }
-    div#ventas_insumos {
+    div#ventas_dv {
         cursor: pointer;
     }
    
@@ -123,10 +123,10 @@
 
                         <div class="col-lg-4 col-4">
                           <!-- small box -->
-                          <div class="small-box bg-warning filtro_ventas_insumos" id="ventas_insumos">
+                          <div class="small-box bg-warning filtro_ventas_dv" id="ventas_dv">
                             <div class="inner">
                               <br>
-                              <h5>Insumos Y Medicamentos</h5>
+                              <h5>Leche y Derivados</h5>
                               <br>
 
                             </div>
@@ -257,7 +257,7 @@
                                                   <div class="row">
                                                     <div class="col-12">
                                                       <div class="form-group text-center">
-                                                        <label><h3>REPORTE DE COMPRAS DE BOVINOS</h3></label>
+                                                        <label><h3>REPORTE DE VENTAS DE BOVINOS</h3></label>
                                                         <input type="hidden" id="num_fact_guardar" name="num_fact_guardar">
                                                       </div>
                                                     </div>
@@ -315,7 +315,7 @@
                                                                 <select id="categoria_r_ventas_b" name="categoria_r_ventas_b" class="form-control">
                                                                     <option value="Seleccione">Seleccione</option>
                                                                     <option value="novia">Novía</option>
-                                                                    <option value="ternero">Ternero</option>
+                                                                    <option value="ternero">Terneros</option>
                                                                     <option value="vaca_lechera">Vaca Lechera</option>
                                                                 </select>   
                                                             </div>
@@ -333,7 +333,7 @@
                                                         <div class="form-group">
                                                             <div class="custom-control custom-switch custom-switch-on-primary">
                                                               <input type="checkbox" class="custom-control-input" id="rbtn_categoria" name="rbtn_categoria" onclick="myFunction()">
-                                                              <label class="custom-control-label" for="rbtn_categoria">Categorias</label>
+                                                              <label class="custom-control-label" for="rbtn_categoria">Categorías</label>
                                                             </div>
                                                         </div>
                                                     </div>          
@@ -360,8 +360,8 @@
                     </section>
                 </form>
 
-                <!-- FILTRO PARA VENTAS DE INSUMOS -->
-                <form method="POST" name="formulario_ins_ventas" id="formulario_ins_ventas">
+                <!-- FILTRO PARA VENTAS DE DEV -->
+                <form method="POST" name="formulario_dev_ventas" id="formulario_dev_ventas">
                     
                     <section class="content">
                         <div class="container-fluid">
@@ -371,14 +371,14 @@
                                         <div class="card-header bg-warning">
                                             <h3 class="card-title"></h3>
                                         </div>
-                                        <input type="hidden" id="generar_reporte_insu" name="generar_reporte_insu" value="si_generar">
+                                        <input type="hidden" id="generar_reporte_dev" name="generar_reporte_dev" value="si_generar">
                                         <input type="hidden" id="empleado_venta" name="empleado_venta" <?php print 'value ="'.$_SESSION['idempleado'].'"'?>>
                                         <div class="row">
                                             <div class="col-md-10 offset-md-1">
                                                   <div class="row">
                                                     <div class="col-12">
                                                       <div class="form-group text-center">
-                                                        <label><h3>REPORTE DE COMPRAS DE MEDICAMENTOS E INSUMOS</h3></label>
+                                                        <label><h3>REPORTE DE VENTAS DE LECHE Y DERIVADOS</h3></label>
                                                         <input type="hidden" id="num_fact_guardar" name="num_fact_guardar">
                                                       </div>
                                                     </div>
@@ -386,14 +386,14 @@
                                                 <div class="row">                                                   
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label>Proveedor</label>
+                                                            <label>Empleado</label>
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
                                                                          <i class="fas fa-truck"></i>
                                                                     </span>
                                                                 </div>  
-                                                                <select id="empleados_ventas_ins" name="empleados_ventas_ins" class="form-control" disabled="true">
+                                                                <select id="empleados_ventas_dev" name="empleados_ventas_dev" class="form-control" disabled="true">
                                                                 </select>   
                                                             </div>
                                                         </div>
@@ -407,7 +407,7 @@
                                                                         <i class="fas fa-calendar"></i>
                                                                     </span>
                                                                 </div>
-                                                                <input type="text" id="fecha_in_r_compras_insu" name="fecha_in_r_compras_insu" class="form-control form_datetime_inicio" placeholder="12-12-2021 12:00" readonly required >
+                                                                <input type="text" id="fecha_in_r_ventas_dev" name="fecha_in_r_ventas_dev" class="form-control form_datetime_inicio" placeholder="12-12-2021 12:00" readonly required >
                                                             </div>
                                                         </div>
                                                     </div>
@@ -420,23 +420,23 @@
                                                                         <i class="fas fa-calendar"></i>
                                                                     </span>
                                                                 </div>
-                                                                <input type="text" id="fecha_f_r_compras_ins" name="fecha_f_r_compras_ins" class="form-control form_datetime_fin" placeholder="12-12-2021 12:00" readonly required >
+                                                                <input type="text" id="fecha_f_r_ventas_dev" name="fecha_f_r_ventas_dev" class="form-control form_datetime_fin" placeholder="12-12-2021 12:00" readonly required >
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label>Categoría</label>
+                                                            <label>Producto</label>
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
                                                                         <i class="fas fa-list-ul"></i>
                                                                     </span>
                                                                 </div>  
-                                                                <select id="categoria_r_compras_ins" name="categoria_r_compras_ins" class="form-control">
+                                                                <select id="producto_r_ventas_dev" name="producto_r_ventas_dev" class="form-control">
                                                                     <option value="Seleccione">Seleccione</option>
-                                                                    <option value="MEDICAMENTOS">MEDICAMENTOS</option>
-                                                                    <option value="INSUMOS">INSUMOS</option>
+                                                                    <option value="Botella de Leche">BOTELLA DE LECHE</option>
+                                                                    <option value="1">DERIVADO DE LECHE</option>
                                                                 </select>   
                                                             </div>
                                                         </div>
@@ -446,22 +446,21 @@
                                                     <div class="col-4">       
                                                         <div class="form-group">
                                                             <div class="custom-control custom-switch custom-switch-on-primary">
-                                                              <input type="checkbox" class="custom-control-input" id="rbtn_proveedor_ins" name="rbtn_proveedor_ins">
-                                                              <label class="custom-control-label" for="rbtn_proveedor_ins">Proveedor</label>
+                                                              <input type="checkbox" class="custom-control-input" id="rbtn_empleado_dv" name="rbtn_empleado_dv">
+                                                              <label class="custom-control-label" for="rbtn_empleado_dv">Empleado</label>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <div class="custom-control custom-switch custom-switch-on-primary">
-                                                              <input type="checkbox" class="custom-control-input" id="rbtn_categoria_ins" name="rbtn_categoria_ins" onclick="myFunction()">
-                                                              <label class="custom-control-label" for="rbtn_categoria_ins">Categorias</label>
+                                                              <input type="checkbox" class="custom-control-input" id="rbtn_producto_dv" name="rbtn_producto_dv" onclick="myFunction()">
+                                                              <label class="custom-control-label" for="rbtn_producto_dv">Producto</label>
                                                             </div>
                                                         </div>
                                                     </div>          
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <button type="submit" class="btn bg-info " data-toggle="modal" data-target="#md_seleccion_derivados">
-                                                                <i class="fa fa-fw fa-file-pdf"></i>
-                                                               Generar Reporte
+                                                            <button type="submit" class="btn bg-info ">
+                                                                <i class="fa fa-fw fa-file-pdf"></i>Generar Reporte
                                                             </button>
                                                             <a class="btn bg-danger btn_limpiar ">
                                                                 <i class="fa fa-trash"></i>

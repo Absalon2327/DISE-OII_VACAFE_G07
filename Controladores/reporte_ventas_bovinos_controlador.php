@@ -36,15 +36,15 @@
 	    	$sql = "SELECT
 						* 
 					FROM
-						tb_compra
-						INNER JOIN tb_proveedor ON tb_compra.int_idempleado = tb_proveedor.int_idempleado
-						INNER JOIN tb_detalle_compra ON tb_compra.int_idcompra = tb_detalle_compra.int_idcompra
-						INNER JOIN tb_producto ON tb_detalle_compra.int_idproducto = tb_producto.int_idproducto
-						INNER JOIN tb_categoria ON tb_producto.int_idcategoria = tb_categoria.int_idcategoria 
+						tb_venta
+						INNER JOIN tb_clientes ON tb_venta.int_id_cliente = tb_clientes.int_idcliente
+						INNER JOIN tb_empleado ON tb_venta.int_idempleado = tb_empleado.int_idempleado
+						INNER JOIN tb_detalle_venta ON tb_venta.int_idventa = tb_detalle_venta.int_idventa
+						INNER JOIN tb_expediente ON tb_detalle_venta.int_idexpediente = tb_expediente.int_idexpediente
 					WHERE
-						tb_proveedor.int_idempleado = $idempleado
-						AND tb_compra.dat_fecha_sistema >= '$fecha_inicio' 
-						AND tb_compra.dat_fecha_sistema <= '$fecha_fin'";
+						tb_venta.int_idempleado = $idempleado 
+						AND tb_venta.dat_fecha_sistema_venta >= '$fecha_inicio' 
+						AND tb_venta.dat_fecha_sistema_venta <= '$fecha_fin'";
 
 	   		$result = $modelo->get_query($sql);
 
@@ -54,7 +54,7 @@
 	        	exit();
 
 	   		}else{
-	   			print json_encode(array("Error",$fecha_inicio,$fecha_fin,$idempleado,$result));
+	   			print json_encode(array("Error",$cat_bov,$fecha_inicio,$fecha_fin,$result));
 	        	exit();
 	   		}
 	    	
@@ -63,15 +63,15 @@
 	    	$sql = "SELECT
 						* 
 					FROM
-						tb_compra
-						INNER JOIN tb_proveedor ON tb_compra.int_idempleado = tb_proveedor.int_idempleado
-						INNER JOIN tb_detalle_compra ON tb_compra.int_idcompra = tb_detalle_compra.int_idcompra
-						INNER JOIN tb_producto ON tb_detalle_compra.int_idproducto = tb_producto.int_idproducto
-						INNER JOIN tb_categoria ON tb_producto.int_idcategoria = tb_categoria.int_idcategoria 
+						tb_venta
+						INNER JOIN tb_clientes ON tb_venta.int_id_cliente = tb_clientes.int_idcliente
+						INNER JOIN tb_empleado ON tb_venta.int_idempleado = tb_empleado.int_idempleado
+						INNER JOIN tb_detalle_venta ON tb_venta.int_idventa = tb_detalle_venta.int_idventa
+						INNER JOIN tb_expediente ON tb_detalle_venta.int_idexpediente = tb_expediente.int_idexpediente   
 					WHERE
-						tb_categoria.nva_nom_categoria = '$cat_bov' 
-						AND tb_compra.dat_fecha_sistema >= 'fecha_inicio' 
-						AND tb_compra.dat_fecha_sistema <= '$fecha_fin'";
+						tb_expediente.nva_tipo_bovino = '$cat_bov' 
+						AND tb_venta.dat_fecha_sistema_venta >= 'fecha_inicio' 
+						AND tb_venta.dat_fecha_sistema_venta <= '$fecha_fin'";
 
 	   		$result = $modelo->get_query($sql);
 
@@ -91,16 +91,16 @@
 	    	$sql = "SELECT
 						* 
 					FROM
-						tb_compra
-						INNER JOIN tb_proveedor ON tb_compra.int_idempleado = tb_proveedor.int_idempleado
-						INNER JOIN tb_detalle_compra ON tb_compra.int_idcompra = tb_detalle_compra.int_idcompra
-						INNER JOIN tb_producto ON tb_detalle_compra.int_idproducto = tb_producto.int_idproducto
-						INNER JOIN tb_categoria ON tb_producto.int_idcategoria = tb_categoria.int_idcategoria 
+						tb_venta
+						INNER JOIN tb_clientes ON tb_venta.int_id_cliente = tb_clientes.int_idcliente
+						INNER JOIN tb_empleado ON tb_venta.int_idempleado = tb_empleado.int_idempleado
+						INNER JOIN tb_detalle_venta ON tb_venta.int_idventa = tb_detalle_venta.int_idventa
+						INNER JOIN tb_expediente ON tb_detalle_venta.int_idexpediente = tb_expediente.int_idexpediente 
 					WHERE
-						tb_proveedor.int_idempleado = $idempleado 
-						AND tb_categoria.nva_nom_categoria = '$cat_bov' 
-						AND tb_compra.dat_fecha_sistema >= '$fecha_inicio' 
-						AND tb_compra.dat_fecha_sistema <= '$fecha_fin'";
+						tb_venta.int_idempleado = $idempleado 
+						AND tb_expediente.nva_tipo_bovino = '$cat_bov' 
+						AND tb_venta.dat_fecha_sistema_venta >= '$fecha_inicio' 
+						AND tb_venta.dat_fecha_sistema_venta <= '$fecha_fin'";
 
 	   		$result = $modelo->get_query($sql);
 
@@ -110,6 +110,7 @@
 	        	exit();
 
 	   		}else{
+	   			
 	   			print json_encode(array("Error",$idempleado,$cat_bov,$fecha_inicio,$fecha_fin,$result));
 	        	exit();
 	   		}

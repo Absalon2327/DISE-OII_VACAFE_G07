@@ -209,10 +209,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
-                                        <button class="btn bg-success" type="button" data-dismiss="modal">
+                                        <a href="r_imprime_factura_venta.php" class="btn bg-success bnt_imprimir_fact_cre" type="button" >
                                             <i class="fas fa-print"></i>
                                             Imprimir
-                                        </button>
+                                        </a>
                                     </div>
                                     
                                     <div class="col-6">

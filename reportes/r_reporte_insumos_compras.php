@@ -99,7 +99,7 @@ class PDF extends tFPDF{
                         $this->Cell($w[0],6,datetimeformateado($row['dat_fecha_sistema']),'LR',0,'C',$fill);
                         $this->Cell($w[1],6,$row['nva_nom_producto'],'LR',0,'L',$fill);
                         $this->Cell($w[2],6,$row['int_cantidad_compra'],'LR',0,'C',$fill);
-                        $this->Cell($w[3],6,"$".$row['dou_total_compra'],'LR',0,'C',$fill);
+                        $this->Cell($w[3],6,"$".number_format($row['dou_total_compra'], 2),'LR',0,'C',$fill);
                         $this->Ln();
                         $fill = !$fill;
                         $GLOBALS['total_inver'] = $GLOBALS['total_inver'] + $row['dou_total_compra'];
@@ -121,7 +121,7 @@ class PDF extends tFPDF{
                             $this->Cell($w[1],6,$categoria,'LR',0,'L',$fill);
                             $this->Cell($w[2],6,$row['nva_nom_producto'],'LR',0,'L',$fill);
                             $this->Cell($w[3],6,$row['int_cantidad_compra'],'LR',0,'C',$fill);
-                            $this->Cell($w[4],6,"$".$row['dou_total_compra'],'LR',0,'C',$fill);
+                            $this->Cell($w[4],6,"$".number_format($row['dou_total_compra'], 2),'LR',0,'C',$fill);
                             $this->Ln();
                             $fill = !$fill;
                             $GLOBALS['total_inver'] = $GLOBALS['total_inver'] + $row['dou_total_compra'];
@@ -133,10 +133,10 @@ class PDF extends tFPDF{
                            
 
                             $this->Cell($w[0],6,datetimeformateado($row['dat_fecha_sistema']),'LR',0,'C',$fill);
-                            $this->Cell($w[1],6,$row['nva_nom_proveedor'],'LR',0,'L',$fill);
+                            $this->Cell($w[1],6,$row['nva_nom_categoria'],'LR',0,'L',$fill);
                             $this->Cell($w[2],6,$row['nva_nom_producto'],'LR',0,'L',$fill);
                             $this->Cell($w[3],6,$row['int_cantidad_compra'],'LR',0,'C',$fill);
-                            $this->Cell($w[4],6,"$".$row['dou_total_compra'],'LR',0,'C',$fill);
+                            $this->Cell($w[4],6,"$".number_format($row['dou_total_compra'], 2),'LR',0,'C',$fill);
                             $this->Ln();
                             $fill = !$fill;
                             $GLOBALS['total_inver'] = $GLOBALS['total_inver'] + $row['dou_total_compra'];
@@ -155,7 +155,7 @@ class PDF extends tFPDF{
                         $this->Cell($w[2],6,$row['nva_nom_categoria'],'LR',0,'L',$fill);
                         $this->Cell($w[3],6,$row['nva_nom_producto'],'LR',0,'L',$fill);
                         $this->Cell($w[4],6,$row['int_cantidad_compra'],'LR',0,'C',$fill);
-                        $this->Cell($w[5],6,"$".$row['dou_total_compra'],'LR',0,'C',$fill);
+                        $this->Cell($w[5],6,"$".number_format($row['dou_total_compra'], 2),'LR',0,'C',$fill);
                         $this->Ln();
                         $fill = !$fill;
                         $GLOBALS['total_inver'] = $GLOBALS['total_inver'] + $row['dou_total_compra'];
@@ -279,7 +279,7 @@ class PDF extends tFPDF{
     $pdf->FancyTable($header,$result);
     $pdf->Ln(5);
     $pdf->Cell(30,10,utf8_decode('Inversión total: '),0,0,'C');
-    $pdf->Cell($total,10,utf8_decode("$".$GLOBALS['total_inver']),0,0,'C'); 
+    $pdf->Cell($total,10,"$".number_format($GLOBALS['total_inver'], 2),0,0,'C'); 
     $pdf->Output(); 
 
 

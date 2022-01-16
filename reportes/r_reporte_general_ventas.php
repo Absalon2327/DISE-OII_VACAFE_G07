@@ -102,8 +102,8 @@ class PDF extends tFPDF{
                         $this->Cell($w[1],6,utf8_decode($row['nva_tipo_documento']),'LR',0,'R',$fill);
                         $this->Cell($w[2],6,numerofactura($row['int_num_doc']),'LR',0,'L',$fill);
                         $this->Cell($w[3],6,$row['nva_nom_cliente']." ".$ape_cliente,'LR',0,'L',$fill);
-                        $this->Cell($w[4],6,"$".$iva,'LR',0,'C',$fill);
-                        $this->Cell($w[5],6,"$".$row['dou_total_venta'],'LR',0,'C',$fill);                       
+                        $this->Cell($w[4],6,"$".number_format($iva, 2),'LR',0,'C',$fill);
+                        $this->Cell($w[5],6,"$".number_format($row['dou_total_venta'], 2),'LR',0,'C',$fill);                       
                          $this->Ln();
                         $fill = !$fill;
                        
@@ -168,7 +168,7 @@ class PDF extends tFPDF{
     $pdf->Ln(10);
     $pdf->FancyTable($header,$result);   
     $pdf->Ln(5);
-    $pdf->Cell($total,10,"Venta Total: $".$GLOBALS['total_venta'],0,0,'C'); 
+    $pdf->Cell($total,10,"Venta Total: $".number_format($GLOBALS['total_venta'], 2),0,0,'C'); 
     $pdf->Output(); 
 
 

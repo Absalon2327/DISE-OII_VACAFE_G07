@@ -163,40 +163,49 @@ $(function(){
 
                 console.log("los datos: ",datos);
                
-                mostrar_mensaje("Generando Reporte","Espere un Momento");
-              
-                
-                $.ajax({
-                    dataType: "json",
-                    method: "POST",
-                    url:'../Controladores/reporte_compras_controlador.php',
-                    data : datos,
-                }).done(function(json) {
-                        console.log("EL GUARDAR",json); 
-
-                        var timer = setInterval(function(){
+               // mostrar_mensaje("Generando Reporte","Espere un momento");
+                Swal.fire({
+                        title: 'Generando Reporte...',
+                        html: 'Espere un momento',
+                        allowOutsideClick: true,
+                        icon:'info',
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                        timer: 3500, 
+                      onBeforeOpen: () => {
+                        Swal.showLoading()
+                      }
+                });
+                var timer = setInterval(function(){
+                        $.ajax({
+                            dataType: "json",
+                            method: "POST",
+                            url:'../Controladores/reporte_compras_controlador.php',
+                            data : datos,
+                        }).done(function(json) {
+                                console.log("EL GUARDAR",json); 
+                                
                                 if (json[0]=="Exito") {
                                         console.log("sql",json[2]);
-
-                                        
-                                               var win = window.open("http://localhost/poryecto_DISEÑOII/DISEÑOII_VACAFE_G07/reportes/r_reporte_proveedor_compras.php?fei="+json[1]+"&fef="+json[2]+"&idp="+json[3], '_blank');
-                                                // Cambiar el foco al nuevo tab (punto opcional)
-                                                win.focus();
-                                                
-                                       
-                                      console.log("NO entra");
+                                        var win = window.open("http://localhost/poryecto_DISEÑOII/DISEÑOII_VACAFE_G07/reportes/r_reporte_proveedor_compras.php?fei="+json[1]+"&fef="+json[2]+"&idp="+json[3], '_blank');
+                                        // Cambiar el foco al nuevo tab (punto opcional)
+                                        win.focus();
+                                        Swal.close();
 
                                 }else{
-                                       
+                                              
                                         Toast1.fire({
                                                 icon: 'info',
                                                 title: 'No hay compras registradas con este proveedor!'
                                         });
                                         
+                                                
                                 }
-                        clearTimeout(timer);
-                        },3500);
-                });
+                                
+                        });
+                clearTimeout(timer);
+                },3500);
+
         });
 
         $(document).on("submit","#formulario_b_compras",function(e){
@@ -284,35 +293,64 @@ $(function(){
 
                 console.log("los datos: ",datos);
                
-                mostrar_mensaje("Generando Reporte","Espere un Momento");
-              
-                
-                $.ajax({
-                    dataType: "json",
-                    method: "POST",
-                    url:'../Controladores/reporte_compras_b_controlador.php',
-                    data : datos,
-                }).done(function(json) {
-                        console.log("EL GUARDAR",json); 
-
-                        var timer = setInterval(function(){
-                                if (json[0]=="Exito") {
-                                        console.log("sql",json[2]);
-                                        var win = window.open("http://localhost/poryecto_DISEÑOII/DISEÑOII_VACAFE_G07/reportes/r_reporte_bovinos_compras.php?fei="+json[3]+"&fef="+json[4]+"&idp="+json[1]+"&cat="+json[2], '_blank');
-                                        // Cambiar el foco al nuevo tab (punto opcional)
-                                        win.focus();
-
-                                }else{
-                                       
-                                        Toast1.fire({
-                                                icon: 'info',
-                                                title: 'No hay compras registradas con este proveedor!'
-                                        });
-                                        
-                                }
-                        clearTimeout(timer);
-                        },3500);
+                Swal.fire({
+                        title: 'Generando Reporte...',
+                        html: 'Espere un momento',
+                        allowOutsideClick: true,
+                        icon:'info',
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                        timer: 3500, 
+                      onBeforeOpen: () => {
+                        Swal.showLoading()
+                      }
                 });
+              
+                var timer = setInterval(function(){
+                        $.ajax({
+                            dataType: "json",
+                            method: "POST",
+                            url:'../Controladores/reporte_compras_b_controlador.php',
+                            data : datos,
+                        }).done(function(json) {
+                                console.log("EL GUARDAR",json); 
+
+                                
+                                        if (json[0]=="Exito") {
+                                                console.log("sql",json[2]);
+                                                var win = window.open("http://localhost/poryecto_DISEÑOII/DISEÑOII_VACAFE_G07/reportes/r_reporte_bovinos_compras.php?fei="+json[3]+"&fef="+json[4]+"&idp="+json[1]+"&cat="+json[2], '_blank');
+                                                // Cambiar el foco al nuevo tab (punto opcional)
+                                                win.focus();
+                                                 Swal.close();
+
+                                        }else if (json[0]=="Error" && json[3] == "") {
+
+                                               
+                                                Toast1.fire({
+                                                        icon: 'info',
+                                                        title: 'No hay ventas registradas con esta categoría'
+                                                });
+
+                                        }else if (json[0]=="Error" && json[1] == "") {
+
+                                               
+                                                Toast1.fire({
+                                                        icon: 'info',
+                                                        title: 'No hay ventas registradas con este Proveedor!'
+                                                });
+                                        }else{
+                                               
+                                               
+                                                Toast1.fire({
+                                                        icon: 'info',
+                                                        title: 'No hay compras registradas con este Proveedor o con esta categpría!'
+                                                });
+                                                
+                                        }
+                               
+                        });
+                clearTimeout(timer);
+                },3500);
         });
 
         $(document).on("submit","#formulario_ins_compras",function(e){
@@ -409,36 +447,65 @@ $(function(){
                 console.log("los datos: ",datos);
                 console.log("Inicio", fecha_inicio);
                 console.log("Fin", fecha_fin);
-                mostrar_mensaje("Generando Reporte","Espere un Momento");
 
-              
-                
-                $.ajax({
-                    dataType: "json",
-                    method: "POST",
-                    url:'../Controladores/reporte_compras_insumos_controlador.php',
-                    data : datos,
-                }).done(function(json) {
-                        console.log("EL GUARDAR",json); 
 
-                        var timer = setInterval(function(){
+                Swal.fire({
+                        title: 'Generando Reporte...',
+                        html: 'Espere un momento',
+                        allowOutsideClick: true,
+                        icon:'info',
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                        timer: 3500, 
+                      onBeforeOpen: () => {
+                        Swal.showLoading()
+                      }
+                });
+                var timer = setInterval(function(){
+                        $.ajax({
+                            dataType: "json",
+                            method: "POST",
+                            url:'../Controladores/reporte_compras_insumos_controlador.php',
+                            data : datos,
+                        }).done(function(json) {
+                                console.log("EL GUARDAR",json); 
+                                
+                                
                                 if (json[0]=="Exito") {
                                         console.log("sql",json[2]);
                                         var win = window.open("http://localhost/poryecto_DISEÑOII/DISEÑOII_VACAFE_G07/reportes/r_reporte_insumos_compras.php?fei="+json[3]+"&fef="+json[4]+"&idp="+json[1]+"&cat="+json[2], '_blank');
                                         // Cambiar el foco al nuevo tab (punto opcional)
                                         win.focus();
+                                       Swal.close();
 
-                                }else{
-                                       
+                                }else if (json[0]=="Error" && json[3] == "") {
                                         Toast1.fire({
                                                 icon: 'info',
-                                                title: 'No hay compras registradas con este proveedor!'
+                                                title: 'No hay ventas registradas con esta categoría'
                                         });
-                                        
+                                       
+
+                                }else if (json[0]=="Error" && json[1] == "") {
+                                        Toast1.fire({
+                                                icon: 'info',
+                                                title: 'No hay ventas registradas con este Proveedor!'
+                                        });
+                                       
+                                }else{
+                                               
+                                        Toast1.fire({
+                                                icon: 'info',
+                                                title: 'No hay compras registradas con este Proveedor o con esta categpría!'
+                                        });
+                                       
+                                                
                                 }
-                        clearTimeout(timer);
-                        },3500);
-                });
+
+                                
+                        });
+                clearTimeout(timer);
+                },3500);
+                
         });
 
 
@@ -529,8 +596,9 @@ function mostrar_mensaje(titulo,mensaje=""){
                
                 
           }
-        }).then((result) => {
-          
+        }).then(() => {
            
         });
+
+
 }

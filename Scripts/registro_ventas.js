@@ -2,13 +2,13 @@ $(function (){
 
 	cargar_taba_ventas();
 
-	
+	var id_actual = 0;
 	$(document).on("click",".btn_ver",function(e){ 
         e.preventDefault();
         var elemento = $(this);
         var data_idventa = elemento.attr('data-idventa');
         console.log("Si se ejecuta",data_idventa);
-
+        id_actual = data_idventa;
         var datos = {"ver_venta":"si_esta","idventa":data_idventa};
         console.log("los datos enviados: ",datos);
         //return;
@@ -93,6 +93,103 @@ $(function (){
 		         	$('#md_ver_venta_ticket').modal('show');
 	        	
 	        	}
+
+	        	
+	        }   
+         
+        }); 
+    });
+
+    $(document).on("click",".bnt_imprimir_fact_cre",function(e){ 
+        e.preventDefault();
+        var elemento = $(this);
+        var data_idventa = id_actual;
+        console.log("Si se ejecuta",data_idventa);
+
+        var datos = {"ver_venta":"si_esta","idventa":data_idventa};
+        console.log("los datos enviados: ",datos);
+        //return;
+        $.ajax({
+            dataType: "json",
+            method: "POST",
+            url:'../Controladores/registro_ventas_controlador.php',
+            data : datos,
+        }).done(function(json) {
+        
+	        if (json[0]=="Exito") {
+
+	        	
+	        	console.log("tipo doc: ",json[4]['dou_iva_venta']);
+	        	//if (json[4]['nva_tipo_documento'] == "Factura" || json[4]['nva_tipo_documento'] == "Crédito Fiscal") {
+
+
+					var hora = formateartime(json[4]['dat_fecha_venta']);
+		        	var fecha = formatearDate(json[4]['dat_fecha_venta']);
+		        	var hora_sistema = formateartime(json[4]['dat_fecha_sistema_venta']);
+		        	var fecha_sistema = formatearDate(json[4]['dat_fecha_sistema_venta']);
+
+		        
+
+		        	var num_fact = numerofactura(json[4]['int_num_doc']);
+
+					var apellido_cliente_v = "";
+	        		if (json[4]['nva_ape_cliente'] == null) {
+		        		apellido_cliente_v = "";
+		        	}else{
+						apellido_cliente_v = json[4]['nva_ape_cliente'];
+		        	}
+
+	        		$('#tipo_doc_ver_fact').empty().html(json[4]['nva_tipo_documento']);
+		    		$('#num_doc_ver_fact').empty().html('#'+num_fact);
+		    		$('#fecha_fact').empty().html(fecha);
+		    		$('#hora_fact').empty().html(hora);
+
+		    		$('#nom_cliente_fact').empty().html(json[4]['nva_nom_cliente']+' '+apellido_cliente_v);
+		    		$('#dui_cliente_fact').empty().html(json[4]['nva_dui_cliente']);
+		    		$('#direc_cliente_fact').empty().html(json[4]['txt_direc_cliente']);
+		    		$('#tel_cliente_fact').empty().html(json[4]['nva_telefono_cliente']);
+		    		
+					$('#vendedor_fact').empty().html(json[4]['nva_nom_empleado']+' '+json[4]['nva_ape_empleado']);
+		    		$('#fecha_fact_sis').empty().html(fecha_sistema);
+		    		$('#hora_fact_sis').empty().html(hora_sistema);
+
+		    		$('#iva_aplicado').empty().html('$'+json[4]['dou_iva_venta']);
+		    		$('#sub_total_fact').empty().html('$'+json[6]);
+					$('#total_fact').empty().html('$'+json[4]['dou_total_venta']);
+
+ 					var win = window.open("http://localhost/poryecto_DISEÑOII/DISEÑOII_VACAFE_G07/Vistas/r_imprime_factura_venta.php?idv="+id_actual,'_blank');
+                                                // Cambiar el foco al nuevo tab (punto opcional)
+                    win.focus();
+
+	        	/*}else{
+					var hora_sistema = formateartime(json[4]['dat_fecha_venta']);
+		        	var fecha_sistema = formatearDate(json[4]['dat_fecha_sistema_venta']);
+		        	var num_fact_ticket = numerofactura(json[4]['int_num_doc']);
+					var apellido_cliente_v = "";
+		        	if (json[4]['nva_ape_cliente'] == null) {
+		        		apellido_cliente_v = "";
+		        	}else{
+						apellido_cliente_v = json[4]['nva_ape_cliente'];
+		        	}
+
+		    		$('#tipo_doc_t_v').empty().html(json[4]['nva_tipo_documento']);
+		    		$('#ticket_v').empty().html(json[4]['int_num_doc']);
+
+		    		$('#fecha_v').empty().html('Fecha: '+fecha_sistema);
+		    		$('#hora_v').empty().html('Hora: '+hora_sistema);
+
+		    		$('#cliente_v').empty().html('Cliente: '+json[4]['nva_nom_cliente']+' '+apellido_cliente_v);
+		    		$('#ticket_v').empty().html('Ticket: #'+num_fact_ticket);
+		    		
+		    		
+					$('#total_v').empty().html('Total: $'+json[4]['dou_total_venta']);
+					$('#vendedor_v').empty().html('Vendedor: '+json[4]['nva_nom_empleado']+' '+json[4]['nva_ape_empleado']);
+
+
+		         	$("#tb_Detalle_Derivados_Ver_t").empty().html(json[2]);
+		         	$('#md_ver_venta_ticket').modal('show');
+	        	
+	        	}*/
 
 	        	
 	        }   

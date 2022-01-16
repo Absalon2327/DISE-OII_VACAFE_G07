@@ -53,7 +53,7 @@
 	        	exit();
 
 	   		}else{
-	   			print json_encode(array("Error",$fecha_inicio,$fecha_fin,$idproveedor));
+	   			print json_encode(array("Error",$cat_bov,$fecha_inicio,$fecha_fin));
 	        	exit();
 	   		}
 	    	

@@ -1,11 +1,3 @@
-$(function (){	
-	console.log("esta funcionando el json");
-	cargar_factura();
-	cargar_totales();
-	
-
-     
-});
 
 
 function cargar_factura(){
