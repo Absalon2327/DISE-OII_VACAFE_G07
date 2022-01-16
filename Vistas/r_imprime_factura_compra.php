@@ -1,4 +1,5 @@
 <?php 
+    date_default_timezone_set('America/El_Salvador');
     @session_start(); 
     if (isset($_SESSION['logueado']) && $_SESSION['logueado']=="si") {
 
@@ -15,98 +16,30 @@
           header("Location: ../Vistas/index.php");
     }
 
-    
-?>      
-
+    $id = $_GET['idc']; 
+?>
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Compras | Registros</title>
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../dist/css/adminlte.min.css">
-</head>
-<body class="hold-transition sidebar-mini">
-<div class="wrapper">
-  <!-- Navbar -->
-            <?php
-                require_once ('../Menus/menusidebar.php');
-            ?>
-            <?php
-                require_once ('../Menus/loader.php');               
-            ?>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">          
-          
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-
-            <div class="card">
-              <div class="card-header bg-success">
-                <h3 class="card-title">Registro de Compras</h3>
-                <div class="card-tools">
-                  
-                </div>
-
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <!-- TABLA EMPLEADOS -->
-                <div class="card-body p-0" id="tabla_registro_compras"> 
-                </div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.container-fluid -->
-    </section>
-
-
-    <!-- MODAL DE LA VENTA REALIZADA -->
-      <div class="modal fade" id="md_ver_compra">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <form method="POST" name="formulario_registro" id="formulario_registro">
-                            <div class="modal-header bg-success">
-                                <h4 class="modal-title">Compra</h4>
-                                <button
-                                    type="button"
-                                    class="close"
-                                    data-dismiss="modal"
-                                    aria-label="Close"
-                                    >
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                               <div class="invoice p-3 mb-3">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Venta | Factura</title>
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    </head>
+    <body>
+        <input type="hidden" id="idcompra" name="idcompra" <?php print 'value ="'.$id.'"'?>>
+        <div class="wrapper">
+           
+            <!-- Main content -->
+            <section class="invoice">
+                <!-- title row -->
+                <!-- info row -->
+                <div class="invoice p-3 mb-3">
                                    <div class="row invoice-info">
                                         <div class="col-sm-4 invoice-col">
                                             <img src="../dist/img/logo-n.png" alt="user-avatar" class="img-circle img-fluid">
@@ -209,86 +142,38 @@
                                                 </table>                             
                                             </div>
                                         </div>                                    
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <button class="btn bg-success bnt_imprimir_fact_compra" type="button">
-                                                <i class="fas fa-print"></i>
-                                                Imprimir
-                                            </button>
-                                        </div>
-                                        
-                                        <div class="col-6">
-                                            <button class="btn bg-success float-sm-right" type="button" data-dismiss="modal">
-                                                <i class="fas fa-check"></i>
-                                                Listo
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>    
-                        </form>
-                    </div>
+                                    </div>                                    
                 </div>
-            </div>
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- ./wrapper -->
+        <!-- Page specific script -->
+       
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="../plugins/jszip/jszip.min.js"></script>
+    <script src="../plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="../plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dist/js/demo.js"></script>
+    <script src="../Scripts/imprime_factura_compra.js"></script>  
+    <script>
+        
+    </script>
+    </body> 
 
-
-
-  </div>
-  <!-- /.content-wrapper --> 
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">                    
-    </div>
-    <strong>UES &copy; 2021</strong>
-      Todos los Derechos Reservados
-  </footer>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-
-<!-- jQuery -->
-<script src="../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables  & Plugins -->
-<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="../plugins/jszip/jszip.min.js"></script>
-<script src="../plugins/pdfmake/pdfmake.min.js"></script>
-<script src="../plugins/pdfmake/vfs_fonts.js"></script>
-<script src="../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="../plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
-<!-- Page specific script -->
-<script src="../Scripts/registro_compras.js"></script> 
-<script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script>
-</body>
 </html>

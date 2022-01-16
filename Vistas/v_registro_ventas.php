@@ -209,7 +209,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
-                                        <a href="r_imprime_factura_venta.php" class="btn bg-success bnt_imprimir_fact_cre" type="button" >
+                                        <a class="btn bg-success bnt_imprimir_fact_cre" type="button" >
                                             <i class="fas fa-print"></i>
                                             Imprimir
                                         </a>
@@ -308,7 +308,7 @@
                                             <p class="text-muted col-12" id="vendedor_v">...</p>
                                              
                                         </div>
-                                        <button class="btn bg-success" type="button" data-dismiss="modal">
+                                        <button class="btn bg-success bnt_imprimir_ticket_vt" type="button">
                                                 <i class="fas fa-print"></i>
                                                 Imprimir
                                         </button>

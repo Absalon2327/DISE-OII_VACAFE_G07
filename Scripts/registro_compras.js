@@ -1,3 +1,4 @@
+var id_actual = 0;
 $(function (){	
 
 	cargar_taba_compras();
@@ -7,6 +8,7 @@ $(function (){
         e.preventDefault();
         var elemento = $(this);
         var data_idcom = elemento.attr('data-idcompra');
+        id_actual = data_idcom;    
         console.log("Si se ejecuta",data_idcom);
 
         var datos = {"ver_compra":"si_esta","idcompra":data_idcom};
@@ -42,6 +44,20 @@ $(function (){
 	        }   
          
         }); 
+    });
+
+    $(document).on("click",".bnt_imprimir_fact_compra",function(e){ 
+        e.preventDefault();
+        var elemento = $(this);
+        var data_idcom = id_actual;
+        console.log("Si se ejecuta",data_idcom);
+
+        var datos = {"ver_venta":"si_esta","idventa":data_idcom};
+        console.log("los datos enviados: ",datos);
+        //return;
+        var win = window.open("http://localhost/poryecto_DISEÑOII/DISEÑOII_VACAFE_G07/Vistas/r_imprime_factura_compra.php?idc="+id_actual,'_blank');
+        // Cambiar el foco al nuevo tab (punto opcional)
+        win.focus();
     });
      
 });
