@@ -48,7 +48,7 @@
         <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
         <link rel="stylesheet" href="../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
-        <link rel="stylesheet" href="../dist/css/   .min.css">
+        
         <link rel="stylesheet" href="../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
         <!-- Toastr -->
         <link rel="stylesheet" href="../plugins/toastr/toastr.min.css">
@@ -118,6 +118,8 @@
                                 </div>
                                 <div class="modal-body">                               
                                         <input type="hidden" id="almacenar_datos" name="almacenar_datos" value="datonuevo">
+                                        
+
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label for="dui_cliente">*Dui</label>
@@ -192,9 +194,9 @@
 
                 <!-- MODAL EDITAR -->
                 <div class="modal fade" id="modalClienteEdit">
-                    <div class="modal-dialog modal-xl">
+                    <div class="modal-dialog modal-lg">
                         <div class="modal-content">
-                            <form method="POST" name="editClientes" id="editClientes">
+                            <form method="POST" name="formulario_editar" id="formulario_editar">
                                     <div class="modal-header bg-success">
                                         <h4 class="modal-title">Clientes | Editar</h4>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -203,8 +205,8 @@
                                     </div>
 
                                     <div class="modal-body">
-                                            <input type="hidden" name="editar_datos" value="datoeditar">
-                                            <input type="hidden" name="id_cliente_edit" id="id_cliente_edit">
+                                            <input type="hidden" id="editar_datos" name="editar_datos" value="si_editar">
+                                            <input type="hidden" id="llave_cliente" name="llave_cliente" value="datonuevo">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <label >Dui</label>
@@ -225,7 +227,7 @@
                                                             </span>
                                                         </div>
                                                         <input type="text" class="form-control" placeholder="Juan..."
-                                                        id="nombre_Cliente_edit" name="nombre_Cliente_edit" required="required">
+                                                        id="nombre_cliente_edit" name="nombre_cliente_edit" required="required">
                                                     </div>
                                                     <label for="direc_cliente_edit">Dirección</label>
                                                     <div class="input-group mb-3">
@@ -253,7 +255,7 @@
                                                                 </span>
                                                             </div>
                                                             <input type="text" class="form-control" placeholder="1234-5678"
-                                                                id="telefono_Cliente_edit" name="telefono_Cliente_edit" required="required" data-inputmask='"mask": "9999-9999"' data-mask>
+                                                                id="telefono_cliente_edit" name="telefono_cliente_edit" required="required" data-inputmask='"mask": "9999-9999"' data-mask>
                                                         </div>
                                                         <label >Apellidos</label>
                                                         <div class="input-group mb-3">
@@ -263,33 +265,23 @@
                                                                 </span>
                                                             </div>
                                                             <input type="text" class="form-control" placeholder="Mejía..."
-                                                                id="apellido_Cliente_edit" name="apellido_Cliente_edit" required="required">
+                                                                id="apellido_cliente_edit" name="apellido_cliente_edit" required="required">
                                                         </div>
-                                                        <label for="estado_Cliente">Estado</label>  
-                                                        <div class="form-group clearfix">
-                                                            <div class="icheck-primary d-inline">
-                                                                <input type="radio" value="activo" id="radio_activo_edit" name="estado_cliente_editar" checked>
-                                                                <label for="radio_activo_edit">
-                                                                    Activo
-                                                                </label>
-                                                            </div>
-                                                            <div class="icheck-primary d-inline">
-                                                                <input type="radio" value="inactivo" id="radio_inactivo_edit" name="estado_cliente_editar" >
-                                                                <label for="radio_inactivo_edit">
-                                                                    Inactivo
-                                                                </label>
-                                                            </div>                                              
-                                                        </div> 
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="modal-footer float-right">
-                                                <button type="submit" class="btn bg-success" >
-                                                    <i class="fa fa-check"></i>Listo
+                                           
+                                                <button id="limpiar" name="limpiar" type="reset" class="btn bg-danger">
+                                                    <i class="fas fa-trash"></i> 
+                                                    Limpiar
                                                 </button>
-                                            </div>
+                                                <span><small>*Este Campos es obligatorio</small></span>
+                                                <button type="submit" class="btn bg-info float-sm-right">
+                                                    <i class="fa fa-save"></i>
+                                                    Modificar
+                                                </button>
+                                            
                                     </div>
-                                
                                 </div>
                             </form>
                         </div>
@@ -299,11 +291,11 @@
 
                 <!-- MODAL ADVERTENCIA -->          
                 <div class="modal fade" id="modalBajaCliente"> 
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-sm">
                         <div class="modal-content "> 
                             <form method="POST" name="confirmaBaja" id="confirmaBaja">
-                                <input type="hidden" name="baja_datos" value="datobaja">
-                                <div class="modal-header bg-success " >
+                                <input type="hidden" id="dar_baja" name="dar_baja" value="si_dar">
+                                <div class="modal-header bg-danger " >
                                     <h4 class="modal-title ">ADVERTENCIA!</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
@@ -311,22 +303,24 @@
                                 </div>
                                 <div class="modal-body">
                                     <p class="text-center">Este Cliente no se puede eliminar por que está relacionado con información valiosa&hellip;</p>
+                                    <p class="text-center">Solo se dará de baja del Sistema</p>
                                      <p class="text-center">¿Está seguro de realizar esta acción?</p> 
                                      <input type="hidden" name="id_baja" id="id_baja">    
                                     
                                 </div> 
                                 <div class="form-group  text-center">
-                                    <button type="submit" class="btn bg-success">
-                                    Si
+                                    <button type="submit" class="btn bg-danger">
+                                        Si
                                     </button>
-                                    <a class="btn bg-success" data-toggle="modal" data-target="" data-dismiss="modal">
-                                           No
+                                    <a class="btn bg-info" data-toggle="modal" data-target="" data-dismiss="modal">
+                                        No
                                     </a>                                    
                                 </div>    
                             </form>
                         </div>
                     </div>
-                </div> 
+                </div>
+                 
                 <footer class="main-footer">
                     <div class="float-right d-none d-sm-block"></div>
                     <strong>UES &copy; 2021</strong>Todos los Derechos Reservados

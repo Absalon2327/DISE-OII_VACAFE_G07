@@ -11,7 +11,7 @@
  Target Server Version : 100421
  File Encoding         : 65001
 
- Date: 16/01/2022 16:19:52
+ Date: 16/01/2022 23:15:10
 */
 
 SET NAMES utf8mb4;
@@ -108,10 +108,12 @@ CREATE TABLE `tb_clientes`  (
 -- Records of tb_clientes
 -- ----------------------------
 INSERT INTO `tb_clientes` VALUES (1, NULL, 'Consumidor Final', NULL, NULL, NULL, 'Activo');
-INSERT INTO `tb_clientes` VALUES (2, '05592129-3', 'Fabri', 'Corvera', 'Santo Domingo', '6300-3455', 'Activo');
-INSERT INTO `tb_clientes` VALUES (3, '05966849-9', 'Moisés', 'Corvera', 'Santo Domingo', '7365-7821', 'Activo');
-INSERT INTO `tb_clientes` VALUES (4, '32423423-4', 'Cluadia Yoselin', 'Rivas Arévalo', 'San Ildefonso', '7894-5613', 'Activo');
-INSERT INTO `tb_clientes` VALUES (5, '78945654-6', 'José Hernán', 'Barahona Ayala', 'San Vicente', '6598-7845', 'Activo');
+INSERT INTO `tb_clientes` VALUES (2, '05592129-3', 'Fabricio', 'Corvera', 'Santo Domingo', '6300-3455', 'Activo');
+INSERT INTO `tb_clientes` VALUES (3, '32423423-4', 'Cluadia Yoselin', 'Rivas Arévalo', 'San Ildefonso', '7894-5613', 'Activo');
+INSERT INTO `tb_clientes` VALUES (4, '78945654-6', 'José Hernán', 'Barahona Ayala', 'San Vicente', '6598-7845', 'Activo');
+INSERT INTO `tb_clientes` VALUES (5, '12345678-9', 'Rolando Moisés', 'Corvera Mejía', 'Santo Domingo, San Vicente', '7564-8796', 'Activo');
+INSERT INTO `tb_clientes` VALUES (6, '36987456-9', 'Rosa Excela', 'Mejía de Corvera', 'Santo Domingo', '7762-3675', 'Activo');
+INSERT INTO `tb_clientes` VALUES (7, '65956234-4', 'Fabri', 'Mejía', 'Santo Domingo', '7030-4095', 'inactivo');
 
 -- ----------------------------
 -- Table structure for tb_compra
@@ -153,6 +155,7 @@ CREATE TABLE `tb_control_vacunas`  (
   `dat_fecha_aplicacion` date NULL DEFAULT NULL,
   `nva_vacuna_aplicada` int NULL DEFAULT NULL,
   `id_exped_aplicado` int NULL DEFAULT NULL,
+  `nva_dosis` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`int_id_control_vac`) USING BTREE,
   INDEX `tb_productos`(`nva_vacuna_aplicada`) USING BTREE,
   INDEX `tb_bovino`(`id_exped_aplicado`) USING BTREE,
@@ -163,8 +166,10 @@ CREATE TABLE `tb_control_vacunas`  (
 -- ----------------------------
 -- Records of tb_control_vacunas
 -- ----------------------------
-INSERT INTO `tb_control_vacunas` VALUES (1, '2021-12-11', 1, 1);
-INSERT INTO `tb_control_vacunas` VALUES (2, '0000-00-00', 1, 1);
+INSERT INTO `tb_control_vacunas` VALUES (1, '2021-12-11', 1, 1, NULL);
+INSERT INTO `tb_control_vacunas` VALUES (2, '0000-00-00', 1, 1, NULL);
+INSERT INTO `tb_control_vacunas` VALUES (3, '2022-01-10', 3, 3, '2ml');
+INSERT INTO `tb_control_vacunas` VALUES (4, '2022-01-09', 3, 2, '2ml');
 
 -- ----------------------------
 -- Table structure for tb_detalle_compra
@@ -325,8 +330,10 @@ CREATE TABLE `tb_expediente`  (
 -- ----------------------------
 INSERT INTO `tb_expediente` VALUES (1, 'Antonia', 'vendido', '../archivo_carta_venta/img_1.png', 'femenino', NULL, 'aasdasdasd', 1, 1, '../archivo_expdiente/img_1.jpeg', 'novia', NULL, NULL, NULL);
 INSERT INTO `tb_expediente` VALUES (2, 'loca', 'activo', '../archivo_carta_venta/img_2.jpg', 'femenino', NULL, 'Prueba', 1, 1, '../archivo_expdiente/img_2.jpg', 'vaca_lechera', NULL, NULL, NULL);
-INSERT INTO `tb_expediente` VALUES (3, 'La Chorriada', 'activo', '../archivo_carta_venta/img_3.jpg', 'femenino', 1, 'Prueba jhonatahan', 1, 1, '../archivo_expdiente/img_3.jpg', 'vaca_lechera', '0000-00-00', 6.20, NULL);
+INSERT INTO `tb_expediente` VALUES (3, 'La Patoja café', 'preñada', '../archivo_carta_venta/img_3.jpg', 'femenino', 1, 'Prueba modificar', 1, 1, '../archivo_expdiente/img_3.jpg', 'vaca_lechera', '0000-00-00', 6.20, 750.00);
 INSERT INTO `tb_expediente` VALUES (4, 'La Patoja', 'activo', '../archivo_carta_venta/img_4.jpeg', 'femenino', 0, 'sdfgsdfsdf', 1, 1, '../archivo_expdiente/img_4.jpeg', 'vaca_lechera', '0000-00-00', 7.97, NULL);
+INSERT INTO `tb_expediente` VALUES (5, 'Bicicleta', 'activo', '../archivo_carta_venta/img_5.png', 'femenino', NULL, 'De cabos hacia abajo', 1, 1, '../archivo_expdiente/img_5.jpg', 'novia', NULL, 378.00, 575.00);
+INSERT INTO `tb_expediente` VALUES (6, 'Chocolatada', 'activo', '../archivo_carta_venta/img_6.png', 'femenino', 1, 'Parches color café', 1, 1, '../archivo_expdiente/img_6.jpg', 'vaca_lechera', '2022-01-08', 900.00, 950.00);
 
 -- ----------------------------
 -- Table structure for tb_natalidad
@@ -367,6 +374,7 @@ CREATE TABLE `tb_preñez`  (
 -- Records of tb_preñez
 -- ----------------------------
 INSERT INTO `tb_preñez` VALUES (1, 1, '2021-12-14', '2021-12-22', '2021-12-15');
+INSERT INTO `tb_preñez` VALUES (2, 3, '2022-01-15', '2022-10-15', '2022-01-08');
 
 -- ----------------------------
 -- Table structure for tb_producto

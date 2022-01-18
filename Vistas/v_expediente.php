@@ -96,6 +96,7 @@
                             <div class="modal-body">
                                 <input type="hidden" id="ingreso_datos" name="ingreso_datos" value="si_registro">
                                 <input type="hidden" id="llave_expediente" name="llave_expediente" value="si_registro">
+                                <input type="hidden" id="control_fecha" name="control_fecha" value="si_hay_fecha">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
@@ -120,7 +121,7 @@
                                                 <select class="form-control" name="tipo_bovino" id="tipo_bovino" required onclick="validar_campito()">
                                                     <option value="Seleccione">Seleccione</option>
                                                     <option value="novia">Novía</option>
-                                                    <option value="ternero">Ternero</option>
+                                                    <option value="ternero">ternero</option>
                                                     <option value="vaca_lechera">Vaca Lechera</option>
                                                 </select>
                                             </div>
@@ -130,7 +131,7 @@
                                     <?php
                                     $usuario = 'root';
                                     $password = '';
-                                    $db = new PDO('mysql:host=localhost;dbname=db_finca', $usuario, $password);
+                                    $db = new PDO('mysql:host=localhost;dbname=db_finca_c', $usuario, $password);
                                     ?>
                                     <div class="col-md-4">
                                         <div class="form-group">
@@ -164,7 +165,7 @@
                                                         <i class="fas fa-book"></i>
                                                     </span>
                                                 </div>
-                                                <input type="number" class="form-control" placeholder="1" required name="cant_parto_bovino" id="cant_parto_bovino" disabled>
+                                                <input type="number" class="form-control" placeholder="1" required name="cant_parto_bovino" id="cant_parto_bovino" disabled pattern="^[0-9]+">
                                             </div>
                                         </div>
                                     </div>
@@ -186,7 +187,7 @@
                                         <div class="form-group">
 
                                             <div class="icheck-primary d-inline">
-                                                <input type="radio" value="masculino" id="radioPrimary1" name="sexo_bovino" checked>
+                                                <input type="radio" value="masculino" id="radioPrimary1" name="sexo_bovino">
                                                 <label for="radioPrimary1"> Masculino</label>
                                             </div>
                                             <div class="icheck-primary d-inline">
@@ -196,7 +197,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                   <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Descripción</label>
                                             <div class="input-group mb-3">
@@ -209,7 +210,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Propietario</label>
                                             <div class="input-group mb-3">
@@ -230,6 +231,33 @@
                                             </div>
                                         </div>
                                     </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label>Costo</label>
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="fas fa-book"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="number" min="0" step="0000.01" class="form-control" placeholder="1" required name="costo" id="costo">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label>Precio de Venta</label>
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="fas fa-book"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="number" class="form-control" placeholder="1" required name="precioVenta" id="precioVenta"  min="0" max="10000" step="0000.01">
+                                                </div>
+                                            </div>
+                                        </div>
+
                                   
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -237,22 +265,23 @@
                                             <div class="image view view-first text-center" >
                                                 <img class="thumb-image" id="img_bovino" width="100" height="100"  style=" margin-left:auto; margin-right:auto; display: block;" src="">
                                             </div>
-                                            <input id="imagen_bovino" name="imagen_bovino" data-buttonText="Seleccionar" type="file" class="filestyle" data-buttonname="btn-secondary">
+                                            <input id="imagen_bovino" name="imagen_bovino" data-buttonText="Seleccionar" type="file" class="filestyle" data-buttonname="btn-info">
                                             <label style="display:none;font-size: 12px; list-style: none; color: #ea553d; margin-top: 5px;" id="error_en_la_imagen">La imagen no es valida</label>
 
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                               <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Carta De Venta</label>
                                             <div class="image view view-first">
                                                 <img class="thumb-image" id="img_carta_venta" width="100" height="100" style=" margin-left:auto; margin-right:auto; display: block;" src="">
                                             </div>
-                                            <input id="imagen_expediente" name="imagen_expediente" data-buttonText="Seleccionar" type="file" class="filestyle" data-buttonname="btn-secondary">
+                                            <input id="imagen_expediente" name="imagen_expediente" data-buttonText="Seleccionar" type="file" class="filestyle" data-buttonname="btn-info">
                                             <label style="display:none;font-size: 10px; list-style: none; color: #ea553d; margin-top: 5px;" id="error_en_la_imagen">La imagen no es valida</label>
 
                                         </div>
                                     </div>
+
 
 
                                 </div>

@@ -40,6 +40,43 @@ $(function (){
           $(element).removeClass('is-invalid');
         }
     });
+    $('#formulario_editar').validate({
+        rules: {
+          email: {
+            required: true,
+            email: true,
+          },
+          password: {
+            required: true,
+            minlength: 5
+          },
+          terms: {
+            required: true
+          },
+        },
+        messages: {
+          email: {
+            required: "Por favor ingresa un email",
+            email: "Por favor ingresa un email valido"
+          },
+          password: {
+            required: "Please provide a password",
+            minlength: "Your password must be at least 5 characters long"
+          },
+          terms: "Please accept our terms"
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+          error.addClass('invalid-feedback');
+          element.closest('.input-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+          $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+          $(element).removeClass('is-invalid');
+        }
+    });
     
     
     
@@ -54,66 +91,6 @@ $(function (){
 
 
     });
-
-    $(document).on("click",".btn_eliminar",function(e){
-        e.preventDefault();
-        var id = $(this).attr("data-id");
-        var datos = {"eliminar_persona":"si_eliminala","id":id}
-        $.ajax({
-            dataType: "json",
-            method: "POST",
-            url:'json_usuarios.php',
-            data : datos,
-        }).done(function(json) {
-            cargar_datos();
-
-        });
-    });
-    $(document).on("click",".btn_editar",function(e){
-
-        e.preventDefault(); 
-        mostrar_mensaje("Consultando datos");
-        var id = $(this).attr("data-id");
-        console.log("El id es: ",id);
-        var datos = {"consultar_info":"si_condui_especifico","id":id}
-        $.ajax({
-            dataType: "json",
-            method: "POST",
-            url:'json_usuarios.php',
-            data : datos,
-        }).done(function(json) {
-            console.log("EL consultar especifico",json);
-            if (json[0]=="Exito") {
-                var fecHA_string = json[2]['fecha_nacimiento'];
-                var porciones = fecHA_string.split('-');
-                var fecha = porciones[2]+"/"+porciones[1]+"/"+porciones[0]
-
-                $('#llave_persona').val(id);
-                $('#ingreso_datos').val("si_actualizalo");
-                $('#nombre').val(json[2]['nombre']);
-                $('#email').val(json[2]['email']);
-                $('#dui').val(json[2]['dui']);
-                $('#telefono').val(json[2]['telefono']);
-                $('#fecha').val(fecha);
-                $('#tipo_persona').val(json[2]['tipo_persona']);
-
-                $("#usuario").removeAttr("required");
-                $("#contrasenia").removeAttr("required");
-                
-                
-                $('#md_registrar_usuario').modal('show');
-            }
-             
-        }).fail(function(){
-
-        }).always(function(){
-            Swal.close();
-        });
-
-
-    });
-
-
 
     $(document).on("click","#registrar_usuario",function(e){
         e.preventDefault();
@@ -132,6 +109,56 @@ $(function (){
         });
     
     });*/
+
+    $(document).on("click",".btn_baja_cliente",function(e){
+        e.preventDefault();
+        var id = $(this).attr("data-idcltbaja");
+        $('#id_baja').val(id);
+         $('#modalBajaCliente').modal('show');
+    });
+
+    $(document).on("click",".btn_edit_cliente",function(e){
+
+        e.preventDefault(); 
+        var id = $(this).attr("data-idcliente");
+        console.log("El id es: ",id);
+        var datos = {"consultar_info":"si_id_especifico","id":id}
+        $.ajax({
+            dataType: "json",
+            method: "POST",
+            url:'../Controladores/clientes_controlador.php',
+            data : datos,
+        }).done(function(json) {
+            console.log("EL consultar especifico",json);
+            if (json[0]=="Exito") {
+                
+
+
+                $('#llave_cliente').val(id);
+                $('#nombre_cliente_edit').val(json[2]['nva_nom_cliente']);
+                $('#direc_cliente_edit').val(json[2]['txt_direc_cliente']);
+                $('#dui_cliente_edit').val(json[2]['nva_dui_cliente']);
+                $('#telefono_cliente_edit').val(json[2]['nva_telefono_cliente']);
+                $('#apellido_cliente_edit').val(json[2]['nva_ape_cliente']);
+                
+                $('#modalClienteEdit').modal('show');
+            }else{
+                setTimeout(function (s) {
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'No se obtuvieron los datos del cliente !'
+                    });
+                }, 500);
+            }
+             
+        }).fail(function(){
+
+        }).always(function(){
+            Swal.close();
+        });
+            
+    });
+    
 
 
     $(document).on("submit","#formulario_cliente",function(e){
@@ -161,6 +188,28 @@ $(function (){
                     });
                 }, 500);   
                 cargar_datos();
+            }else if (json[1] == "datos iguales") {
+                setTimeout(function (s) {
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Estos Datos pertenecen a un cliente registrado !'
+                    });
+                }, 500); 
+
+            }else if (json[1] == "dui") {
+                setTimeout(function (s) {
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Este DUI ya sido registrado!'
+                    });
+                }, 500); 
+            }else if (json[1] == "tel") {
+                setTimeout(function (s) {
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Este teléfono pertenece a un cliente registrado!'
+                    });
+                }, 500); 
             }else{
                 setTimeout(function (s) {
                     Toast.fire({
@@ -181,10 +230,128 @@ $(function (){
 
 
     });
+
+    $(document).on("submit","#formulario_editar",function(e){
+        e.preventDefault();
+        var datos = $("#formulario_editar").serialize();
+        console.log("Imprimiendo datos: ",datos);
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3500
+        });
+        $.ajax({
+            dataType: "json",
+            method: "POST",
+            url:'../Controladores/clientes_controlador.php',
+            data : datos,
+        }).done(function(json) {
+            console.log("EL GUARDAR",json);
+            if (json[0] == "Exito") {
+                $('#formulario_editar').trigger('reset');
+                $('#modalClienteEdit').modal('hide');
+                setTimeout(function (s) {
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Cliente modificado con exito !'
+                    });
+                }, 500);   
+                cargar_datos();
+            }else if (json[1] == "datos iguales") {
+                setTimeout(function (s) {
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Estos Datos pertenecen a un cliente registrado !'
+                    });
+                }, 500); 
+
+            }else if (json[1] == "dui") {
+                setTimeout(function (s) {
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Este DUI ya sido registrado!'
+                    });
+                }, 500); 
+            }else if (json[1] == "tel") {
+                setTimeout(function (s) {
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Este teléfono pertenece a un cliente registrado!'
+                    });
+                }, 500); 
+            }else{
+                setTimeout(function (s) {
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Modificación incorrecta!'
+                    });
+                }, 500); 
+                cargar_datos();
+            }
+                
+                    
+            
+        }).fail(function(){
+
+        }).always(function(){
+
+        });
+
+
+    });
+
+    $(document).on("submit","#confirmaBaja",function(e){
+        e.preventDefault();
+        var datos = $("#confirmaBaja").serialize();
+        console.log("Imprimiendo datos: ",datos);
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3500
+        });
+        $.ajax({
+            dataType: "json",
+            method: "POST",
+            url:'../Controladores/clientes_controlador.php',
+            data : datos,
+        }).done(function(json) {
+            console.log("EL GUARDAR",json);
+            if (json[0] == "Exito") {
+                $('#confirmaBaja').trigger('reset');
+                $('#modalBajaCliente').modal('hide');
+                setTimeout(function (s) {
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Cliente dado de baja con exito !'
+                    });
+                }, 500);   
+                cargar_datos();
+            }else{
+                setTimeout(function (s) {
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Ops. Ocurrio un error!'
+                    });
+                }, 500); 
+                cargar_datos();
+            }
+                
+                    
+            
+        }).fail(function(){
+
+        }).always(function(){
+
+        });
+
+
+    });
 });
 
 function cargar_datos(){
-    //mostrar_mensaje("Consultando datos");
+    
     var datos = {"consultar_info":"si_consultala"}
     $.ajax({
         dataType: "json",

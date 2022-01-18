@@ -103,6 +103,7 @@
 					
 		$htmltr = $html="";
 		$cuantos = 0;
+		$num_Factura = 0;
 		$sql ="SELECT
 					int_idexpediente, 
 					nva_nom_bovino, 
@@ -123,6 +124,13 @@
 
 		$result = $modelo->get_query($sql);
 		$result_num_fact = $modelo->get_query($sql_num);
+		if($result_num_fact[0]=='1' && $result_num_fact[4] >= 1){
+
+			$num_Factura = $result_num_fact[2][0]['int_idventa'];
+			
+		}else{
+			$num_Factura = 0;
+		}
 		if($result[0]=='1'){
 			
 			foreach ($result[2] as $row) {	
@@ -162,7 +170,7 @@
 			$html.='</tbody>
                     	</table>';
 
-        	print json_encode(array("Exito",$html,$cuantos,$_POST,$result,$result_select,$result_num_fact[2][0]['int_idventa']));
+        	print json_encode(array("Exito",$html,$cuantos,$_POST,$result,$result_select,$num_Factura));
 			exit();
 
         }else {

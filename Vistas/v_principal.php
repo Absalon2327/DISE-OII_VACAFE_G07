@@ -49,7 +49,8 @@
                         </div>             
                     </div>
                 </div>
-                <section class="content">
+                  <form name="formulario_Principal" id="formulario_Principal">
+                      <section class="content">
                   <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
@@ -127,35 +128,26 @@
                             <!-- /.card-header -->
                             <div class="card-body">
                              
-                              <div class="alert alert-info alert-dismissible" id="alerta_celos">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <h4><i class="icon fas fa-info"></i> Alerta!</h4>
-                                 Vaca cabos mucos  en celo --octubre.
-                              </div>
-                              <div class="alert alert-warning alert-dismissible">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <h4><i class="icon fas fa-exclamation-triangle"></i> Alert!</h4>
-                                Queda poco sacate 
-                              </div>
-                              <div class="alert alert-success alert-dismissible">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <h5><i class="icon fas fa-check"></i> Alerta!</h5>
-                                Vaca Pinta pronto a dar a luz el 28-09-2021.
-                              </div>
-                            </div>
+                               <div class="card-body p-0" id="alertas_preñez">
+
+
+                        </div>
                           </div>
                   </div>
                   <!-- /.container-fluid -->
-                </section>        
+                </section> 
+                  </form>
+                     
          </div>
-    </div>
-          <!-- /.content-wrapper -->
+            <!-- /.content-wrapper -->
     <footer class="main-footer">
         <div class="float-right d-none d-sm-block">
             <b>Version</b> 3.1.0
         </div>
             <strong>UES &copy; 2021</strong> Todos los Derechos Reservados
     </footer>
+    </div>
+  
 
 
 
@@ -194,6 +186,6 @@
     <script src="../dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="../dist/js/pages/dashboard.js"></script>
-    <script src="../Scripts/principal.js"></script>
+     <script src="../Scripts/funcion_vPrincipal.js"></script>
 </body>
 </html>

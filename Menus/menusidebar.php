@@ -218,8 +218,13 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="../Vistas/r_gastos.php" class="nav-link">
-                                            <p>Registro de Facturas</p>
+                                        <a href="../Vistas/v_gastos.php" class="nav-link">
+                                            <p>Nuevo</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="../Vistas/v_registro_gastos.php" class="nav-link">
+                                            <p>Registro</p>
                                         </a>
                                     </li>
                                 </ul>

@@ -271,30 +271,38 @@ function verificar_existencias(indice){
 	var exis_superada = 0;
 	
 	var fila = $("#fila"+indice);
-	
-	console.log("existencia que agarro del input: ",cant);
-	console.log("existencia que viene: ",existencia_actual);
+	console.log("indice que viene: ",indice);	
+	console.log("existencia que agarro del input: ",cant[indice].value);
+	console.log("existencia que viene: ",existencia_actual[indice]);
 	console.log("fila: ",fila);
+
+	var exis_actual = existencia_actual[indice];
+	var exis_input = cant[indice].value;
 
 	if (cant[indice].value <= 0) {
 		$('#md_existencias_actualizar').modal('show');
 		$("#msg_adver").empty().html('No se pueden actualizar existencias iguales o menores que cero');
 		$("#exitencia_adver").empty().html('...');
 		$("#producto_adver").css("display","none");
-
-	}else if (cant[indice].value > existencia_actual[indice]) {
 		
-		$('#md_existencias_actualizar').modal('show');
-		$("#exitencia_adver").empty().html('Existencia: '+cant[indice].value);
+	}else
+	if (Number(exis_actual) < Number(exis_input)) {
+		
+		
+		$("#exitencia_adver").empty().html('Existencia: '+existencia_actual[indice]);
 		$("#msg_adver").empty().html('Esta cantidad solicitada supera la exixtencia actual.');
 		$("#producto_adver").css("display","block");
 		$("#producto_adver").empty().html('Producto: '+producto_verficar[indice]);
-		console.log("existencia nueva: ",cant[indice].value);			
+		console.log("existencia nueva: ",cant[indice].value);
+		console.log("indice dentro de la condicion: ",indice);			
+		$('#md_existencias_actualizar').modal('show');
 		
-	}else if (precio_v[indice].value < 0) {
+	}else
+	if (precio_v[indice].value < 0) {
 		$("#msg_adver_precios").empty().html('No se permite actualizar precios menores que cero');
-			
+		console.log("aqui el precio: ",precio_v[indice].value);	
 		$('#md_precio_actualizar').modal('show');
+		
 	}else{
 		modificarSubtotales();
 	}		

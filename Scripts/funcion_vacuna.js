@@ -1,3 +1,4 @@
+let modificar = false
 $(function (){
 	//$('#addvacuna').parsley();
 	
@@ -11,8 +12,8 @@ $(function (){
 	});
 	var fecha_hoy = new Date(); 
 	var fecha_mañana = new Date(); 
-	$('#dat_fecha_aplicacion').datepicker({
-	    format: "dd/mm/yyyy",
+	$('#fecha_aplicacion').datepicker({
+	   	format: "dd/mm/yyyy",
 	    todayBtn: true,
 	    clearBtn: false,
 	    language: "es",
@@ -21,25 +22,24 @@ $(function (){
 	    todayHighlight: true,
 	    endDate:fecha_hoy
 	});
-
-	$(document).on("click",".btn_eliminar",function(e){
+		//NUEVO CODIGO
+	$(document).on("click", ".btn_abrir_modal_v", function (e) {
 		e.preventDefault();
-		var id_vehiculo = $(this).attr("data-int_id_control_vac");
-		var datos = {"eliminar_persona":"si_eliminala","int_id_control_vac":int_id_control_vac}
-		$.ajax({
-	        dataType: "json",
-	        method: "POST",
-	        url:'vacuna_controlador_Json.php',
-	        data : datos,
-	    }).done(function(json) {
-	    	cargar_datos();
+		document.getElementById('exampleModalLabel').innerText = 'Administración de Medicamento'
+		document.getElementById('boton_enviar').innerText = 'Guardar'
+	
+		document.getElementById('ingreso_datos').value = 'si_registro'
+	
+		modificar = false
+		$('#modalAddvacuna').modal('show');
 
-	    });
 	});
 	$(document).on("click",".btn_editar",function(e){
 
 		e.preventDefault(); 
-	//	mostrar_mensaje("Consultando datos");
+	 //	mostrar_mensaje("Consultando datos");
+	 	document.getElementById('exampleModalLabel').innerText = 'Editar Control de Vacunas'
+		document.getElementById('boton_enviar').innerText = 'Modificar'
 		var int_id_control_vac = $(this).attr("data-int_id_control_vac");
 		console.log("El id es: ",int_id_control_vac);
 		var datos = {"consultar_info":"si_condui_especifico","int_id_control_vac":int_id_control_vac}
@@ -51,16 +51,20 @@ $(function (){
 	    }).done(function(json) {
 	    	console.log("EL consultar especifico",json);
 	    	if (json[0]=="Exito") {
+
 	    		var fecHA_string = json[2]['dat_fecha_aplicacion'];
 				var porciones = fecHA_string.split('-');
-	    		
+	    		var fecha = porciones[2]+"/"+porciones[1]+"/"+porciones[0]
 	    		$('#llave_vacuna').val(int_id_control_vac);
 	    		$('#ingreso_datos').val("si_actualizalo");
-	    		$('#id_exped_aplicado').val(json[2]['id_exped_aplicado']);
-	    		$('#dat_fecha_aplicacion').val(fecHA_string);
+	    		$('#exped_aplicado').val(json[2]['id_exped_aplicado']);
+	    		$('#fecha_aplicacion').val(fecha);
 	    		$('#vacuna').val(json[2]['nva_vacuna_aplicada']);
-
+	    		$('#dosis').val(json[2]['nva_dosis']);
+	    	   document.getElementById('ingreso_datos').value = 'si_actualizalo'
+				modificar = true
 	    		$('#modalAddvacuna').modal('show');
+
 	    	}
 	    	 
 	    }).fail(function(){
@@ -95,20 +99,20 @@ $(function (){
 	        toast: true,
 	        position: 'top-end',
 	        showConfirmButton: false,
-	        timer: 7000
+	        timer: 1500
     	});
 			if ($("#id_exped_aplicado").val() == "Seleccione"){
- 			Toast.fire({
-		        icon: 'info',
-		        title: 'Debe elegir el  bovino'
-		    });
-			return;
- 		}
+	 			Toast.fire({
+			        icon: 'info',
+			        title: 'Debe elegir el  bovino'
+			    });
+				return;
+ 			}
  			if ($("#vacuna").val() == "Seleccione"){
- 			Toast.fire({
-		        icon: 'info',
-		        title: 'Debe elegir la vacuna'
-		    });
+	 			Toast.fire({
+			        icon: 'info',
+			        title: 'Debe elegir la vacuna'
+			    });
 			return;
  		}
 		console.log("Imprimiendo datos: ",datos);
@@ -119,14 +123,40 @@ $(function (){
             data : datos,
         }).done(function(json) {
         	console.log("EL GUARDAR",json);
-        	$('#modalAddvacuna').modal('hide');
-        	$("#addvacuna").trigger('reset');
-        	cargar_datos();
+        	if (json[0] == "Exito") {
+        		$('#modalAddvacuna').modal('hide');
+				document.getElementById('addvacuna').reset()
+				setTimeout(function (s) {
+					if (modificar) {
+						Toast.fire({
+							icon: 'success',
+							title: 'Control de vacuna Modificado!.'
+						})
+					} else {
+						Toast.fire({
+							icon: 'success',
+							title: 'Control de vacuna Registrado!.'
+						})
+					}
+				
+				},500)
+         $("#modalAddvacuna").trigger('reset');//ver aqui en modal o addmodal
+				cargar_datos();
+        	}else if (json[1]=="Medicamento aplicado") {
+	    		Toast.fire({
+		            icon: 'error',
+		            title: 'El bovino ya fue vacunado con este medicamento en esta fecha'
+		        });
+		        return;
+	    	}else if (json[1]=="consulta"){
+	    	 	Toast.fire({
+		            icon: 'error',
+		            title: 'Error en la consulta!'
+		        });
+		        return;
+	    	}
         	
-        }).fail(function(){
-
-        }).always(function(){
-
+       
         });
 
 
@@ -144,7 +174,7 @@ function cargar_datos(){
     }).done(function(json) {
     	console.log("EL consultar",json);
     	$("#tabla_vacuna").empty().html(json[1]);
-    	//$('#tabla_vacuna').DataTable();
+    	$('#example1').DataTable();
     	$('#modalAddvacuna').modal('hide');
     }).fail(function(){
 

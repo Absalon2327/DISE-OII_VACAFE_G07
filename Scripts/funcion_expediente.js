@@ -1,18 +1,33 @@
 let modificar = false
 //$home="http://localhost/DISEÑO-G07_Json/";
+$("#msg_costoprecio").css("display","none");
 
 function validar_campito() {
 
 	$(document).on("change", "#tipo_bovino", function (e) {
 		e.preventDefault();
 
-		if ($("#tipo_bovino").val() == "vaca_lechera") {
+		if ($("#tipo_bovino").val() == "vaca_lechera" ) {
 			$("#cant_parto_bovino").prop("disabled", false);
-			$("#fecha_ult_parto").prop("disabled", false);
+			$("#control_fecha").val("no_hay_fecha");
+		//	$("#fecha_ult_parto").prop("disabled", false);
+			
 
 		} else {
-			$("#cant_parto_bovino").prop("disabled", true);
+			
 			$("#fecha_ult_parto").prop("disabled", true);
+			$("#cant_parto_bovino").prop("disabled", true);
+		}
+	});
+	$(document).on("change", "#cant_parto_bovino", function (e) {
+		e.preventDefault();
+
+		if ($("#cant_parto_bovino").val() >0 ) {
+			$("#fecha_ult_parto").prop("disabled", false);
+			$("#control_fecha").val("si_hay_fecha");
+
+		}else{
+			//$("#cant_parto_bovino").prop("disabled", true);
 		}
 	});
 }
@@ -49,7 +64,7 @@ $(function () {
 
 	var fecha_hoy = new Date();
 	$('#fecha_ult_parto').datepicker({
-		format: "dd/mm/yyyy",
+		format: "dd-mm-yyyy",
 		todayBtn: true,
 		clearBtn: false,
 		language: "es",
@@ -151,7 +166,7 @@ $(function () {
 		modificar = false
 		$('#md_registrar_expediente').modal('show');
 
-	})
+	});
 
 	$(document).on("click", ".btn_editar", function (e) {
 		e.preventDefault();
@@ -178,9 +193,7 @@ $(function () {
 				console.log("propietario: ", json[2]['int_id_propietario']);
 				console.log("raza: ", json[2]['int_idraza']);
 				console.log("tipo bovino: ", json[2]['nva_tipo_bovino']);
-				//var fecHA_string = json[2]['fecha_ult_parto'];
-				//	var porciones = fecHA_string.split('-');
-				//var fecha = porciones[2]+"/"+porciones[1]+"/"+porciones[0]
+				
 				$('#llave_expediente').val(id);
 				$('#ingreso_datos').val("si_actualizalo");
 				// $('#fecha_ult_parto').val(fecha);
@@ -191,10 +204,13 @@ $(function () {
 				$('#propietario').val(json[2]['int_id_propietario']);
 				$('#raza_bovino_select').val(json[2]['int_idraza']);
 				$('#tipo_bovino').val(json[2]['nva_tipo_bovino']);
-				$('#fecha_ult_parto').val(json[2]['dat_fecha_ult_parto'])
+				$('#fecha_ult_parto').val(json[2]['dat_fecha_ult_parto']);
+				$('#costo').val(json[2]['dou_costo_bovino']);
+				$('#precioVenta').val(json[2]['dou_precio_venta_bovino']);
 				if (json[2]['nva_tipo_bovino'] == "vaca_lechera") {
 					$("#cant_parto_bovino").prop("disabled", false);
 					$("#fecha_ult_parto").prop("disabled", false);
+				
 
 				} else {
 					$("#cant_parto_bovino").prop("disabled", true);
@@ -214,16 +230,22 @@ $(function () {
 				document.getElementById('ingreso_datos').value = 'si_actualizalo'
 				modificar = true
 				$('#md_registrar_expediente').modal('show');
-			}
+			} /*else if (json[1] == "existe bovino") {
+				Toast.fire({
+					icon: 'info',
+					title: 'Bovino ya existe'
+				});
+				return;
+			} else {
+				Toast.fire({
+					icon: 'error',
+					title: 'No se pudo registrar!.'
+				});
+				cargar_datos();
+			}*/
 
-		}).fail(function () {
-
-		}).always(function () {
-			Swal.close();
-		});
-
+	    });
 	});
-
 
 	$('#formulario_registro').validate({
 		rules: {
@@ -250,6 +272,27 @@ $(function () {
 			showConfirmButton: false,
 			timer: 1500
 		});
+		var Toast2 = Swal.mixin({
+			toast: true,
+			position: 'center',
+			showConfirmButton: false,
+			timer: 1500
+		});
+		if ($("#costo").val() > $("#precioVenta").val()) {
+			Toast2.fire({
+				icon: 'error',
+				title: 'Costo no puede ser mayor que Precio de Venta'
+			});
+			console.log("precio: ", $("#precioVenta").val());
+			return;
+		}
+		if ($("#costo").val() < 0 || $("#precioVenta").val() < 0) {
+			Toast2.fire({
+				icon: 'error',
+				title: 'El costo o precio no puede ser menor que cero'
+			});
+			return;
+		}
 		if ($("#tipo_bovino").val() == "Seleccione") {
 			Toast.fire({
 				icon: 'info',
@@ -302,8 +345,6 @@ $(function () {
 			if (json[0] == "Exito") {
 
 				$('#md_registrar_expediente').modal('hide');
-
-
 				if ($("#imagen_expediente").val() != "" && $("#imagen_bovino").val() != "") {
 
 					subir_archivo($("#imagen_expediente"), json[1], "subir_imagen_ajax");
