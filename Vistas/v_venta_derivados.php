@@ -150,12 +150,12 @@
                                                     </div>
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <a class="btn bg-success " data-toggle="modal" data-target="#md_seleccion_derivados">
+                                                            <a class="btn bg-info " data-toggle="modal" data-target="#md_seleccion_derivados">
                                                                 <i class="fas fa-shopping-cart"></i>
                                                                 Agregar
                                                                 Producto
                                                             </a>
-                                                            <a class="btn bg-success btn_limpiar ">
+                                                            <a class="btn bg-danger btn_limpiar ">
                                                                 <i class="fa fa-trash"></i>
                                                                 Limpiar
                                                             </a>

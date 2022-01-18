@@ -88,12 +88,13 @@
 						FROM
 							tb_botellas
 							INNER JOIN tb_producto ON tb_botellas.int_idproducto = tb_producto.int_idproducto 
-							WHERE nva_nom_producto = 'Leche'";		
+							WHERE int_idcategoria = 1";		
 	$result = $modelo->get_query($sql);
 		if($result[0]=='1'){
 			
 			foreach ($result[2] as $row) {	
 				 $htmltr.='<tr>
+				 				<td>'.$row['nva_nom_producto'].'</td>
 	                            <td>'.$modelo->formatear_fecha($row['dat_fecha_vencimiento_botella']).'</td>
 	                            <td>'.$row['int_cantidad'].'</td>
 	                            <td>$'.$row['dou_costo_botella'].'</td>
@@ -110,6 +111,7 @@
 			$html.='<table id="example1" class="table table-striped projects"  style="text-align:center;"width="100%">
                     <thead>
                         <tr>
+                        	<th>Producto</th>
                             <th>Fecha Vencimiento</th>
                             <th>Cantidad</th>
                             <th>Costo</th>

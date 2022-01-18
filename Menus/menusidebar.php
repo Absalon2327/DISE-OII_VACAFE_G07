@@ -149,7 +149,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="javascript:void(0)" class="nav-link">
+                                        <a href="../Vistas/v_inventario.php" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Inventario</p>
                                         </a>
@@ -254,8 +254,8 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="" class="nav-link">
-                                            <p>Producción de leche</p>
+                                        <a href="../Vistas/v_seleccion_reportes_productos.php" class="nav-link">
+                                            <p>Producción y Productos</p>
                                         </a>
                                     </li>
                                 </ul>
@@ -291,6 +291,24 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-cog"></i>
+                                    <p>
+                                        Back Up
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="../backupDB/descarga.php" class="nav-link">
+                                            <p>Descargar</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            </li>
+
                         </ul>
                     </nav>
                 </div>

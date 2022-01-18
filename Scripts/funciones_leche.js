@@ -1,3 +1,4 @@
+let modificar = false
 $(function (){
 	console.log("funcionando");
 	cargar_datos();
@@ -122,9 +123,15 @@ $(function (){
 	    		$('#cantidad_Leche').val(json[2]['int_cantidad']);
 	    		$('#precio_Leche').val(json[2]['dou_costo_botella']);
 	    		$('#fecha_Leche').val(fecha);		
-	    		
+	    		modificar = true
 	    		$('#mod_add_leche').modal('show');
 	    	}
+	    	setTimeout(function (s) {
+	        		Toast.fire({
+                    icon: 'success',
+                    title: 'Registro Modificado con Exito!.'
+                     });
+	        	}, 500);
 	    	 
 	    }).fail(function(){
 
@@ -177,6 +184,20 @@ $(document).on("click","#registrar_leche",function(e){
 				    });
 					return;
  		        }
+ 		        if ($("#precio_Leche").val() == "0" || $("#precio_Leche").val() < "0"){
+		 			Toast.fire({
+				    icon: 'info',
+				    title: 'El Costo debe ser mayor o igual a 0'
+				    });
+					return;
+ 		        }
+ 		        if ($("#cantidad_Leche").val() == "0" || $("#precio_Leche").val() < "0"){
+		 			Toast.fire({
+				    icon: 'info',
+				    title: 'La cantidad debe ser mayor a 0'
+				    });
+					return;
+ 		        }
 		//mostrar_mensaje("Almacenando información","Por favor no recargue la página");
 		$.ajax({
             dataType: "json",
@@ -191,17 +212,24 @@ $(document).on("click","#registrar_leche",function(e){
 	                $("#fechav_Leche").val("");
 	                $("#precio_Leche").val("");
 	                $("#botella_Leche").val("");
+	                $('#mod_add_leche').trigger('reset');
 	        		cargar_datos();
+	        		document.getElementById('addLeche').reset()
+                setTimeout(function (s) {
 	        		Toast.fire({
                     icon: 'success',
-                    title: 'Leche registrado con Exito!.'
+                    title: 'Datos registrados con Exito!.'
                      });
-                }else if(json[0]=="exito"){
-                	cargar_datos();
-                    Toast.fire({
+	        	}, 500);  
+                }else if(modificar){
+                	setTimeout(function (s) {
+	        		Toast.fire({
                     icon: 'success',
-                    title: 'Leche modificado con Exito!.'
+                    title: 'Registro modificado con Exito!.'
                      });
+	        	}, 500); 
+                }else if(!modificar){
+                	mostrar_mensaje("Error", "algo paso");
                 }else{
                 	console.error("Ocurrio un error");
                     Toast.fire({
@@ -234,5 +262,24 @@ function cargar_datos(){
     }).always(function(){
     	Swal.close();
     });
+}
+
+function mostrar_mensaje(titulo, mensaje = "") {
+	Swal.fire({
+		title: titulo,
+		html: mensaje,
+		allowOutsideClick: false,
+		timerProgressBar: true,
+		didOpen: () => {
+			Swal.showLoading()
+
+		},
+		willClose: () => {
+
+		}
+	}).then((result) => {
+
+
+	});
 }
 	

@@ -3,7 +3,7 @@
     <head>        
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Producto | Registro</title>
+        <title>Producto | Inventario</title>
         <!-- Google Font: Source Sans Pro -->
        
         <link rel="stylesheet" href="../plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css">
@@ -61,15 +61,60 @@
                     <!-- Default box -->
                     <div class="card">
                         <div class="card-header bg-success">
-                            <h3 class="card-title " id="exampleModalLabel">Producto</h3>
+                            <h3 class="card-title ">Inventario</h3>
                         </div>
+                        <br>
+                        <section class="content col-4"> 
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"> Mostrar: </label>
+                                <div class="col-sm-10">
+                                    <select class="form-control"
+                                        name="ctg_Producto_Cmb" id="ctg_Producto_Cmb" required>
+                                    </select>
+                                </div>
+                            </div>
+                        </section>
+                        <div class="col-xs-12">
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-10">
+                            <div id="resultados"></div>
+                        </div>
+                        <div class="col-xs-1"></div>
+                    </div>
+                    <div class="modal-body">
+                        <!-- TABLA PRODUCTOS -->
+                        <div class="card-body p-0" id="tablaPro"> 
+                        </div>
+                     </div>   
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </section>
+                <!-- /.content -->
+            </div>
+
+    <!-- MODAL GUARDAR s-->
+            <div class="modal fade" id="mod_add_producto">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
                         <form method="POST" name="addProducto" id="addProducto">
+                            <div class="modal-header bg-success">
+                                <h4 class="modal-title" id="exampleModalLabel">Editar</h4>
+                                 <button
+                                    type="button"
+                                    class="close"
+                                    data-dismiss="modal"
+                                    aria-label="Close"
+                                    >
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
                             <div class="modal-body">                               
                                 <input type="hidden" id="almacenar_datos" name="almacenar_datos" value="datonuevo">
                                 <input type="hidden" id="llave_producto" name="llave_producto" value="si_registro">
                                 <div class="row">
                                         <div class="col-md-6">
-                                            <label for="nombre_Producto">Nombre</label>
+                                            <label for="nombre_Producto_Edit">Nombre</label>
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">
@@ -77,42 +122,43 @@
                                                     </span>
                                                 </div>                                            
                                                 <input type="text" class="form-control" placeholder="Leche..."
-                                                    id="nombre_Producto" name="nombre_Producto" required autocomplete="off">
+                                                    id="nombre_Producto_Edit" name="nombre_Producto_Edit" required autocomplete="off">
                                             </div>
-                                            <label for="descrip_Producto">Descripción Producto</label>
+                                            <label for="descrip_Producto_Edit">Descripción Producto</label>
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
-                                                    <span class="input-group-text">
+                                                  <span class="input-group-text">
                                                         <i class="fa fa-comments"></i>
                                                     </span>
                                                 </div>
                                                 <input type="text" class="form-control"  placeholder="Queso Especial..."
-                                                id="descrip_Producto" name="descrip_Producto" required autocomplete="off"
+                                                id="descrip_Producto_Edit" name="descrip_Producto_Edit" required autocomplete="off"
                                                 >
                                             </div>
-                                            <label for="fechav_Producto">Fecha Vencimiento</label>
+                                            <label for="fechav_Producto_Edit">Fecha Vencimiento</label>
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">
                                                         <i class="fas fa-calendar"></i>
                                                     </span>
                                                 </div>
-                                                <input type="text" class="form-control" id="fechav_Producto" name="fechav_Producto" required autocomplete="off">
+                                                <input type="text" class="form-control" id="fechav_Producto_Edit" name="fechav_Producto_Edit" required autocomplete="off">
                                             </div>
                                             <div class="form-group">
                                         <label>Imagen Producto</label>
                                             <div class="image view view-first text-center" >
-                                                <img class="thumb-image" id="img_producto" width="100" height="100"  style=" margin-left:auto; margin-right:auto; display: block;" src="">
+                                                <img class="thumb-image" id="img_producto_Edit" width="100" height="100"  style=" margin-left:auto; margin-right:auto; display: block;" src="">
                                             </div>
-                                            <input id="imagen_producto" name="imagen_producto" data-buttonText="Seleccionar" type="file" class="filestyle" data-buttonname="btn-secondary">
+                                            <input id="imagen_producto_Edit" name="imagen_producto_Edit" data-buttonText="Seleccionar" type="file" class="filestyle" data-buttonname="btn-secondary">
                                             <label style="display:none;font-size: 12px; list-style: none; color: #ea553d; margin-top: 5px;" id="error_en_la_imagen">La imagen no es valida
                                             </label>
                                         </div>
-                                    </div>
+
+                                        </div>
                                         <!-- /.col -->
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="precio_Producto">Costo</label>
+                                                <label for="precio_Producto_Edit">Costo</label>
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">
@@ -123,9 +169,10 @@
                                                         type="number"
                                                         class="form-control"
                                                         placeholder="0.00"
-                                                        id="precio_Producto" name="precio_Producto" required autocomplete="off">
+                                                        id="precio_Producto_Edit" name="precio_Producto_Edit" required autocomplete="off"
+                                                    >
                                                 </div>
-                                                 <label for="costo_Producto">Precio</label>
+                                                 <label for="costo_Producto_Edit">Precio</label>
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">
@@ -136,11 +183,12 @@
                                                         type="number"
                                                         class="form-control"
                                                         placeholder="0.00"
-                                                        id="costo_Producto" name="costo_Producto" required autocomplete="off">
+                                                        id="costo_Producto_Edit" name="costo_Producto_Edit" required autocomplete="off"
+                                                    >
                                                 </div>
-                                                <label for="existencia_Producto">Existencia</label>
+                                                <label for="existencia_Producto_Edit">Existencia</label>
                                                 <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
+                                                <div class="input-group-prepend">
                                                         <span class="input-group-text">
                                                             <i class="fas fa-book"></i>
                                                         </span>
@@ -149,13 +197,14 @@
                                                         type="number"
                                                         class="form-control"
                                                         placeholder="7"
-                                                        id="existencia_Producto" name="existencia_Producto"
-                                                        required autocomplete="off" pattern="^([0-9]+)[.]{0,2}">
+                                                        id="existencia_Producto_Edit" name="existencia_Producto_Edit"
+                                                        required autocomplete="off"
+                                                    >
                                                 </div>
 
-                                                <label for="existencia_Producto_min">Existencia Minima</label>
+                                                <label for="existencia_Producto_min_Edit">Existencia Minima</label>
                                                 <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
+                                                <div class="input-group-prepend">
                                                         <span class="input-group-text">
                                                             <i class="fas fa-book"></i>
                                                         </span>
@@ -164,35 +213,31 @@
                                                         type="number"
                                                         class="form-control"
                                                         placeholder="7"
-                                                        id="existencia_Producto_min" name="existencia_Producto_min"
-                                                        required autocomplete="off" pattern="^([0-9]+)[.]{0,2}" >
+                                                        id="existencia_Producto_min_Edit" name="existencia_Producto_min_Edit"
+                                                        required autocomplete="off"
+                                                    >
                                                 </div>
 
-                                                <label for="ctg_Producto">Categoría</label>
+                                                <label for="ctg_Producto_Edit">Categoría</label>
                                                  <div class="input-group mb-3">
                                                     <span class="input-group-text">
                                                         <i class="fa fa-folder"></i>
                                                     </span>
                                                     <select class="form-control"
-                                                      name="ctg_Producto" id="ctg_Producto" required onclick="validar_campito()">
+                                                      name="ctg_Producto_edit" id="ctg_Producto_edit" required>
                                                     </select>
-                                                    <div class="card-tools" id="registrar_categoria">
-                                                        <a class="btn btn-success " href="#mod_add_categoria" data-toggle="modal">
-                                                            <i class="fas fa-plus-circle"></i>
-                                                        </a>
-                                                    </div>
                                                 </div>                                                                   
-                                                <label for="estado_productos">Estado</label>  
+                                                <label for="estado_productos_Edit">Estado</label>  
                                                 <div class="input-group mb-3">         
                                                     <div class="form-group clearfix">
                                                         <div class="icheck-primary d-inline">
-                                                            <input type="radio" value="activo" id="radio_activo" name="estado_productos" checked disabled>
+                                                            <input type="radio" value="activo" id="radio_activo" name="estado_productos_Edit" checked disabled>
                                                             <label for="radio_activo">
                                                                 Activo
                                                             </label>
                                                         </div>
                                                         <div class="icheck-primary d-inline">
-                                                            <input type="radio" value="inactivo" id="radio_inactivo" name="estado_productos" disabled>
+                                                            <input type="radio" value="inactivo" id="radio_inactivo" name="estado_productos_Edit" disabled>
                                                             <label for="radio_inactivo">
                                                                 Inactivo
                                                             </label>
@@ -207,106 +252,47 @@
                                     <button id="limpiar" name="limpiar" type="reset" class="btn bg-danger ">
                                         <i class="fas fa-trash"></i> Limpiar</button>
 
-                                        <button type="submit" id="btn_enviar"class="btn bg-info"><i class="fa fa-save"></i> Guardar</button>
+                                        <button type="submit" id="boton_enviar" class="btn bg-info"><i class="fa fa-save"></i> Guardar</button>
                                 </div>
                             </div>    
                         </form>
-                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
-                </section>
-                <!-- /.content -->
-
-                <!-- MODAL GUARDAR s-->
-                <div class="modal fade" id="mod_add_producto">
-                    <div class="modal-dialog modal-xl">
-                        <div class="modal-content">
-                            
-                        </div>
-                    </div>
-                </div>
-
-                <!-- MODAL GUARDAR CATEGORIA s-->
-                <div class="modal fade" id="mod_add_categoria">
-                    <div class="modal-dialog modal-ml">
-                        <div class="modal-content">
-                            <form method="POST" name="addCategoria" id="addCategoria">
-                                <div class="modal-header bg-success">
-                                    <h4 class="modal-title">Categoria | Nuevo</h4>
-                                     <button
-                                        type="button"
-                                        class="close"
-                                        data-dismiss="modal"
-                                        aria-label="Close"
-                                        >
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">                               
-                                    <input type="hidden" id="almacenar_datos" name="almacenar_datos" value="datonuevoc">
-                                    <input type="hidden" id="llave_categoria" name="llave_categoria" value="si_registro">
-                                    <div class="row">
-                                            <div class="col-md-6">
-                                                <label for="nombre_Producto">Nombre</label>
-                                                <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <i class="fas fa-user"></i>
-                                                        </span>
-                                                    </div>                                            
-                                                    <input type="text" class="form-control" placeholder="Leche..."
-                                                        id="nombre_Categoria" name="nombre_Categoria"  autocomplete="off">
-                                                </div>
-                                            </div>
-                                    </div>
-
-                                    <div>
-                                        <button id="limpiar" name="limpiar" type="reset" class="btn bg-danger ">
-                                            <i class="fas fa-trash"></i> Limpiar</button>
-
-                                            <button type="submit" class="btn bg-info"><i class="fa fa-save"></i> Guardar</button>
-                                    </div>
-                                </div>    
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- MODAL ADVERTENCIA -->          
-                <div class="modal fade" id="modalBajaProducto"> 
-                    <div class="modal-dialog">
-                        <div class="modal-content "> 
-                            <form method="POST" name="confirmaBaja" id="confirmaBaja">
-                                <input type="hidden" name="baja_datos" id="baja_datos" value="si_baja">
-                                <div class="modal-header bg-success " >
-                                    <h4 class="modal-title ">ADVERTENCIA!</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p class="text-center">Este Producto no se puede eliminar por que está relacionado con información valiosa&hellip;</p>
-                                    <p class="text-center">Solo se puede dar de baja&hellip;</p>
-                                     <p class="text-center">¿Está seguro de realizar esta acción?</p> 
-                                     <input type="hidden" name="id_producto_baja" id="id_producto_baja">    
-                                    
-                                </div> 
-                                <div class="form-group  text-center">
-                                        <button type="submit" class="btn bg-success">
-                                            Si
-                                        </button>
-                                        <a class="btn bg-success" data-toggle="modal" data-target="" data-dismiss="modal">
-                                                    No
-                                        </a>                                    
-                                    </div>    
-                            </form>                         
-                            </div>
-                        </div>
-                     </div>
                 </div>
             </div>
 
-            
+
+          <!-- MODAL ADVERTENCIA -->          
+            <div class="modal fade" id="modalBajaProducto"> 
+                <div class="modal-dialog">
+                    <div class="modal-content "> 
+                        <form method="POST" name="confirmaBaja" id="confirmaBaja">
+                            <input type="hidden" name="baja_datos" id="baja_datos" value="si_baja">
+                            <div class="modal-header bg-success " >
+                                <h4 class="modal-title ">ADVERTENCIA!</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-center">Este Producto no se puede eliminar por que está relacionado con información valiosa&hellip;</p>
+                                <p class="text-center">Solo se puede dar de baja&hellip;</p>
+                                 <p class="text-center">¿Está seguro de realizar esta acción?</p> 
+                                 <input type="hidden" name="id_producto_baja" id="id_producto_baja">    
+                                
+                            </div> 
+                            <div class="form-group  text-center">
+                                    <button type="submit" class="btn bg-success">
+                                        Si
+                                    </button>
+                                    <a class="btn bg-success" data-toggle="modal" data-target="" data-dismiss="modal">
+                                                No
+                                    </a>                                    
+                                </div>    
+                        </form>                         
+                        </div>
+                    </div>
+                 </div>
+            </div>
 
             <footer class="main-footer">
               <div class="float-right d-none d-sm-block">
@@ -353,7 +339,8 @@
         <!-- AdminLTE App -->
         <script src="../dist/js/adminlte.min.js"></script>
         <!-- AdminLTE for demo purposes -->
-        <script src="../dist/js/demo.js"></script>
+        <script src="../dist/js/demo.js"></script>  
+         
         <script src="../plugins/bootstrap-filestyle/js/bootstrap-filestyle.min.js"></script>    
         <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
         <script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -364,8 +351,8 @@
         <script src="../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
         <script src="../plugins/datatables-buttons/js/buttons.print.min.js"></script>
         <script src="../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-        <script src="../Scripts/funciones_productos.js"></script>
-        <!--<script>
+        <script src="../Scripts/funciones_inventario.js"></script>
+        <script>
                 $(function () {
                     //Initialize Select2 Elements
                     $('.select2').select2()
@@ -444,7 +431,7 @@
                 // BS-Stepper Init
                
 
-        </script>-->
+        </script>
 
   
     </body>

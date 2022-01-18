@@ -3,7 +3,7 @@
     <head>        
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Produccion de Leche | Registro</title>
+        <title>Produccion | Registro</title>
         <!-- Google Font: Source Sans Pro -->
         
         <link rel="stylesheet" href="../plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css">
@@ -61,7 +61,7 @@
                     <!-- Default box -->
                     <div class="card">
                         <div class="card-header bg-success">
-                            <h3 class="card-title ">Produccion de Leche</h3>
+                            <h3 class="card-title ">Produccion</h3>
                             <div class="card-tools" id="registrar_leche">
                                 <a class="btn btn-success " href="#mod_add_leche" data-toggle="modal">
                                     <i class="fas fa-plus-circle"></i>
@@ -119,7 +119,7 @@
                                                     </select>
                                                     
                                                 </div>
-                                            <label for="cantidad_Leche">Cantidad en Botellas</label>
+                                            <label for="cantidad_Leche">Cantidad</label>
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">
@@ -130,7 +130,7 @@
                                                         type="number"
                                                         class="form-control"
                                                         placeholder="0.00"
-                                                        id="cantidad_Leche" name="cantidad_Leche" required
+                                                        id="cantidad_Leche" name="cantidad_Leche" required autocomplete="off"
                                                     >
                                                 </div>
                                         </div>
@@ -148,7 +148,7 @@
                                                         type="number"
                                                         class="form-control"
                                                         placeholder="0.00"
-                                                        id="precio_Leche" name="precio_Leche" required
+                                                        id="precio_Leche" name="precio_Leche" required autocomplete="off"
                                                     >
                                                 </div>
                                                 <label for="fecha_Leche">Fecha Vencimiento</label>
@@ -158,17 +158,17 @@
                                                         <i class="fas fa-calendar"></i>
                                                     </span>
                                                 </div>
-                                                <input type="text" class="form-control datefechaleche" id="fecha_Leche" name="fecha_Leche" required>
+                                                <input type="text" class="form-control datefechaleche" id="fecha_Leche" name="fecha_Leche" required autocomplete="off">
                                             </div>
                                             </div>
                                         </div>
                                 </div>
 
                                 <div>
-                                    <button id="limpiar" name="limpiar" type="reset" class="btn bg-success ">
+                                    <button id="limpiar" name="limpiar" type="reset" class="btn bg-danger ">
                                         <i class="fas fa-trash"></i> Limpiar</button>
 
-                                        <button type="submit" class="btn bg-success"><i class="fa fa-save"></i> Guardar</button>
+                                        <button type="submit" class="btn bg-info"><i class="fa fa-save"></i> Guardar</button>
                                 </div>
                             </div>    
                         </form>

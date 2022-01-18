@@ -97,7 +97,7 @@ $(function(){
                                         console.log("sql",json[2]);
 
                                         
-                                               var win = window.open("http://localhost/FINCA_VACA_CAFE/reportes/r_reporte_preñez.php?idraza="+json[1], '_blank');
+                                               var win = window.open("http://localhost/poryecto_DISEÑOII/DISEÑOII_VACAFE_G07/reportes/r_reporte_preñez.php?idraza="+json[1], '_blank');
                                                 // Cambiar el foco al nuevo tab (punto opcional)
                                                 win.focus();
                                                 
@@ -165,7 +165,7 @@ $(function(){
                                         console.log("sql",json[2]);
 
                                         
-                                               var win = window.open("http://localhost/FINCA_VACA_CAFE/reportes/r_reporte_vacuna.php?idexpe="+json[1], '_blank');
+                                               var win = window.open("http://localhost/poryecto_DISEÑOII/DISEÑOII_VACAFE_G07/reportes/r_reporte_vacuna.php?idexpe="+json[1], '_blank');
                                                 // Cambiar el foco al nuevo tab (punto opcional)
                                                 win.focus();
                                                 
@@ -232,7 +232,7 @@ $(function(){
                                         console.log("sql",json[2]);
 
                                         
-                                               var win = window.open("http://localhost/FINCA_VACA_CAFE/reportes/r_reporte_natalidad.php?idexpe="+json[1], '_blank');
+                                               var win = window.open("http://localhost/poryecto_DISEÑOII/DISEÑOII_VACAFE_G07/reportes/r_reporte_natalidad.php?idexpe="+json[1], '_blank');
                                                 // Cambiar el foco al nuevo tab (punto opcional)
                                                 win.focus();
                                                 
@@ -293,7 +293,7 @@ $(function(){
                                         console.log("sql",json[2]);
 
                                         
-                                               var win = window.open("http://localhost/FINCA_VACA_CAFE/reportes/r_reporte_mortalidad.php", '_blank');
+                                               var win = window.open("http://localhost/poryecto_DISEÑOII/DISEÑOII_VACAFE_G07/reportes/r_reporte_mortalidad.php", '_blank');
                                                 // Cambiar el foco al nuevo tab (punto opcional)
                                                 win.focus();
                                                 
