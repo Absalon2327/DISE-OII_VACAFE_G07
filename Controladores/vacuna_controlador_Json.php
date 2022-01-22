@@ -75,7 +75,7 @@
 			    "dat_fecha_aplicacion" => $modelo->formatear_fecha($_POST['fecha_aplicacion']), 
 			    "nva_dosis" => $_POST['dosis']);
                 $result = $modelo->insertar_generica($array_insertar);
-                if($result[0]=='1' && $result[4]>=1){
+                if($result[0]=='1'){
 
         	    print json_encode(array("Exito",$_POST,$result));
 			    exit();

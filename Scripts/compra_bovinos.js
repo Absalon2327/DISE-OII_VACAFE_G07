@@ -64,7 +64,7 @@ $(function (){
        			var timer = setInterval(function(){
 					$(location).attr('href','../Vistas/v_registro_compras.php');
 					clearTimeout(timer);
-				},3500);		
+				},3500);	
 				
 
 	    	}else if (json[0]=="Error" && json[1]=="ultimacompra"){
@@ -194,7 +194,7 @@ function verificar_costo_comprar_b(indice){
 	var fila = $("#fila"+indice);
 	console.log("fila: ",fila);
 
-	if (costo_c_b[indice].value < 0) {
+	if (costo_c_b[indice] < 0) {
 		$('#md_costo_b').modal('show');
 	}else{
 		modificarSubtotales();

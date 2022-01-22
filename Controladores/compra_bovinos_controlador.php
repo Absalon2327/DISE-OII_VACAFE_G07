@@ -42,7 +42,7 @@
 
 					$num_elementos=0;
 
-					if($result_ultima_compra[0]=='1'){						
+					if($result_ultima_compra[0] == '1' && $result_ultima_compra[4] >= 1){						
 						
 						while ($num_elementos < count($idexpediente)) {
 							
@@ -60,13 +60,22 @@
 					        );
 					        $result_det_compra = $modelo->insertar_generica($array_insertar);
 					        //ACTUALIZO L EXISTANCIA DE LOS PRODUCTOS COMPRADOS 
-				        	$array_update_costo_expediente = array(
+					        if($result_det_compra[0]=='1'){
+
+					        	$array_update_costo_expediente = array(
 					            "table" => "tb_expediente",
 					            "int_idexpediente" => $idexpediente[$num_elementos],
 					            "dou_costo_bovino"=> $costo_item[$num_elementos]          
-				       		);
-							$resultado_costo_Expediente = $modelo->actualizar_generica($array_update_costo_expediente);							
-						 	$num_elementos=$num_elementos+1;
+					       		);
+								$resultado_costo_Expediente = $modelo->actualizar_generica($array_update_costo_expediente);							
+							 	$num_elementos=$num_elementos+1;
+
+					        }else{
+					        	$array = array("Error","detalle",$result_det_compra);
+								print json_encode($array);
+								exit();
+					        }
+				        	
 						}
 					}else{
 						//ENVIO EL ERROR OBTENIDO EN ESTA POSICIÓN

@@ -10,6 +10,7 @@ CREATE TABLE `tb_baja` (
   CONSTRAINT `fk_bajaExpediente` FOREIGN KEY (`idexpeiente_baja`) REFERENCES `tb_expediente` (`int_idexpediente`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2021424757 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
+INSERT INTO tb_baja VALUES("1","2022-01-18","MUERTE NATURAL","4");
 
 
 
@@ -26,6 +27,8 @@ CREATE TABLE `tb_botellas` (
   CONSTRAINT `fk_producto` FOREIGN KEY (`int_idproducto`) REFERENCES `tb_producto` (`int_idproducto`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
+INSERT INTO tb_botellas VALUES("1","2022-01-20","10","1","3.00");
+INSERT INTO tb_botellas VALUES("2","2022-01-31","10","2","5.00");
 
 
 
@@ -52,9 +55,8 @@ CREATE TABLE `tb_categoria` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT;
 
 INSERT INTO tb_categoria VALUES("1","DERIVADOS DE LECHE");
-INSERT INTO tb_categoria VALUES("2","BOVINOS");
-INSERT INTO tb_categoria VALUES("3","MEDICAMENTOS");
-INSERT INTO tb_categoria VALUES("4","INSUMOS");
+INSERT INTO tb_categoria VALUES("2","MEDICAMENTOS");
+INSERT INTO tb_categoria VALUES("3","INSUMOS");
 
 
 
@@ -124,10 +126,9 @@ CREATE TABLE `tb_control_vacunas` (
   CONSTRAINT `tb_productos` FOREIGN KEY (`nva_vacuna_aplicada`) REFERENCES `tb_producto` (`int_idproducto`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO tb_control_vacunas VALUES("1","2021-12-11","1","1","");
-INSERT INTO tb_control_vacunas VALUES("2","0000-00-00","1","1","");
-INSERT INTO tb_control_vacunas VALUES("3","2022-01-10","3","3","2ml");
-INSERT INTO tb_control_vacunas VALUES("4","2022-01-09","3","2","2ml");
+INSERT INTO tb_control_vacunas VALUES("1","2022-01-01","7","3","1ML");
+INSERT INTO tb_control_vacunas VALUES("2","2022-01-10","8","2","2ML");
+INSERT INTO tb_control_vacunas VALUES("3","2022-01-16","7","1","1ML");
 
 
 
@@ -153,8 +154,6 @@ CREATE TABLE `tb_detalle_compra` (
 INSERT INTO tb_detalle_compra VALUES("1","1","1.25","1.25","1","1","");
 INSERT INTO tb_detalle_compra VALUES("2","3","6.20","18.60","3","2","");
 INSERT INTO tb_detalle_compra VALUES("3","3","7.97","23.91","4","2","");
-INSERT INTO tb_detalle_compra VALUES("4","1","6.20","6.20","","3","3");
-INSERT INTO tb_detalle_compra VALUES("5","1","7.97","7.97","","3","4");
 INSERT INTO tb_detalle_compra VALUES("6","3","0.75","2.25","3","4","");
 
 
@@ -178,50 +177,6 @@ CREATE TABLE `tb_detalle_venta` (
   CONSTRAINT `tb_producto` FOREIGN KEY (`int_idproducto`) REFERENCES `tb_producto` (`int_idproducto`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT;
 
-INSERT INTO tb_detalle_venta VALUES("1","1","1.50","1.50","2","","1");
-INSERT INTO tb_detalle_venta VALUES("2","1","1.50","1.50","2","","2");
-INSERT INTO tb_detalle_venta VALUES("3","1","1.50","1.50","2","","3");
-INSERT INTO tb_detalle_venta VALUES("4","1","1.50","1.50","2","","4");
-INSERT INTO tb_detalle_venta VALUES("5","1","1.50","1.50","2","","5");
-INSERT INTO tb_detalle_venta VALUES("6","1","1.50","1.50","2","","6");
-INSERT INTO tb_detalle_venta VALUES("7","1","1.50","1.50","2","","7");
-INSERT INTO tb_detalle_venta VALUES("8","1","1.50","1.50","2","","8");
-INSERT INTO tb_detalle_venta VALUES("9","1","1.50","1.50","2","","9");
-INSERT INTO tb_detalle_venta VALUES("10","1","375.00","375.00","","2","10");
-INSERT INTO tb_detalle_venta VALUES("11","1","375.00","375.00","","1","11");
-INSERT INTO tb_detalle_venta VALUES("12","1","375.00","375.00","","2","12");
-INSERT INTO tb_detalle_venta VALUES("13","1","375.00","375.00","","1","13");
-INSERT INTO tb_detalle_venta VALUES("14","1","850.00","850.00","","1","14");
-INSERT INTO tb_detalle_venta VALUES("15","1","0.00","0.00","","2","15");
-INSERT INTO tb_detalle_venta VALUES("16","1","375.00","375.00","","2","16");
-INSERT INTO tb_detalle_venta VALUES("17","1","1.50","1.50","2","","17");
-INSERT INTO tb_detalle_venta VALUES("18","1","1.50","1.50","2","","18");
-INSERT INTO tb_detalle_venta VALUES("19","1","550.00","550.00","","2","19");
-INSERT INTO tb_detalle_venta VALUES("20","1","444.00","444.00","","1","20");
-INSERT INTO tb_detalle_venta VALUES("21","1","1.50","1.50","2","","21");
-INSERT INTO tb_detalle_venta VALUES("22","1","1.50","1.50","2","","22");
-INSERT INTO tb_detalle_venta VALUES("23","1","1.50","1.50","2","","23");
-INSERT INTO tb_detalle_venta VALUES("24","2","3.00","6.00","1","","24");
-INSERT INTO tb_detalle_venta VALUES("25","2","1.50","3.00","2","","25");
-INSERT INTO tb_detalle_venta VALUES("26","1","3.00","3.00","1","","26");
-INSERT INTO tb_detalle_venta VALUES("27","1","1.50","1.50","2","","27");
-INSERT INTO tb_detalle_venta VALUES("28","1","3.00","3.00","1","","28");
-INSERT INTO tb_detalle_venta VALUES("29","1","1.50","1.50","2","","29");
-INSERT INTO tb_detalle_venta VALUES("30","1","1.50","1.50","2","","29");
-INSERT INTO tb_detalle_venta VALUES("31","1","1.50","1.50","2","","30");
-INSERT INTO tb_detalle_venta VALUES("32","1","3.00","3.00","1","","31");
-INSERT INTO tb_detalle_venta VALUES("33","1","3.00","3.00","1","","32");
-INSERT INTO tb_detalle_venta VALUES("34","3","3.00","9.00","1","","33");
-INSERT INTO tb_detalle_venta VALUES("35","4","1.50","6.00","2","","34");
-INSERT INTO tb_detalle_venta VALUES("36","1","3.00","3.00","1","","35");
-INSERT INTO tb_detalle_venta VALUES("37","1","1500.00","1500.00","","4","36");
-INSERT INTO tb_detalle_venta VALUES("38","1","9.00","9.00","","1","37");
-INSERT INTO tb_detalle_venta VALUES("39","1","7.00","7.00","","3","37");
-INSERT INTO tb_detalle_venta VALUES("40","1","7.00","7.00","","4","38");
-INSERT INTO tb_detalle_venta VALUES("41","1","9.00","9.00","","2","38");
-INSERT INTO tb_detalle_venta VALUES("42","1","376.00","376.00","","1","39");
-INSERT INTO tb_detalle_venta VALUES("43","3","1.50","4.50","1","","40");
-INSERT INTO tb_detalle_venta VALUES("44","1","1.50","1.50","2","","41");
 
 
 
@@ -247,6 +202,7 @@ CREATE TABLE `tb_empleado` (
 
 INSERT INTO tb_empleado VALUES("1","98654578-9","Katherine Lorena","Peña Sigüenza","Cantón las Flores, municipio de Cojutepeque, departamento de Cuscatlán","1998-03-26","350","7856-5139","cm16057@ues.edu.sv","1","Activo","Femenino");
 INSERT INTO tb_empleado VALUES("2","12345678-9","Fabricio","Corvera","Santo Domingo, San Vicente","1997-09-27","350","6300-3455","fabricio@gmail.com","1","Activo","Masculino");
+INSERT INTO tb_empleado VALUES("3","98756321-3","José Hernán","Barahona Ayala","Colonia las Flores, Estado Municipal, San Vicente","1997-12-11","3000","7825-9865","fabricio.corvera.9@gmail.com","1","Activo","Masculino");
 
 
 
@@ -274,12 +230,10 @@ CREATE TABLE `tb_expediente` (
   CONSTRAINT `fk_raza` FOREIGN KEY (`int_idraza`) REFERENCES `tb_raza` (`int_idraza`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO tb_expediente VALUES("1","Antonia","vendido","../archivo_carta_venta/img_1.png","femenino","","aasdasdasd","1","1","../archivo_expdiente/img_1.jpeg","novia","","","");
-INSERT INTO tb_expediente VALUES("2","loca","activo","../archivo_carta_venta/img_2.jpg","femenino","","Prueba","1","1","../archivo_expdiente/img_2.jpg","vaca_lechera","","","");
-INSERT INTO tb_expediente VALUES("3","La Patoja café","preñada","../archivo_carta_venta/img_3.jpg","femenino","1","Prueba modificar","1","1","../archivo_expdiente/img_3.jpg","vaca_lechera","0000-00-00","6.20","750.00");
-INSERT INTO tb_expediente VALUES("4","La Patoja","activo","../archivo_carta_venta/img_4.jpeg","femenino","0","sdfgsdfsdf","1","1","../archivo_expdiente/img_4.jpeg","vaca_lechera","0000-00-00","7.97","");
-INSERT INTO tb_expediente VALUES("5","Bicicleta","activo","../archivo_carta_venta/img_5.png","femenino","","De cabos hacia abajo","1","1","../archivo_expdiente/img_5.jpg","novia","","378.00","575.00");
-INSERT INTO tb_expediente VALUES("6","Chocolatada","activo","../archivo_carta_venta/img_6.png","femenino","1","Parches color café","1","1","../archivo_expdiente/img_6.jpg","vaca_lechera","2022-01-08","900.00","950.00");
+INSERT INTO tb_expediente VALUES("1","TRAILERA","preñada","../archivo_carta_venta/imgcarta_1.jpg","femenino","2","UNA VACA PRIETA SARDA","1","1","../archivo_expdiente/imgfoto_1.jpeg","vaca_lechera","2021-11-23","567.00","567.00");
+INSERT INTO tb_expediente VALUES("2","DUQUESA","activo","../archivo_carta_venta/imgcarta_2.jpg","femenino","2","VACA CARETA CRIOLLA","1","1","../archivo_expdiente/imgfoto_2.jpeg","vaca_lechera","2021-09-06","567.00","789.00");
+INSERT INTO tb_expediente VALUES("3","ESTRELLA","activo","../archivo_carta_venta/imgcarta_3.jpg","femenino","","TERNERITA PINTA","1","1","../archivo_expdiente/imgfoto_3.jpeg","novia","","234.00","567.00");
+INSERT INTO tb_expediente VALUES("4","ANDALON","inactivo","../archivo_carta_venta/imgcarta_4.jpg","femenino","","TERNERO CARETO","1","1","../archivo_expdiente/imgfoto_4.jpg","ternero","","234.00","456.00");
 
 
 
@@ -333,8 +287,7 @@ CREATE TABLE `tb_preñez` (
   CONSTRAINT `fk_expdt` FOREIGN KEY (`int_bovino_fk`) REFERENCES `tb_expediente` (`int_idexpediente`)
 ) ENGINE=InnoDB AUTO_INCREMENT=202156247 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
-INSERT INTO tb_preñez VALUES("1","1","2021-12-14","2021-12-22","2021-12-15");
-INSERT INTO tb_preñez VALUES("2","3","2022-01-15","2022-10-15","2022-01-08");
+INSERT INTO tb_preñez VALUES("1","1","2021-05-18","2022-02-18","2021-05-17");
 
 
 
@@ -351,15 +304,23 @@ CREATE TABLE `tb_producto` (
   `dat_fecha_vencimiento` date DEFAULT NULL,
   `int_idcategoria` int(11) DEFAULT NULL,
   `nva_estado_producto` varchar(10) DEFAULT NULL,
+  `int_existencia_minima` int(11) DEFAULT NULL,
   PRIMARY KEY (`int_idproducto`) USING BTREE,
   KEY `idcategoria` (`int_idcategoria`) USING BTREE,
   CONSTRAINT `fk_categoria` FOREIGN KEY (`int_idcategoria`) REFERENCES `tb_categoria` (`int_idcategoria`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=202152270 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=202152272 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT;
 
-INSERT INTO tb_producto VALUES("1","Botella de Crema Pura","10","2.25","3.00","../archivo_expdiente/img_1.png","Crema pura sin pausterizar","2022-01-24","1","Activo");
-INSERT INTO tb_producto VALUES("2","Botella de Leche","10","0.75","1.50","../archivo_expdiente/img_2.jpeg","Botella de Leche","2022-01-31","1","Activo");
-INSERT INTO tb_producto VALUES("3","Desparacitante","0","8.50","0.00","../archivo_expdiente/img_3.jpg","Frasco de 10 ml","2022-01-31","3","Activo");
-INSERT INTO tb_producto VALUES("4","Vitamina D","7","13.50","0.00","../archivo_expdiente/img_4.jpg","Dosis de Vitamina D de 5ml","2022-01-31","4","Activo");
+INSERT INTO tb_producto VALUES("1","Crema","30","2.50","3.50","../archivo_producto/img_1.jpg","Especial","2022-01-31","1","Activo","");
+INSERT INTO tb_producto VALUES("2","Quesillo","20","3.50","4.00","../archivo_producto/img_2.jpg","Especial","2022-01-26","1","Activo","");
+INSERT INTO tb_producto VALUES("3","Concentrado","30","23.00","","../archivo_producto/img_3.jpg","Para ganado Bovino","2022-01-31","3","Activo","6");
+INSERT INTO tb_producto VALUES("4","Agua ","4","30.00","","../archivo_producto/img_4.jpg","Agua galon","2022-01-25","3","Activo","2");
+INSERT INTO tb_producto VALUES("5","Sal","5","20.00","","../archivo_producto/img_5.jpg","Sal yodada","2022-01-26","3","Activo","3");
+INSERT INTO tb_producto VALUES("6","Gasolina","30","3.60","","../archivo_producto/img_6.jpg","Especial","2022-01-27","3","Activo","6");
+INSERT INTO tb_producto VALUES("7","Hexagan","5","30.00","","../archivo_producto/img_7.jpg","Para gripe de ganado bovino","2022-01-31","2","Activo","2");
+INSERT INTO tb_producto VALUES("8","Impulsor","6","20.00","","../archivo_producto/img_8.jpg","Para las pulgas del ganado","2022-01-26","2","Activo","2");
+INSERT INTO tb_producto VALUES("9","Botella de Leche","30","0.75","1.25","../archivo_producto/img_9.jpg","leche fresca","2022-01-31","1","Activo","");
+INSERT INTO tb_producto VALUES("10","Vacuna Aftogan","10","15.00","","../archivo_producto/img_10.jpg","Vacuna para el crecimiento del cabello","2022-01-26","2","Activo","2");
+INSERT INTO tb_producto VALUES("11","Queso","5","4.00","5.00","../archivo_producto/img_11.jpg","Queso duro especial","2022-01-31","1","activo","");
 
 
 
@@ -420,8 +381,9 @@ CREATE TABLE `tb_usuario` (
   CONSTRAINT `fk_empleado` FOREIGN KEY (`int_idempleado`) REFERENCES `tb_empleado` (`int_idempleado`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=202138342 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT;
 
-INSERT INTO tb_usuario VALUES("1","kathy","$2y$10$aFc8RVPPBZZP.XuRdc0g..iaofO3OG0KjKIWy6b6HcJizaYyicyqK","1","../img/usuarios/user_20224310431500000015_1.jpg");
+INSERT INTO tb_usuario VALUES("1","kathy","$2y$10$wC1niewN.y/x65ShFYlbdebKCRtuQrhv.dOHYAJq.gQm7PiwEYCzG","1","../img/usuarios/user_20224310431500000015_1.jpg");
 INSERT INTO tb_usuario VALUES("2","fabri","$2y$10$iTum7jYvLCRV9j5MVlbhZ.p44KBF1tO3/JA.NFu5/.LCYrpmn.Ava","2","../img/usuarios/user_20214127414700000047_2.jpeg");
+INSERT INTO tb_usuario VALUES("3","hernan","$2y$10$rJ3nVoGeb/Xy6Ij5JkTj5eVcKcyNwYZUaty3YimeCid9yjedWq0qK","3","../img/usuarios/user_20220518051900000019_3.jpg");
 
 
 
@@ -444,47 +406,6 @@ CREATE TABLE `tb_venta` (
   CONSTRAINT `tb_empleado_fk` FOREIGN KEY (`int_idempleado`) REFERENCES `tb_empleado` (`int_idempleado`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT;
 
-INSERT INTO tb_venta VALUES("1","1.50","","2022-01-05 10:08:40","2022-01-05 22:11:50","Ticket","1","1","1");
-INSERT INTO tb_venta VALUES("2","1.50","","2022-01-07 04:17:48","2022-01-07 16:43:17","Ticket","2","1","2");
-INSERT INTO tb_venta VALUES("3","1.50","","2022-01-07 04:17:48","2022-01-07 16:43:34","Ticket","2","1","3");
-INSERT INTO tb_venta VALUES("4","1.50","","2022-01-07 04:45:27","2022-01-07 16:46:10","Ticket","2","1","4");
-INSERT INTO tb_venta VALUES("5","1.50","","2022-01-07 08:42:09","2022-01-07 20:42:28","Ticket","2","1","5");
-INSERT INTO tb_venta VALUES("6","1.50","","2022-01-07 09:13:46","2022-01-07 21:13:59","Ticket","2","1","6");
-INSERT INTO tb_venta VALUES("7","1.50","","2022-01-07 09:51:49","2022-01-07 21:52:10","Ticket","2","1","7");
-INSERT INTO tb_venta VALUES("8","1.50","","2022-01-07 09:52:55","2022-01-07 21:53:05","Ticket","2","1","8");
-INSERT INTO tb_venta VALUES("9","1.50","","2022-01-07 09:54:26","2022-01-07 21:54:43","Factura","2","1","9");
-INSERT INTO tb_venta VALUES("10","375.00","0.00","2022-01-09 12:31:21","2022-01-09 00:31:57","Ticket","2","1","10");
-INSERT INTO tb_venta VALUES("11","375.00","0.00","2022-01-09 12:32:26","2022-01-09 00:32:50","Ticket","2","1","11");
-INSERT INTO tb_venta VALUES("12","375.00","0.00","2022-01-09 12:34:19","2022-01-09 00:34:35","Ticket","2","1","12");
-INSERT INTO tb_venta VALUES("13","375.00","0.00","2022-01-09 12:37:28","2022-01-09 00:37:59","Ticket","2","1","13");
-INSERT INTO tb_venta VALUES("14","850.00","0.00","2022-01-09 02:31:29","2022-01-09 14:32:34","Ticket","2","1","14");
-INSERT INTO tb_venta VALUES("15","0.00","0.00","2022-01-09 02:32:58","2022-01-09 14:33:19","Ticket","2","1","15");
-INSERT INTO tb_venta VALUES("16","375.00","0.00","2022-01-09 02:32:58","2022-01-09 14:33:29","Ticket","2","1","15");
-INSERT INTO tb_venta VALUES("17","1.50","0.00","2022-01-09 02:35:38","2022-01-09 14:35:56","Ticket","2","1","17");
-INSERT INTO tb_venta VALUES("18","1.50","0.00","2022-01-09 02:37:00","2022-01-09 14:37:13","Factura","2","1","18");
-INSERT INTO tb_venta VALUES("19","550.00","0.00","2022-01-09 02:37:51","2022-01-09 14:38:13","Factura","2","1","19");
-INSERT INTO tb_venta VALUES("20","444.00","0.00","2022-01-09 02:43:29","2022-01-09 14:43:45","Ticket","2","1","20");
-INSERT INTO tb_venta VALUES("21","1.50","0.00","2022-01-09 03:06:17","2022-01-09 15:06:34","Factura","2","1","21");
-INSERT INTO tb_venta VALUES("22","1.50","0.00","2022-01-09 03:06:47","2022-01-09 15:08:26","Factura","2","1","22");
-INSERT INTO tb_venta VALUES("23","1.50","0.00","2022-01-09 03:10:58","2022-01-09 15:11:07","Ticket","2","1","23");
-INSERT INTO tb_venta VALUES("24","10.17","0.00","2022-01-09 10:57:55","2022-01-09 23:00:03","Crédito Fiscal","2","1","24");
-INSERT INTO tb_venta VALUES("25","3.39","0.39","2022-01-09 11:04:53","2022-01-09 23:05:36","Crédito Fiscal","2","1","25");
-INSERT INTO tb_venta VALUES("26","1.70","0.20","2022-01-09 11:08:44","2022-01-09 23:09:05","Crédito Fiscal","2","1","26");
-INSERT INTO tb_venta VALUES("27","3.00","0.00","2022-01-09 11:12:37","2022-01-09 23:12:51","Factura","2","1","27");
-INSERT INTO tb_venta VALUES("28","1.70","0.20","2022-01-09 11:17:51","2022-01-09 23:20:20","Crédito Fiscal","2","1","28");
-INSERT INTO tb_venta VALUES("29","1.70","0.20","2022-01-10 10:53:38","2022-01-10 11:02:32","Crédito Fiscal","2","1","29");
-INSERT INTO tb_venta VALUES("30","1.50","0.00","2022-01-10 11:09:30","2022-01-10 11:09:49","Factura","2","1","30");
-INSERT INTO tb_venta VALUES("31","3.00","0.00","2022-01-10 11:09:30","2022-01-10 11:18:15","Factura","2","1","30");
-INSERT INTO tb_venta VALUES("32","3.00","0.00","2022-01-10 11:28:57","2022-01-10 11:31:06","Factura","2","1","32");
-INSERT INTO tb_venta VALUES("33","10.17","1.17","2022-01-10 11:28:57","2022-01-10 11:31:35","Crédito Fiscal","2","1","32");
-INSERT INTO tb_venta VALUES("34","6.78","0.78","2022-01-10 11:33:38","2022-01-10 11:34:05","Crédito Fiscal","2","1","34");
-INSERT INTO tb_venta VALUES("35","3.00","0.00","2022-01-10 02:56:03","2022-01-10 15:15:39","Factura","2","2","35");
-INSERT INTO tb_venta VALUES("36","1500.00","0.00","2022-01-10 03:17:07","2022-01-10 15:17:57","Factura","2","1","36");
-INSERT INTO tb_venta VALUES("37","18.08","0.00","2022-01-10 10:53:17","2022-01-10 22:55:28","Crédito Fiscal","2","1","37");
-INSERT INTO tb_venta VALUES("38","16.00","0.00","2022-01-10 11:08:09","2022-01-10 23:08:30","Factura","2","1","38");
-INSERT INTO tb_venta VALUES("39","376.00","0.00","2022-01-10 11:09:24","2022-01-10 23:09:40","Ticket","2","1","39");
-INSERT INTO tb_venta VALUES("40","4.50","0.00","2022-01-10 11:26:11","2022-01-10 23:27:33","Ticket","2","1","40");
-INSERT INTO tb_venta VALUES("41","1.50","0.00","2022-01-10 11:29:51","2022-01-10 23:30:05","Ticket","2","1","41");
 
 
 

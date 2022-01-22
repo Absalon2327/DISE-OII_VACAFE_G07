@@ -106,13 +106,12 @@ $(function() {
                     win.focus();
                     console.log("NO entra");
                 } else {
-                    console.log("termino? ", termino);
-                    if (termino == "si") {
+                 
                         Toast1.fire({
                             icon: 'info',
                             title: 'No hay productos registrados con esta categoria!'
                         });
-                    }
+                   
                 }
                 clearTimeout(timer);
             }, 3500); + 6

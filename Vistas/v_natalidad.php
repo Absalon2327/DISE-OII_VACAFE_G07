@@ -95,7 +95,7 @@
                                         <?php
                                         $usuario = 'root';
                                         $password = '';
-                                        $db = new PDO('mysql:host=localhost;dbname=db_finca_c', $usuario, $password);
+                                        $db = new PDO('mysql:host=localhost;dbname=db_finca', $usuario, $password);
                                         ?>
                                         <div class="form-group">
 

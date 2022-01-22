@@ -11,7 +11,7 @@
  Target Server Version : 100421
  File Encoding         : 65001
 
- Date: 16/01/2022 23:15:10
+ Date: 21/01/2022 10:56:18
 */
 
 SET NAMES utf8mb4;
@@ -34,6 +34,8 @@ CREATE TABLE `tb_baja`  (
 -- ----------------------------
 -- Records of tb_baja
 -- ----------------------------
+INSERT INTO `tb_baja` VALUES (1, '2022-01-18', 'MUERTE NATURAL', 4);
+INSERT INTO `tb_baja` VALUES (2, '2022-01-18', 'MUERTE NATURAL', 5);
 
 -- ----------------------------
 -- Table structure for tb_botellas
@@ -53,6 +55,8 @@ CREATE TABLE `tb_botellas`  (
 -- ----------------------------
 -- Records of tb_botellas
 -- ----------------------------
+INSERT INTO `tb_botellas` VALUES (1, '2022-01-20', 10, 1, 3.00);
+INSERT INTO `tb_botellas` VALUES (2, '2022-01-31', 10, 2, 5.00);
 
 -- ----------------------------
 -- Table structure for tb_cargo
@@ -85,9 +89,8 @@ CREATE TABLE `tb_categoria`  (
 -- Records of tb_categoria
 -- ----------------------------
 INSERT INTO `tb_categoria` VALUES (1, 'DERIVADOS DE LECHE');
-INSERT INTO `tb_categoria` VALUES (2, 'BOVINOS');
-INSERT INTO `tb_categoria` VALUES (3, 'MEDICAMENTOS');
-INSERT INTO `tb_categoria` VALUES (4, 'INSUMOS');
+INSERT INTO `tb_categoria` VALUES (2, 'MEDICAMENTOS');
+INSERT INTO `tb_categoria` VALUES (3, 'INSUMOS');
 
 -- ----------------------------
 -- Table structure for tb_clientes
@@ -145,6 +148,8 @@ INSERT INTO `tb_compra` VALUES (1, 'Compra de Muestra', 1.25, 0.00, '2022-01-05 
 INSERT INTO `tb_compra` VALUES (2, 'Nueva Compra de Medicamentos', 48.04, 5.53, '2022-01-11 01:16:33', '2022-01-07 01:20:15', 'Crédito Fiscal', '000001', 'n/a', 1, 2);
 INSERT INTO `tb_compra` VALUES (3, 'Nueva Compra de Bovinos', 16.01, 1.84, '2022-01-11 01:47:35', '2022-01-11 01:49:48', 'Crédito Fiscal', '000002', 'n/a', 3, 2);
 INSERT INTO `tb_compra` VALUES (4, 'Nueva Compra para reporte', 2.25, 0.00, '2022-01-12 12:05:11', '2022-01-12 00:06:25', 'Factura', '000003', 'n/a', 1, 2);
+INSERT INTO `tb_compra` VALUES (5, 'Nueva Compra de Insumos', 61.00, 0.00, '2022-01-08 06:00:41', '2022-01-18 08:39:31', 'Factura', '256987', 'n/a', 1, 3);
+INSERT INTO `tb_compra` VALUES (6, 'Nueva compra de bovinos demostración', 300.00, 0.00, '2022-01-07 08:00:16', '2022-01-18 08:45:55', 'Certificado de Carta de Venta', '369874', 'n/a', 4, 3);
 
 -- ----------------------------
 -- Table structure for tb_control_vacunas
@@ -166,10 +171,11 @@ CREATE TABLE `tb_control_vacunas`  (
 -- ----------------------------
 -- Records of tb_control_vacunas
 -- ----------------------------
-INSERT INTO `tb_control_vacunas` VALUES (1, '2021-12-11', 1, 1, NULL);
-INSERT INTO `tb_control_vacunas` VALUES (2, '0000-00-00', 1, 1, NULL);
-INSERT INTO `tb_control_vacunas` VALUES (3, '2022-01-10', 3, 3, '2ml');
-INSERT INTO `tb_control_vacunas` VALUES (4, '2022-01-09', 3, 2, '2ml');
+INSERT INTO `tb_control_vacunas` VALUES (1, '2022-01-01', 7, 3, '1ML');
+INSERT INTO `tb_control_vacunas` VALUES (2, '2022-01-10', 8, 2, '2ML');
+INSERT INTO `tb_control_vacunas` VALUES (3, '2022-01-16', 7, 1, '1ML');
+INSERT INTO `tb_control_vacunas` VALUES (4, '2022-01-10', 10, 2, '1ML');
+INSERT INTO `tb_control_vacunas` VALUES (5, '2022-01-18', 7, 5, '2ML');
 
 -- ----------------------------
 -- Table structure for tb_detalle_compra
@@ -198,8 +204,7 @@ CREATE TABLE `tb_detalle_compra`  (
 INSERT INTO `tb_detalle_compra` VALUES (1, 1, 1.25, 1.25, 1, 1, NULL);
 INSERT INTO `tb_detalle_compra` VALUES (2, 3, 6.20, 18.60, 3, 2, NULL);
 INSERT INTO `tb_detalle_compra` VALUES (3, 3, 7.97, 23.91, 4, 2, NULL);
-INSERT INTO `tb_detalle_compra` VALUES (4, 1, 6.20, 6.20, NULL, 3, 3);
-INSERT INTO `tb_detalle_compra` VALUES (5, 1, 7.97, 7.97, NULL, 3, 4);
+INSERT INTO `tb_detalle_compra` VALUES (5, 3, 7.00, 21.00, 5, 5, NULL);
 INSERT INTO `tb_detalle_compra` VALUES (6, 3, 0.75, 2.25, 3, 4, NULL);
 
 -- ----------------------------
@@ -226,50 +231,7 @@ CREATE TABLE `tb_detalle_venta`  (
 -- ----------------------------
 -- Records of tb_detalle_venta
 -- ----------------------------
-INSERT INTO `tb_detalle_venta` VALUES (1, 1, 1.50, 1.50, 2, NULL, 1);
-INSERT INTO `tb_detalle_venta` VALUES (2, 1, 1.50, 1.50, 2, NULL, 2);
-INSERT INTO `tb_detalle_venta` VALUES (3, 1, 1.50, 1.50, 2, NULL, 3);
-INSERT INTO `tb_detalle_venta` VALUES (4, 1, 1.50, 1.50, 2, NULL, 4);
-INSERT INTO `tb_detalle_venta` VALUES (5, 1, 1.50, 1.50, 2, NULL, 5);
-INSERT INTO `tb_detalle_venta` VALUES (6, 1, 1.50, 1.50, 2, NULL, 6);
-INSERT INTO `tb_detalle_venta` VALUES (7, 1, 1.50, 1.50, 2, NULL, 7);
-INSERT INTO `tb_detalle_venta` VALUES (8, 1, 1.50, 1.50, 2, NULL, 8);
-INSERT INTO `tb_detalle_venta` VALUES (9, 1, 1.50, 1.50, 2, NULL, 9);
-INSERT INTO `tb_detalle_venta` VALUES (10, 1, 375.00, 375.00, NULL, 2, 10);
-INSERT INTO `tb_detalle_venta` VALUES (11, 1, 375.00, 375.00, NULL, 1, 11);
-INSERT INTO `tb_detalle_venta` VALUES (12, 1, 375.00, 375.00, NULL, 2, 12);
-INSERT INTO `tb_detalle_venta` VALUES (13, 1, 375.00, 375.00, NULL, 1, 13);
-INSERT INTO `tb_detalle_venta` VALUES (14, 1, 850.00, 850.00, NULL, 1, 14);
-INSERT INTO `tb_detalle_venta` VALUES (15, 1, 0.00, 0.00, NULL, 2, 15);
-INSERT INTO `tb_detalle_venta` VALUES (16, 1, 375.00, 375.00, NULL, 2, 16);
-INSERT INTO `tb_detalle_venta` VALUES (17, 1, 1.50, 1.50, 2, NULL, 17);
-INSERT INTO `tb_detalle_venta` VALUES (18, 1, 1.50, 1.50, 2, NULL, 18);
-INSERT INTO `tb_detalle_venta` VALUES (19, 1, 550.00, 550.00, NULL, 2, 19);
-INSERT INTO `tb_detalle_venta` VALUES (20, 1, 444.00, 444.00, NULL, 1, 20);
-INSERT INTO `tb_detalle_venta` VALUES (21, 1, 1.50, 1.50, 2, NULL, 21);
-INSERT INTO `tb_detalle_venta` VALUES (22, 1, 1.50, 1.50, 2, NULL, 22);
-INSERT INTO `tb_detalle_venta` VALUES (23, 1, 1.50, 1.50, 2, NULL, 23);
-INSERT INTO `tb_detalle_venta` VALUES (24, 2, 3.00, 6.00, 1, NULL, 24);
-INSERT INTO `tb_detalle_venta` VALUES (25, 2, 1.50, 3.00, 2, NULL, 25);
-INSERT INTO `tb_detalle_venta` VALUES (26, 1, 3.00, 3.00, 1, NULL, 26);
-INSERT INTO `tb_detalle_venta` VALUES (27, 1, 1.50, 1.50, 2, NULL, 27);
-INSERT INTO `tb_detalle_venta` VALUES (28, 1, 3.00, 3.00, 1, NULL, 28);
-INSERT INTO `tb_detalle_venta` VALUES (29, 1, 1.50, 1.50, 2, NULL, 29);
-INSERT INTO `tb_detalle_venta` VALUES (30, 1, 1.50, 1.50, 2, NULL, 29);
-INSERT INTO `tb_detalle_venta` VALUES (31, 1, 1.50, 1.50, 2, NULL, 30);
-INSERT INTO `tb_detalle_venta` VALUES (32, 1, 3.00, 3.00, 1, NULL, 31);
-INSERT INTO `tb_detalle_venta` VALUES (33, 1, 3.00, 3.00, 1, NULL, 32);
-INSERT INTO `tb_detalle_venta` VALUES (34, 3, 3.00, 9.00, 1, NULL, 33);
-INSERT INTO `tb_detalle_venta` VALUES (35, 4, 1.50, 6.00, 2, NULL, 34);
-INSERT INTO `tb_detalle_venta` VALUES (36, 1, 3.00, 3.00, 1, NULL, 35);
-INSERT INTO `tb_detalle_venta` VALUES (37, 1, 1500.00, 1500.00, NULL, 4, 36);
-INSERT INTO `tb_detalle_venta` VALUES (38, 1, 9.00, 9.00, NULL, 1, 37);
-INSERT INTO `tb_detalle_venta` VALUES (39, 1, 7.00, 7.00, NULL, 3, 37);
-INSERT INTO `tb_detalle_venta` VALUES (40, 1, 7.00, 7.00, NULL, 4, 38);
-INSERT INTO `tb_detalle_venta` VALUES (41, 1, 9.00, 9.00, NULL, 2, 38);
-INSERT INTO `tb_detalle_venta` VALUES (42, 1, 376.00, 376.00, NULL, 1, 39);
-INSERT INTO `tb_detalle_venta` VALUES (43, 3, 1.50, 4.50, 1, NULL, 40);
-INSERT INTO `tb_detalle_venta` VALUES (44, 1, 1.50, 1.50, 2, NULL, 41);
+INSERT INTO `tb_detalle_venta` VALUES (1, 30, 1.11, 33.30, 9, NULL, 1);
 
 -- ----------------------------
 -- Table structure for tb_empleado
@@ -298,6 +260,7 @@ CREATE TABLE `tb_empleado`  (
 -- ----------------------------
 INSERT INTO `tb_empleado` VALUES (1, '98654578-9', 'Katherine Lorena', 'Peña Sigüenza', 'Cantón las Flores, municipio de Cojutepeque, departamento de Cuscatlán', '1998-03-26', 350, '7856-5139', 'cm16057@ues.edu.sv', 1, 'Activo', 'Femenino');
 INSERT INTO `tb_empleado` VALUES (2, '12345678-9', 'Fabricio', 'Corvera', 'Santo Domingo, San Vicente', '1997-09-27', 350, '6300-3455', 'fabricio@gmail.com', 1, 'Activo', 'Masculino');
+INSERT INTO `tb_empleado` VALUES (3, '98756321-3', 'José Hernán', 'Barahona Ayala', 'Colonia las Flores, Estado Municipal, San Vicente', '1997-12-11', 3000, '7825-9865', 'fabricio.corvera.9@gmail.com', 1, 'Activo', 'Masculino');
 
 -- ----------------------------
 -- Table structure for tb_expediente
@@ -328,12 +291,36 @@ CREATE TABLE `tb_expediente`  (
 -- ----------------------------
 -- Records of tb_expediente
 -- ----------------------------
-INSERT INTO `tb_expediente` VALUES (1, 'Antonia', 'vendido', '../archivo_carta_venta/img_1.png', 'femenino', NULL, 'aasdasdasd', 1, 1, '../archivo_expdiente/img_1.jpeg', 'novia', NULL, NULL, NULL);
-INSERT INTO `tb_expediente` VALUES (2, 'loca', 'activo', '../archivo_carta_venta/img_2.jpg', 'femenino', NULL, 'Prueba', 1, 1, '../archivo_expdiente/img_2.jpg', 'vaca_lechera', NULL, NULL, NULL);
-INSERT INTO `tb_expediente` VALUES (3, 'La Patoja café', 'preñada', '../archivo_carta_venta/img_3.jpg', 'femenino', 1, 'Prueba modificar', 1, 1, '../archivo_expdiente/img_3.jpg', 'vaca_lechera', '0000-00-00', 6.20, 750.00);
-INSERT INTO `tb_expediente` VALUES (4, 'La Patoja', 'activo', '../archivo_carta_venta/img_4.jpeg', 'femenino', 0, 'sdfgsdfsdf', 1, 1, '../archivo_expdiente/img_4.jpeg', 'vaca_lechera', '0000-00-00', 7.97, NULL);
-INSERT INTO `tb_expediente` VALUES (5, 'Bicicleta', 'activo', '../archivo_carta_venta/img_5.png', 'femenino', NULL, 'De cabos hacia abajo', 1, 1, '../archivo_expdiente/img_5.jpg', 'novia', NULL, 378.00, 575.00);
-INSERT INTO `tb_expediente` VALUES (6, 'Chocolatada', 'activo', '../archivo_carta_venta/img_6.png', 'femenino', 1, 'Parches color café', 1, 1, '../archivo_expdiente/img_6.jpg', 'vaca_lechera', '2022-01-08', 900.00, 950.00);
+INSERT INTO `tb_expediente` VALUES (1, 'TRAILERA', 'preñada', '../archivo_carta_venta/imgcarta_1.jpg', 'femenino', 2, 'UNA VACA PRIETA SARDA', 1, 1, '../archivo_expdiente/imgfoto_1.jpeg', 'vaca_lechera', '2021-11-23', 567.00, 567.00);
+INSERT INTO `tb_expediente` VALUES (2, 'DUQUESA', 'activo', '../archivo_carta_venta/imgcarta_2.jpg', 'femenino', 2, 'VACA CARETA CRIOLLA', 1, 1, '../archivo_expdiente/imgfoto_2.jpeg', 'vaca_lechera', '2021-09-06', 567.00, 789.00);
+INSERT INTO `tb_expediente` VALUES (3, 'ESTRELLA', 'activo', '../archivo_carta_venta/imgcarta_3.jpg', 'femenino', NULL, 'TERNERITA PINTA', 1, 1, '../archivo_expdiente/imgfoto_3.jpeg', 'novia', NULL, 234.00, 567.00);
+INSERT INTO `tb_expediente` VALUES (4, 'ANDALON', 'inactivo', '../archivo_carta_venta/imgcarta_4.jpg', 'femenino', NULL, 'TERNERO CARETO', 1, 1, '../archivo_expdiente/imgfoto_4.jpg', 'ternero', NULL, 234.00, 456.00);
+INSERT INTO `tb_expediente` VALUES (5, 'PATOJA', 'inactivo', '../archivo_carta_venta/imgcarta_5.jpg', 'femenino', 2, 'UNA VACA PINTA ', 1, 1, '../archivo_expdiente/imgfoto_5.jpeg', 'vaca_lechera', '2022-01-18', 456.00, 678.00);
+INSERT INTO `tb_expediente` VALUES (6, 'COLORINA', 'activo', '../archivo_carta_venta/imgcarta_6.jpg', 'femenino', NULL, 'TERNERITO PARCHADO', 1, 1, '../archivo_expdiente/imgfoto_6.jpg', 'ternero', NULL, 456.00, 678.00);
+INSERT INTO `tb_expediente` VALUES (7, 'BICICLETA', 'activo', '../archivo_carta_venta/imgcarta_7.jpg', 'femenino', 1, 'De cabos hacia abajo', 1, 1, '../archivo_expdiente/imgfoto_7.jpeg', 'vaca_lechera', '2022-01-08', 300.00, 500.00);
+
+-- ----------------------------
+-- Table structure for tb_gastos
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_gastos`;
+CREATE TABLE `tb_gastos`  (
+  `int_idgastos` int NOT NULL AUTO_INCREMENT,
+  `dat_fecha_gasto` datetime NULL DEFAULT NULL,
+  `int_idproducto` int NULL DEFAULT NULL,
+  `int_cantidad_gastar` int NULL DEFAULT NULL,
+  `nva_estado_gasto` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`int_idgastos`) USING BTREE,
+  INDEX `fk_tb_productos`(`int_idproducto`) USING BTREE,
+  CONSTRAINT `fk_tb_productos` FOREIGN KEY (`int_idproducto`) REFERENCES `tb_producto` (`int_idproducto`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_gastos
+-- ----------------------------
+INSERT INTO `tb_gastos` VALUES (1, '2022-01-05 06:00:30', 3, 5, 'Activo');
+INSERT INTO `tb_gastos` VALUES (2, '2022-01-16 06:00:30', 3, 3, 'Activo');
+INSERT INTO `tb_gastos` VALUES (3, '2022-01-17 12:30:19', 3, 3, 'Activo');
+INSERT INTO `tb_gastos` VALUES (4, '2022-01-17 10:02:03', 2, 5, 'Activo');
 
 -- ----------------------------
 -- Table structure for tb_natalidad
@@ -354,6 +341,7 @@ CREATE TABLE `tb_natalidad`  (
 -- ----------------------------
 -- Records of tb_natalidad
 -- ----------------------------
+INSERT INTO `tb_natalidad` VALUES (1, '2022-01-18', 5, 3);
 
 -- ----------------------------
 -- Table structure for tb_preñez
@@ -373,8 +361,8 @@ CREATE TABLE `tb_preñez`  (
 -- ----------------------------
 -- Records of tb_preñez
 -- ----------------------------
-INSERT INTO `tb_preñez` VALUES (1, 1, '2021-12-14', '2021-12-22', '2021-12-15');
-INSERT INTO `tb_preñez` VALUES (2, 3, '2022-01-15', '2022-10-15', '2022-01-08');
+INSERT INTO `tb_preñez` VALUES (1, 1, '2021-05-18', '2022-02-18', '2021-05-17');
+INSERT INTO `tb_preñez` VALUES (2, 5, '2021-04-18', '2022-01-18', '2021-04-17');
 
 -- ----------------------------
 -- Table structure for tb_producto
@@ -391,18 +379,26 @@ CREATE TABLE `tb_producto`  (
   `dat_fecha_vencimiento` date NULL DEFAULT NULL,
   `int_idcategoria` int NULL DEFAULT NULL,
   `nva_estado_producto` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `int_existencia_minima` int NULL DEFAULT NULL,
   PRIMARY KEY (`int_idproducto`) USING BTREE,
   INDEX `idcategoria`(`int_idcategoria`) USING BTREE,
   CONSTRAINT `fk_categoria` FOREIGN KEY (`int_idcategoria`) REFERENCES `tb_categoria` (`int_idcategoria`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 202152270 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 202152272 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tb_producto
 -- ----------------------------
-INSERT INTO `tb_producto` VALUES (1, 'Botella de Crema Pura', 10, 2.25, 3.00, '../archivo_expdiente/img_1.png', 'Crema pura sin pausterizar', '2022-01-24', 1, 'Activo');
-INSERT INTO `tb_producto` VALUES (2, 'Botella de Leche', 10, 0.75, 1.50, '../archivo_expdiente/img_2.jpeg', 'Botella de Leche', '2022-01-31', 1, 'Activo');
-INSERT INTO `tb_producto` VALUES (3, 'Desparacitante', 9, 8.50, 0.00, '../archivo_expdiente/img_3.jpg', 'Frasco de 10 ml', '2022-01-31', 3, 'Activo');
-INSERT INTO `tb_producto` VALUES (4, 'Vitamina D', 7, 13.50, 0.00, '../archivo_expdiente/img_4.jpg', 'Dosis de Vitamina D de 5ml', '2022-01-31', 4, 'Activo');
+INSERT INTO `tb_producto` VALUES (1, 'Crema', 30, 2.50, 3.50, '../archivo_producto/img_1.jpg', 'Especial', '2022-01-31', 1, 'Activo', NULL);
+INSERT INTO `tb_producto` VALUES (2, 'Quesillo', 20, 3.50, 4.00, '../archivo_producto/img_2.jpg', 'Especial', '2022-01-26', 1, 'Activo', NULL);
+INSERT INTO `tb_producto` VALUES (3, 'Concentrado', 32, 23.00, NULL, '../archivo_producto/img_3.jpg', 'Para ganado Bovino', '2022-01-31', 3, 'Activo', 6);
+INSERT INTO `tb_producto` VALUES (4, 'Agua ', 4, 30.00, NULL, '../archivo_producto/img_4.jpg', 'Agua galon', '2022-01-25', 3, 'Activo', 2);
+INSERT INTO `tb_producto` VALUES (5, 'Sal', 8, 20.00, NULL, '../archivo_producto/img_5.jpg', 'Sal yodada', '2022-01-26', 3, 'Activo', 3);
+INSERT INTO `tb_producto` VALUES (6, 'Gasolina', 30, 3.60, NULL, '../archivo_producto/img_6.jpg', 'Especial', '2022-01-27', 3, 'Activo', 6);
+INSERT INTO `tb_producto` VALUES (7, 'Hexagan', 5, 30.00, NULL, '../archivo_producto/img_7.jpg', 'Para gripe de ganado bovino', '2022-01-31', 2, 'Activo', 2);
+INSERT INTO `tb_producto` VALUES (8, 'Impulsor', 6, 20.00, NULL, '../archivo_producto/img_8.jpg', 'Para las pulgas del ganado', '2022-01-26', 2, 'Activo', 2);
+INSERT INTO `tb_producto` VALUES (9, 'Botella de Leche', 0, 0.75, 1.25, '../archivo_producto/img_9.jpg', 'leche fresca', '2022-01-31', 1, 'Activo', NULL);
+INSERT INTO `tb_producto` VALUES (10, 'Vacuna Aftogan', 10, 15.00, NULL, '../archivo_producto/img_10.jpg', 'Vacuna para el crecimiento del cabello', '2022-01-26', 2, 'Activo', 2);
+INSERT INTO `tb_producto` VALUES (11, 'Queso', 5, 4.00, 5.00, '../archivo_producto/img_11.jpg', 'Queso duro especial', '2022-01-31', 1, 'activo', NULL);
 
 -- ----------------------------
 -- Table structure for tb_propietario
@@ -475,8 +471,9 @@ CREATE TABLE `tb_usuario`  (
 -- ----------------------------
 -- Records of tb_usuario
 -- ----------------------------
-INSERT INTO `tb_usuario` VALUES (1, 'kathy', '$2y$10$aFc8RVPPBZZP.XuRdc0g..iaofO3OG0KjKIWy6b6HcJizaYyicyqK', 1, '../img/usuarios/user_20224310431500000015_1.jpg');
+INSERT INTO `tb_usuario` VALUES (1, 'kathy', '$2y$10$wC1niewN.y/x65ShFYlbdebKCRtuQrhv.dOHYAJq.gQm7PiwEYCzG', 1, '../img/usuarios/user_20224310431500000015_1.jpg');
 INSERT INTO `tb_usuario` VALUES (2, 'fabri', '$2y$10$iTum7jYvLCRV9j5MVlbhZ.p44KBF1tO3/JA.NFu5/.LCYrpmn.Ava', 2, '../img/usuarios/user_20214127414700000047_2.jpeg');
+INSERT INTO `tb_usuario` VALUES (3, 'hernan', '$2y$10$rJ3nVoGeb/Xy6Ij5JkTj5eVcKcyNwYZUaty3YimeCid9yjedWq0qK', 3, '../img/usuarios/user_20220518051900000019_3.jpg');
 
 -- ----------------------------
 -- Table structure for tb_venta
@@ -502,46 +499,6 @@ CREATE TABLE `tb_venta`  (
 -- ----------------------------
 -- Records of tb_venta
 -- ----------------------------
-INSERT INTO `tb_venta` VALUES (1, 1.50, NULL, '2022-01-05 10:08:40', '2022-01-05 22:11:50', 'Ticket', 1, 1, 1);
-INSERT INTO `tb_venta` VALUES (2, 1.50, NULL, '2022-01-07 04:17:48', '2022-01-07 16:43:17', 'Ticket', 2, 1, 2);
-INSERT INTO `tb_venta` VALUES (3, 1.50, NULL, '2022-01-07 04:17:48', '2022-01-07 16:43:34', 'Ticket', 2, 1, 3);
-INSERT INTO `tb_venta` VALUES (4, 1.50, NULL, '2022-01-07 04:45:27', '2022-01-07 16:46:10', 'Ticket', 2, 1, 4);
-INSERT INTO `tb_venta` VALUES (5, 1.50, NULL, '2022-01-07 08:42:09', '2022-01-07 20:42:28', 'Ticket', 2, 1, 5);
-INSERT INTO `tb_venta` VALUES (6, 1.50, NULL, '2022-01-07 09:13:46', '2022-01-07 21:13:59', 'Ticket', 2, 1, 6);
-INSERT INTO `tb_venta` VALUES (7, 1.50, NULL, '2022-01-07 09:51:49', '2022-01-07 21:52:10', 'Ticket', 2, 1, 7);
-INSERT INTO `tb_venta` VALUES (8, 1.50, NULL, '2022-01-07 09:52:55', '2022-01-07 21:53:05', 'Ticket', 2, 1, 8);
-INSERT INTO `tb_venta` VALUES (9, 1.50, NULL, '2022-01-07 09:54:26', '2022-01-07 21:54:43', 'Factura', 2, 1, 9);
-INSERT INTO `tb_venta` VALUES (10, 375.00, 0.00, '2022-01-09 12:31:21', '2022-01-09 00:31:57', 'Ticket', 2, 1, 10);
-INSERT INTO `tb_venta` VALUES (11, 375.00, 0.00, '2022-01-09 12:32:26', '2022-01-09 00:32:50', 'Ticket', 2, 1, 11);
-INSERT INTO `tb_venta` VALUES (12, 375.00, 0.00, '2022-01-09 12:34:19', '2022-01-09 00:34:35', 'Ticket', 2, 1, 12);
-INSERT INTO `tb_venta` VALUES (13, 375.00, 0.00, '2022-01-09 12:37:28', '2022-01-09 00:37:59', 'Ticket', 2, 1, 13);
-INSERT INTO `tb_venta` VALUES (14, 850.00, 0.00, '2022-01-09 02:31:29', '2022-01-09 14:32:34', 'Ticket', 2, 1, 14);
-INSERT INTO `tb_venta` VALUES (15, 0.00, 0.00, '2022-01-09 02:32:58', '2022-01-09 14:33:19', 'Ticket', 2, 1, 15);
-INSERT INTO `tb_venta` VALUES (16, 375.00, 0.00, '2022-01-09 02:32:58', '2022-01-09 14:33:29', 'Ticket', 2, 1, 15);
-INSERT INTO `tb_venta` VALUES (17, 1.50, 0.00, '2022-01-09 02:35:38', '2022-01-09 14:35:56', 'Ticket', 2, 1, 17);
-INSERT INTO `tb_venta` VALUES (18, 1.50, 0.00, '2022-01-09 02:37:00', '2022-01-09 14:37:13', 'Factura', 2, 1, 18);
-INSERT INTO `tb_venta` VALUES (19, 550.00, 0.00, '2022-01-09 02:37:51', '2022-01-09 14:38:13', 'Factura', 2, 1, 19);
-INSERT INTO `tb_venta` VALUES (20, 444.00, 0.00, '2022-01-09 02:43:29', '2022-01-09 14:43:45', 'Ticket', 2, 1, 20);
-INSERT INTO `tb_venta` VALUES (21, 1.50, 0.00, '2022-01-09 03:06:17', '2022-01-09 15:06:34', 'Factura', 2, 1, 21);
-INSERT INTO `tb_venta` VALUES (22, 1.50, 0.00, '2022-01-09 03:06:47', '2022-01-09 15:08:26', 'Factura', 2, 1, 22);
-INSERT INTO `tb_venta` VALUES (23, 1.50, 0.00, '2022-01-09 03:10:58', '2022-01-09 15:11:07', 'Ticket', 2, 1, 23);
-INSERT INTO `tb_venta` VALUES (24, 10.17, 0.00, '2022-01-09 10:57:55', '2022-01-09 23:00:03', 'Crédito Fiscal', 2, 1, 24);
-INSERT INTO `tb_venta` VALUES (25, 3.39, 0.39, '2022-01-09 11:04:53', '2022-01-09 23:05:36', 'Crédito Fiscal', 2, 1, 25);
-INSERT INTO `tb_venta` VALUES (26, 1.70, 0.20, '2022-01-09 11:08:44', '2022-01-09 23:09:05', 'Crédito Fiscal', 2, 1, 26);
-INSERT INTO `tb_venta` VALUES (27, 3.00, 0.00, '2022-01-09 11:12:37', '2022-01-09 23:12:51', 'Factura', 2, 1, 27);
-INSERT INTO `tb_venta` VALUES (28, 1.70, 0.20, '2022-01-09 11:17:51', '2022-01-09 23:20:20', 'Crédito Fiscal', 2, 1, 28);
-INSERT INTO `tb_venta` VALUES (29, 1.70, 0.20, '2022-01-10 10:53:38', '2022-01-10 11:02:32', 'Crédito Fiscal', 2, 1, 29);
-INSERT INTO `tb_venta` VALUES (30, 1.50, 0.00, '2022-01-10 11:09:30', '2022-01-10 11:09:49', 'Factura', 2, 1, 30);
-INSERT INTO `tb_venta` VALUES (31, 3.00, 0.00, '2022-01-10 11:09:30', '2022-01-10 11:18:15', 'Factura', 2, 1, 30);
-INSERT INTO `tb_venta` VALUES (32, 3.00, 0.00, '2022-01-10 11:28:57', '2022-01-10 11:31:06', 'Factura', 2, 1, 32);
-INSERT INTO `tb_venta` VALUES (33, 10.17, 1.17, '2022-01-10 11:28:57', '2022-01-10 11:31:35', 'Crédito Fiscal', 2, 1, 32);
-INSERT INTO `tb_venta` VALUES (34, 6.78, 0.78, '2022-01-10 11:33:38', '2022-01-10 11:34:05', 'Crédito Fiscal', 2, 1, 34);
-INSERT INTO `tb_venta` VALUES (35, 3.00, 0.00, '2022-01-10 02:56:03', '2022-01-10 15:15:39', 'Factura', 2, 2, 35);
-INSERT INTO `tb_venta` VALUES (36, 1500.00, 0.00, '2022-01-10 03:17:07', '2022-01-10 15:17:57', 'Factura', 2, 1, 36);
-INSERT INTO `tb_venta` VALUES (37, 18.08, 0.00, '2022-01-10 10:53:17', '2022-01-10 22:55:28', 'Crédito Fiscal', 2, 1, 37);
-INSERT INTO `tb_venta` VALUES (38, 16.00, 0.00, '2022-01-10 11:08:09', '2022-01-10 23:08:30', 'Factura', 2, 1, 38);
-INSERT INTO `tb_venta` VALUES (39, 376.00, 0.00, '2022-01-10 11:09:24', '2022-01-10 23:09:40', 'Ticket', 2, 1, 39);
-INSERT INTO `tb_venta` VALUES (40, 4.50, 0.00, '2022-01-10 11:26:11', '2022-01-10 23:27:33', 'Ticket', 2, 1, 40);
-INSERT INTO `tb_venta` VALUES (41, 1.50, 0.00, '2022-01-10 11:29:51', '2022-01-10 23:30:05', 'Ticket', 2, 1, 41);
+INSERT INTO `tb_venta` VALUES (1, 37.63, 4.33, '2022-01-18 08:46:17', '2022-01-18 08:49:03', 'Crédito Fiscal', 3, 5, 1);
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -27,7 +27,7 @@
         	exit();
 
    		}else{
-   			print json_encode(array("Error",$fecha_inicio,$fecha_fin,$idcategoria));
+   			print json_encode(array("Error",$fecha_inicio,$fecha_fin,$idcategoria,$result));
         	exit();
    		}
 
@@ -42,7 +42,7 @@
 		);
 		 
 		$result_select = $modelo->crear_select($array_select);	
-		if (!$result_select[3]) {
+		if ($result_select[4] >= 1) {
 			print json_encode(array("Exito",$result_select));
 			exit();
 		}else {

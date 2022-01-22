@@ -142,12 +142,12 @@
                                                     </div>
                                                         
                                                     <div class="form-group text-center">
-                                                        <a class="btn bg-success" data-toggle="modal" data-target="#md_agregar_bovino">
+                                                        <a class="btn bg-info" data-toggle="modal" data-target="#md_agregar_bovino">
                                                             <i class="fas fa-shopping-cart"></i>
                                                                 Agregar
                                                                 Bovino
                                                         </a> 
-                                                        <a  class="btn bg-success btn_limpiar">
+                                                        <a  class="btn bg-danger btn_limpiar">
                                                             <i class="fa fa-trash"></i>
                                                                 Limpiar
                                                         </a >
