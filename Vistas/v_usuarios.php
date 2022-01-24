@@ -171,10 +171,10 @@
                                             </div>
                                         </div>
                                     <div>
-                                        <button id="limpiar" name="limpiar" type="reset" class="btn bg-success ">
+                                        <button id="limpiar" name="limpiar" type="reset" class="btn bg-danger ">
                                             <i class="fas fa-trash"></i> Limpiar</button>
 
-                                        <button type="submit" class="btn bg-success"><i class="fa fa-save"></i> Guardar</button>
+                                        <button type="submit" class="btn bg-info"><i class="fa fa-save"></i> Guardar</button>
                                         <span>
                                            * Campo Requerido
                                         </span>
@@ -238,10 +238,10 @@
                                             </div>                                           
                                         </div>
                                     <div>
-                                        <button id="limpiar" name="limpiar" type="reset" class="btn bg-success ">
+                                        <button id="limpiar" name="limpiar" type="reset" class="btn bg-danger ">
                                             <i class="fas fa-trash"></i> Limpiar</button>
 
-                                        <button type="submit" class="btn bg-success"><i class="fa fa-save"></i> Guardar</button>
+                                        <button type="submit" class="btn bg-info"><i class="fa fa-save"></i> Guardar</button>
                                         <span>
                                            * Campo Requerido
                                         </span>
@@ -344,10 +344,10 @@
                                             </div>
                                         </div>
                                     <div>
-                                        <button id="limpiar" name="limpiar" type="reset" class="btn bg-success ">
+                                        <button id="limpiar" name="limpiar" type="reset" class="btn bg-danger ">
                                             <i class="fas fa-trash"></i> Limpiar</button>
 
-                                        <button type="submit" class="btn bg-success"><i class="fa fa-save"></i> Guardar
+                                        <button type="submit" class="btn bg-info"><i class="fa fa-save"></i> Guardar
                                         </button>
                                         <span>
                                            <small>* Campo Requerido</small> 

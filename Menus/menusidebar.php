@@ -258,6 +258,11 @@
                                             <p>Producción y Productos</p>
                                         </a>
                                     </li>
+                                     <li class="nav-item">
+                                        <a href="../Vistas/v_seleccion_reportes_expediente.php" class="nav-link">
+                                            <p>Expediente</p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="nav-item">
